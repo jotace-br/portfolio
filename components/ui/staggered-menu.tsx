@@ -1,5 +1,6 @@
 'use client';
 
+import { cn } from '@/lib/utils';
 import { gsap } from 'gsap';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -524,19 +525,22 @@ const StaggeredMenuComponent = React.forwardRef<
 				document.removeEventListener('mousedown', handleClickOutside);
 			};
 		}, [closeOnClickAway, open, closeMenu]);
+
 		return (
 			<div
-				className={`sm-scope z-40 ${
+				className={cn(
+					'sm-scope z-40',
 					isFixed
-						? 'fixed top-0 left-0 w-screen h-screen overflow-hidden'
-						: 'w-full h-full'
-				}`}
+						? 'isFixed fixed top-0 left-0 w-screen h-screen overflow-hidden'
+						: '!isFixed w-full h-full',
+					!open && 'pointer-events-none'
+				)}
 			>
 				<div
-					className={
-						(className ? className + ' ' : '') +
-						'staggered-menu-wrapper relative w-full h-full z-40'
-					}
+					className={cn(
+						'staggered-menu-wrapper relative w-full h-full z-40',
+						className ? className + ' ' : ''
+					)}
 					style={
 						{
 							['--sm-accent']: accentColor,
@@ -576,7 +580,7 @@ const StaggeredMenuComponent = React.forwardRef<
 					</div>
 
 					<header
-						className='staggered-menu-header absolute top-0 left-0 w-full flex items-center justify-between p-[2em] bg-transparent pointer-events-none z-20'
+						className='staggered-menu-header absolute top-0 left-0 w-full flex items-center justify-between p-[2em] bg-transparent pointer-events-auto z-20'
 						aria-label='Main navigation header'
 					>
 						<div
