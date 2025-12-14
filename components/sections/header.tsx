@@ -32,7 +32,7 @@ function Header() {
 	const [menuOpen, setMenuOpen] = useState(false);
 	const menuRef = useRef<{ open: () => void; close: () => void } | null>(null);
 
-	const { theme, setTheme } = useTheme();
+	const { theme, setTheme, resolvedTheme } = useTheme();
 
 	const { scrollY } = useScroll();
 
@@ -157,7 +157,7 @@ function Header() {
 								>
 									{!mounted ? (
 										<span className='inline-block w-4 h-4' />
-									) : theme === 'dark' ? (
+									) : resolvedTheme === 'dark' ? (
 										<Sun className='size-4.5' />
 									) : (
 										<Moon className='size-4.5' />
@@ -196,7 +196,7 @@ function Header() {
 									>
 										{!mounted ? (
 											<span className='inline-block w-4 h-4' />
-										) : theme === 'dark' ? (
+										) : resolvedTheme === 'dark' ? (
 											<Sun className='size-4.5' />
 										) : (
 											<Moon className='size-4.5' />
@@ -246,22 +246,24 @@ function Header() {
 				items={menuItems}
 				socialItems={socialItems}
 				displaySocials={true}
-				menuButtonColor={theme === 'dark' ? '#fff' : '#000'}
-				openMenuButtonColor={theme === 'dark' ? '#000' : '#fff'}
+				menuButtonColor={resolvedTheme === 'dark' ? '#fff' : '#000'}
+				openMenuButtonColor={resolvedTheme === 'dark' ? '#000' : '#fff'}
 				changeMenuColorOnOpen={true}
 				displayItemNumbering={false}
 				colors={
-					theme === 'dark' ? ['#09090b', '#c182f5'] : ['#f9fafb', '#7016ba']
+					resolvedTheme === 'dark'
+						? ['#09090b', '#c182f5']
+						: ['#f9fafb', '#7016ba']
 				}
 				logoUrl=''
-				accentColor={theme === 'dark' ? '#c182f5' : '#7016ba'}
-				textColor={theme === 'dark' ? '#fff' : '#000'}
+				accentColor={resolvedTheme === 'dark' ? '#c182f5' : '#7016ba'}
+				textColor={resolvedTheme === 'dark' ? '#fff' : '#000'}
 				borderColor={
-					theme === 'dark'
+					resolvedTheme === 'dark'
 						? 'rgba(193, 130, 245, 0.2)'
 						: 'rgba(112, 22, 186, 0.2)'
 				}
-				panelBackground={theme === 'dark' ? '#09090b' : '#f9fafb'}
+				panelBackground={resolvedTheme === 'dark' ? '#09090b' : '#f9fafb'}
 				isFixed={true}
 				closeOnClickAway={true}
 				onMenuOpen={() => setMenuOpen(true)}

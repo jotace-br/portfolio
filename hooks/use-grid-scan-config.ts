@@ -2,7 +2,7 @@ import { GridScanProps } from '@/types/grid-scan';
 import { useTheme } from 'next-themes';
 
 export function useGridScanConfig(): Omit<GridScanProps, 'className'> {
-	const { theme } = useTheme();
+	const { resolvedTheme } = useTheme();
 
 	const darkConfig = {
 		sensitivity: 0.55,
@@ -34,5 +34,5 @@ export function useGridScanConfig(): Omit<GridScanProps, 'className'> {
 		noiseIntensity: 0.02,
 	};
 
-	return theme === 'dark' ? darkConfig : lightConfig;
+	return resolvedTheme === 'dark' ? darkConfig : lightConfig;
 }
