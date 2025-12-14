@@ -131,30 +131,31 @@ const StaggeredMenuComponent = React.forwardRef<
 			},
 		}));
 
-	// Sync internal state with controlled prop
-	useEffect(() => {
-		if (controlledOpen === undefined) return;
-		
-		// Only sync if there's actually a difference
-		if (controlledOpen === openRef.current) return;
+		// Sync internal state with controlled prop
+		useEffect(() => {
+			if (controlledOpen === undefined) return;
 
-		if (controlledOpen && !openRef.current) {
-			openRef.current = true;
-			setOpen(true);
-			playOpen();
-			animateIcon(true);
-			animateColor(true);
-			animateText(true);
-		} else if (!controlledOpen && openRef.current) {
-			openRef.current = false;
-			setOpen(false);
-			playClose();
-			animateIcon(false);
-			animateColor(false);
-			animateText(false);
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [controlledOpen]);		useLayoutEffect(() => {
+			// Only sync if there's actually a difference
+			if (controlledOpen === openRef.current) return;
+
+			if (controlledOpen && !openRef.current) {
+				openRef.current = true;
+				setOpen(true);
+				playOpen();
+				animateIcon(true);
+				animateColor(true);
+				animateText(true);
+			} else if (!controlledOpen && openRef.current) {
+				openRef.current = false;
+				setOpen(false);
+				playClose();
+				animateIcon(false);
+				animateColor(false);
+				animateText(false);
+			}
+			// eslint-disable-next-line react-hooks/exhaustive-deps
+		}, [controlledOpen]);
+		useLayoutEffect(() => {
 			const ctx = gsap.context(() => {
 				const panel = panelRef.current;
 				const preContainer = preLayersRef.current;
@@ -497,32 +498,33 @@ const StaggeredMenuComponent = React.forwardRef<
 			}
 		}, [playClose, animateIcon, animateColor, animateText, onMenuClose]);
 
-	useEffect(() => {
-		if (!closeOnClickAway || !open) return;
+		useEffect(() => {
+			if (!closeOnClickAway || !open) return;
 
-		const handleClickOutside = (event: MouseEvent) => {
-			const target = event.target as HTMLElement;
+			const handleClickOutside = (event: MouseEvent) => {
+				const target = event.target as HTMLElement;
 
-			// Don't close if clicking inside the panel
-			if (panelRef.current && panelRef.current.contains(target)) {
-				return;
-			}
+				// Don't close if clicking inside the panel
+				if (panelRef.current && panelRef.current.contains(target)) {
+					return;
+				}
 
-			// Don't close if clicking on any button or inside any nav/header outside the menu
-			// This catches the theme toggle and menu button in the main header
-			if (target.closest('button')) {
-				return;
-			}
+				// Don't close if clicking on any button or inside any nav/header outside the menu
+				// This catches the theme toggle and menu button in the main header
+				if (target.closest('button')) {
+					return;
+				}
 
-			// Close menu if clicking elsewhere
-			closeMenu();
-		};
+				// Close menu if clicking elsewhere
+				closeMenu();
+			};
 
-		document.addEventListener('mousedown', handleClickOutside);
-		return () => {
-			document.removeEventListener('mousedown', handleClickOutside);
-		};
-	}, [closeOnClickAway, open, closeMenu]);		return (
+			document.addEventListener('mousedown', handleClickOutside);
+			return () => {
+				document.removeEventListener('mousedown', handleClickOutside);
+			};
+		}, [closeOnClickAway, open, closeMenu]);
+		return (
 			<div
 				className={`sm-scope z-40 ${
 					isFixed
@@ -545,6 +547,7 @@ const StaggeredMenuComponent = React.forwardRef<
 					}
 					data-position={position}
 					data-open={open || undefined}
+					suppressHydrationWarning
 				>
 					<div
 						ref={preLayersRef}
@@ -566,6 +569,7 @@ const StaggeredMenuComponent = React.forwardRef<
 									key={i}
 									className='sm-prelayer absolute top-0 right-0 h-full w-full translate-x-0'
 									style={{ background: c }}
+									suppressHydrationWarning
 								/>
 							));
 						})()}
