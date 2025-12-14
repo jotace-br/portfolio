@@ -526,6 +526,45 @@ const StaggeredMenuComponent = React.forwardRef<
 			};
 		}, [closeOnClickAway, open, closeMenu]);
 
+		// Handle browser back button to close menu
+		useEffect(() => {
+			if (!open) return;
+
+			const handlePopState = () => {
+				closeMenu();
+			};
+
+			// Push a state when menu opens so back button can close it
+			window.history.pushState({ menuOpen: true }, '');
+
+			window.addEventListener('popstate', handlePopState);
+
+			return () => {
+				window.removeEventListener('popstate', handlePopState);
+			};
+		}, [open, closeMenu]);
+
+		// Handle screen rotation/resize - close menu if screen becomes desktop size
+		useEffect(() => {
+			if (!open) return;
+
+			const handleResize = () => {
+				// Close menu if screen width exceeds 768px (md breakpoint)
+				if (window.innerWidth > 768) {
+					closeMenu();
+				}
+			};
+
+			// Listen for both resize and orientation change events
+			window.addEventListener('resize', handleResize);
+			window.addEventListener('orientationchange', handleResize);
+
+			return () => {
+				window.removeEventListener('resize', handleResize);
+				window.removeEventListener('orientationchange', handleResize);
+			};
+		}, [open, closeMenu]);
+
 		return (
 			<div
 				className={cn(
