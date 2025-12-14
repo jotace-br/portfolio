@@ -14,6 +14,7 @@
 		"clsx": "^2.1.1",
 		"face-api.js": "^0.22.2",
 		"framer-motion": "^12.23.26",
+		"gsap": "^3.13.0",
 		"lucide-react": "^0.561.0",
 		"motion": "^12.23.26",
 		"next": "16.0.10",

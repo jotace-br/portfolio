@@ -66,9 +66,9 @@ export function HeroSection() {
 						variants={itemVariants}
 					>
 						<div className='relative'>
-							<div className='absolute -inset-4 rounded-full bg-linear-to-r from-blue-500 to-purple-600 opacity-20 blur-2xl animate-pulse' />
+							<div className='absolute -inset-4 rounded-full bg-linear-to-r from-highlight-primary to-purple-600 opacity-20 blur-2xl animate-pulse' />
 							<div className='relative size-48 sm:h-56 sm:w-56 lg:h-64 lg:w-64'>
-								<div className='absolute inset-0 rounded-full bg-linear-to-br from-blue-500 to-purple-600 opacity-10' />
+								<div className='absolute inset-0 rounded-full bg-linear-to-br from-highlight-primary to-purple-600 opacity-10' />
 								<Image
 									src='/profile.png'
 									alt='Júlio César - Front-End Developer'

@@ -24,7 +24,7 @@ export function useGridScanConfig(): Omit<GridScanProps, 'className'> {
 		lineThickness: 1.2,
 		linesColor: '#94a3b8',
 		gridScale: 0.07,
-		scanColor: '#8b5cf6',
+		scanColor: '#c182f5',
 		scanOpacity: 0.5,
 		enablePost: true,
 		enableGyro: true,
