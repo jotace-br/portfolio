@@ -1,7 +1,7 @@
-import type { Metadata } from 'next';
+import { getBaseUrl } from '@/utils/url';
 import { Geist, Geist_Mono } from 'next/font/google';
-import { Header } from '../components/header';
-import { ThemeProvider } from '../components/theme-provider';
+import { Header } from '../components/sections/header';
+import { ThemeProvider } from '../providers/theme-provider';
 import './globals.css';
 
 const geistSans = Geist({
@@ -14,35 +14,71 @@ const geistMono = Geist_Mono({
 	subsets: ['latin'],
 });
 
-export const metadata: Metadata = {
-	title: 'Júlio César - Front-End Developer | Portfolio',
-	description:
-		'Front-End Developer crafting beautiful, performant web experiences with modern technologies. Passionate about creating elegant solutions to complex problems.',
-	keywords: [
-		'Front-End Developer',
-		'Web Developer',
-		'Software Engineer',
-		'React',
-		'Next.js',
-		'TypeScript',
-		'Portfolio',
-	],
-	authors: [{ name: 'Júlio César' }],
-	creator: 'Júlio César',
-	openGraph: {
-		title: 'Júlio César - Front-End Developer',
+export async function generateMetadata({ request }: { request?: Request }) {
+	const origin =
+		typeof request !== 'undefined' && request?.url
+			? new URL(request.url).origin
+			: getBaseUrl();
+
+	return {
+		title: {
+			default: 'Júlio César — Senior Front-end Engineer | React · Next.js',
+			template: '%s — Júlio César',
+		},
 		description:
-			'Front-End Developer crafting beautiful, performant web experiences with modern technologies.',
-		type: 'website',
-		locale: 'en_US',
-	},
-	twitter: {
-		card: 'summary_large_image',
-		title: 'Júlio César - Front-End Developer',
-		description:
-			'Front-End Developer crafting beautiful, performant web experiences with modern technologies.',
-	},
-};
+			'Senior Front-end Engineer with 5+ years building performant, SEO-friendly React and Next.js applications. Focused on Web Vitals, architecture, and sustainable codebases. Based in Maceió, Brazil. Contact: jc10ferreira@gmail.com',
+		keywords: [
+			'React',
+			'Next.js',
+			'Front-end',
+			'Performance',
+			'Web Vitals',
+			'SEO',
+			'JavaScript',
+			'Frontend Engineering',
+			'Accessibility',
+		],
+		authors: [
+			{
+				name: 'Júlio César Almeida Ferreira',
+				url: 'https://www.linkedin.com/in/juliocesardev',
+			},
+		],
+		creator: 'Júlio César Almeida Ferreira',
+		publisher: 'Júlio César Almeida Ferreira',
+		openGraph: {
+			title: 'Júlio César — Senior Front-end Engineer',
+			description:
+				'Senior Front-end Engineer with 5+ years building high-performance React/Next.js applications, focusing on Web Vitals, SEO and scalable architecture.',
+			url: origin,
+			siteName: 'Júlio César — Portfolio',
+			images: [
+				{
+					url: `${origin}/og/og-image.png`,
+					width: 1200,
+					height: 630,
+					alt: 'Júlio César — Front-end Engineer',
+				},
+			],
+			locale: 'en_US',
+			type: 'website',
+		},
+		twitter: {
+			card: 'summary_large_image',
+			title: 'Júlio César — Senior Front-end Engineer',
+			description:
+				'Performance-driven Front-end Engineer (React, Next.js). Focused on Web Vitals, SEO and scalable architectures.',
+		},
+		alternates: {
+			canonical: origin,
+		},
+		robots: {
+			index: true,
+			follow: true,
+			nocache: false,
+		},
+	};
+}
 
 export default function RootLayout({
 	children,

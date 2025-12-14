@@ -1,6 +1,6 @@
 'use client';
 
-import { HeroSection } from '@/components/hero-section';
+import { HeroSection } from '@/components/sections/hero-section';
 import { useGridScanConfig } from '@/hooks/useGridScanConfig';
 import { GridScan } from '../components/backgrounds/grid-scan';
 
