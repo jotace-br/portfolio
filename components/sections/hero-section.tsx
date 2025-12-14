@@ -2,11 +2,12 @@
 
 import { containerVariants, itemVariants } from '@/constants/animations';
 import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Files } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import CircularText from '../text-animations/circular-text';
 import { VariableProximity } from '../text-animations/variable-proximity';
+import { Button } from '../ui/button';
 
 export function HeroSection() {
 	return (
@@ -59,6 +60,22 @@ export function HeroSection() {
 							Next.js, with a strong focus on Web Vitals and production
 							performance.
 						</motion.p>
+
+						<motion.div
+							className='flex justify-center lg:justify-start'
+							variants={itemVariants}
+						>
+							<Link
+								href='https://docs.google.com/document/d/1J5eUoPhEYmL2C8OuStbRq745tFnkjZcEh8t7fURl2ZE/edit?usp=sharing'
+								target='_blank'
+								rel='noopener noreferrer'
+								className='pointer-events-auto'
+							>
+								<Button size='lg' variant='default' className='cursor-pointer'>
+									<Files /> My Resume
+								</Button>
+							</Link>
+						</motion.div>
 					</motion.div>
 
 					<motion.div
@@ -66,9 +83,9 @@ export function HeroSection() {
 						variants={itemVariants}
 					>
 						<div className='relative'>
-							<div className='absolute -inset-4 rounded-full bg-linear-to-r from-blue-500 to-purple-600 opacity-20 blur-2xl animate-pulse' />
+							<div className='absolute -inset-4 rounded-full bg-linear-to-r from-highlight-primary to-purple-600 opacity-20 blur-2xl animate-pulse' />
 							<div className='relative size-48 sm:h-56 sm:w-56 lg:h-64 lg:w-64'>
-								<div className='absolute inset-0 rounded-full bg-linear-to-br from-blue-500 to-purple-600 opacity-10' />
+								<div className='absolute inset-0 rounded-full bg-linear-to-br from-highlight-primary to-purple-600 opacity-10' />
 								<Image
 									src='/profile.png'
 									alt='Júlio César - Front-End Developer'
