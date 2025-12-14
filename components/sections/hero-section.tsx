@@ -4,8 +4,8 @@ import { motion, type Variants } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import CircularText from './text-animations/circular-text';
-import { VariableProximity } from './text-animations/variable-proximity';
+import CircularText from '../text-animations/circular-text';
+import { VariableProximity } from '../text-animations/variable-proximity';
 
 const containerVariants: Variants = {
 	hidden: { opacity: 0 },
@@ -52,7 +52,10 @@ export function HeroSection() {
 							aria-hidden='true'
 							className='absolute inset-0 rounded-2xl pointer-events-none z-0'
 						/>
-						<motion.div className='relative z-10 space-y-4' variants={itemVariants}>
+						<motion.div
+							className='relative z-10 space-y-4'
+							variants={itemVariants}
+						>
 							<h1
 								id='hero-heading'
 								className='text-5xl font-bold tracking-tight text-slate-900 dark:text-gray-100 sm:text-6xl md:text-7xl lg:text-8xl [-webkit-text-stroke:0.6px_#0f172bd8] dark:[-webkit-text-stroke:0px_rgba(0,0,0,0)]'
