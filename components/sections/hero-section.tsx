@@ -2,11 +2,12 @@
 
 import { containerVariants, itemVariants } from '@/constants/animations';
 import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Files } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import CircularText from '../text-animations/circular-text';
 import { VariableProximity } from '../text-animations/variable-proximity';
+import { Button } from '../ui/button';
 
 export function HeroSection() {
 	return (
@@ -59,6 +60,22 @@ export function HeroSection() {
 							Next.js, with a strong focus on Web Vitals and production
 							performance.
 						</motion.p>
+
+						<motion.div
+							className='flex justify-center lg:justify-start'
+							variants={itemVariants}
+						>
+							<Link
+								href='https://docs.google.com/document/d/1J5eUoPhEYmL2C8OuStbRq745tFnkjZcEh8t7fURl2ZE/edit?usp=sharing'
+								target='_blank'
+								rel='noopener noreferrer'
+								className='pointer-events-auto'
+							>
+								<Button size='lg' variant='default' className='cursor-pointer'>
+									<Files /> My Resume
+								</Button>
+							</Link>
+						</motion.div>
 					</motion.div>
 
 					<motion.div

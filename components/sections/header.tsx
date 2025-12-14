@@ -3,7 +3,13 @@
 import { Button } from '@/components/ui/button';
 import StaggeredMenu from '@/components/ui/staggered-menu';
 import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
+import {
+	motion,
+	useMotionTemplate,
+	useMotionValueEvent,
+	useScroll,
+	useTransform,
+} from 'framer-motion';
 import { Menu, Moon, Sun, X } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
@@ -28,14 +34,23 @@ function Header() {
 
 	const { theme, setTheme } = useTheme();
 
-	useEffect(() => {
-		const handleScroll = () => {
-			setIsScrolled(window.scrollY > 20);
-		};
+	const { scrollY } = useScroll();
 
-		window.addEventListener('scroll', handleScroll);
-		return () => window.removeEventListener('scroll', handleScroll);
-	}, []);
+	const maxScroll = 20;
+	const maxWidthRem = 72;
+	const minWidthRem = 36;
+
+	const widthRem = useTransform(
+		scrollY,
+		[0, maxScroll],
+		[maxWidthRem, minWidthRem]
+	);
+
+	const widthStyle = useMotionTemplate`${widthRem}rem`;
+
+	useMotionValueEvent(scrollY, 'change', (latest) => {
+		setIsScrolled(latest > 0);
+	});
 
 	useEffect(() => {
 		const raf = requestAnimationFrame(() => setMounted(true));
@@ -56,21 +71,30 @@ function Header() {
 
 	return (
 		<>
+			{/* Shadow overlay for mobile */}
+			<div className='md:hidden fixed top-0 left-0 right-0 h-40 bg-linear-to-b from-background/80 via-background/40 to-transparent z-40 pointer-events-none' />
+
 			<motion.header
-				className='fixed top-0 left-0 right-0 z-50 pt-4 px-4'
+				className='fixed top-0 left-0 right-0 z-50 sm:pt-4 px-4'
 				initial={{ y: -100, opacity: 0 }}
 				animate={{ y: 0, opacity: 1 }}
 				transition={{ duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] }}
 			>
 				<motion.nav
 					className={cn(
-						'max-w-6xl mx-auto rounded-full transition-all duration-300 px-4',
+						'mx-auto rounded-full sm:px-4 transition-all duration-300',
 						isScrolled
-							? 'backdrop-blur-xl bg-white/70 dark:bg-black/70 border border-black/10 dark:border-white/10'
-							: ' bg-white/50 dark:bg-black/50 border border-black/5 dark:border-white/5'
+							? 'md:backdrop-blur-xl md:bg-white/70 md:dark:bg-black/70 md:border md:border-black/10 md:dark:border-white/10'
+							: 'md:bg-white/50 md:dark:bg-black/50'
 					)}
+					style={{
+						maxWidth:
+							typeof window !== 'undefined' && window?.innerWidth < 768
+								? '72rem'
+								: widthStyle,
+					}}
 				>
-					<div className='flex items-center justify-between h-14'>
+					<div className='flex items-center justify-between h-12 gap-4'>
 						<motion.a
 							href='#home'
 							className='text-xl font-bold bg-accent-foreground bg-clip-text text-transparent'
@@ -85,7 +109,7 @@ function Header() {
 							JC
 						</motion.a>
 
-						<div className='hidden md:flex items-center gap-2 absolute left-1/2 transform -translate-x-1/2'>
+						<div className='hidden md:flex items-center gap-2'>
 							{menuItems.map((item, index) => (
 								<motion.div
 									key={item.label}
