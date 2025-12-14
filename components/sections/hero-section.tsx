@@ -1,34 +1,12 @@
 'use client';
 
-import { motion, type Variants } from 'framer-motion';
+import { containerVariants, itemVariants } from '@/constants/animations';
+import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import CircularText from '../text-animations/circular-text';
 import { VariableProximity } from '../text-animations/variable-proximity';
-
-const containerVariants: Variants = {
-	hidden: { opacity: 0 },
-	visible: {
-		opacity: 1,
-		transition: {
-			staggerChildren: 0.2,
-			delayChildren: 0.3,
-		},
-	},
-};
-
-const itemVariants: Variants = {
-	hidden: { opacity: 0, y: 20 },
-	visible: {
-		opacity: 1,
-		y: 0,
-		transition: {
-			duration: 0.8,
-			ease: [0.43, 0.13, 0.23, 0.96],
-		},
-	},
-};
 
 export function HeroSection() {
 	return (
@@ -42,7 +20,8 @@ export function HeroSection() {
 					className='grid gap-12 lg:grid-cols-2 lg:gap-16 items-center'
 					variants={containerVariants}
 					initial='hidden'
-					animate='visible'
+					whileInView='visible'
+					viewport={{ once: true, amount: 0.15 }}
 				>
 					<motion.div
 						className='relative isolate rounded-2xl space-y-8 text-center lg:text-left'
@@ -69,16 +48,16 @@ export function HeroSection() {
 								/>
 							</h1>
 							<p className='text-xl text-slate-900 dark:text-gray-100 sm:text-2xl md:text-3xl font-medium'>
-								Front-End Developer
+								Senior Front-End Engineer
 							</p>
 						</motion.div>
 						<motion.p
 							className='mx-auto max-w-2xl text-base text-slate-900 dark:text-slate-50 sm:text-lg lg:mx-0 font-medium leading-relaxed'
 							variants={itemVariants}
 						>
-							I craft beautiful, performant web experiences with modern
-							technologies. Passionate about creating elegant solutions to
-							complex problems and building products that make a difference.
+							I design and ship fast, scalable front-end systems using React and
+							Next.js, with a strong focus on Web Vitals and production
+							performance.
 						</motion.p>
 					</motion.div>
 

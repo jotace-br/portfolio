@@ -1,23 +1,14 @@
 'use client';
 
-import { HeroSection } from '@/components/sections/hero-section';
-import { useGridScanConfig } from '@/hooks/useGridScanConfig';
-import { GridScan } from '../components/backgrounds/grid-scan';
+import { PageReveal } from '@/components/animations/page-reveal';
+import { AllTechnologiesLoop } from '@/components/sections/all-technologies-loop';
+import { HeroSectionWithGridScan } from '@/components/sections/hero-section-with-grid-scan';
 
 export default function Home() {
-	const gridConfig = useGridScanConfig();
-
 	return (
-		<>
-			<div className='relative min-h-screen w-full'>
-				<div className='absolute inset-0 pointer-events-none'>
-					<GridScan
-						{...gridConfig}
-						className='w-full h-full pointer-events-auto'
-					/>
-				</div>
-				<HeroSection />
-			</div>
+		<PageReveal delay={0.5}>
+			<HeroSectionWithGridScan />
+			<AllTechnologiesLoop />
 
 			<br />
 			<br />
@@ -36,6 +27,6 @@ export default function Home() {
 			<br />
 			<br />
 			<br />
-		</>
+		</PageReveal>
 	);
 }
