@@ -32,7 +32,10 @@ function Header() {
 	const [menuOpen, setMenuOpen] = useState(false);
 	const menuRef = useRef<{ open: () => void; close: () => void } | null>(null);
 
-	const { theme, setTheme } = useTheme();
+	const { theme, setTheme, resolvedTheme } = useTheme();
+
+	// Default to dark when resolvedTheme is undefined (during SSR/hydration)
+	const effectiveTheme = resolvedTheme || 'dark';
 
 	const { scrollY } = useScroll();
 
@@ -157,7 +160,7 @@ function Header() {
 								>
 									{!mounted ? (
 										<span className='inline-block w-4 h-4' />
-									) : theme === 'dark' ? (
+									) : effectiveTheme === 'dark' ? (
 										<Sun className='size-4.5' />
 									) : (
 										<Moon className='size-4.5' />
@@ -196,7 +199,7 @@ function Header() {
 									>
 										{!mounted ? (
 											<span className='inline-block w-4 h-4' />
-										) : theme === 'dark' ? (
+										) : effectiveTheme === 'dark' ? (
 											<Sun className='size-4.5' />
 										) : (
 											<Moon className='size-4.5' />
@@ -246,22 +249,24 @@ function Header() {
 				items={menuItems}
 				socialItems={socialItems}
 				displaySocials={true}
-				menuButtonColor={theme === 'dark' ? '#fff' : '#000'}
-				openMenuButtonColor={theme === 'dark' ? '#000' : '#fff'}
+				menuButtonColor={effectiveTheme === 'dark' ? '#fff' : '#000'}
+				openMenuButtonColor={effectiveTheme === 'dark' ? '#000' : '#fff'}
 				changeMenuColorOnOpen={true}
 				displayItemNumbering={false}
 				colors={
-					theme === 'dark' ? ['#09090b', '#c182f5'] : ['#f9fafb', '#7016ba']
+					effectiveTheme === 'dark'
+						? ['#09090b', '#c182f5']
+						: ['#f9fafb', '#7016ba']
 				}
 				logoUrl=''
-				accentColor={theme === 'dark' ? '#c182f5' : '#7016ba'}
-				textColor={theme === 'dark' ? '#fff' : '#000'}
+				accentColor={effectiveTheme === 'dark' ? '#c182f5' : '#7016ba'}
+				textColor={effectiveTheme === 'dark' ? '#fff' : '#000'}
 				borderColor={
-					theme === 'dark'
+					effectiveTheme === 'dark'
 						? 'rgba(193, 130, 245, 0.2)'
 						: 'rgba(112, 22, 186, 0.2)'
 				}
-				panelBackground={theme === 'dark' ? '#09090b' : '#f9fafb'}
+				panelBackground={effectiveTheme === 'dark' ? '#09090b' : '#f9fafb'}
 				isFixed={true}
 				closeOnClickAway={true}
 				onMenuOpen={() => setMenuOpen(true)}

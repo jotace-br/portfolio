@@ -328,7 +328,7 @@ export const GridScan: React.FC<GridScanProps> = ({
 	className,
 	style,
 }) => {
-	const { theme } = useTheme();
+	const { resolvedTheme } = useTheme();
 	const containerRef = useRef<HTMLDivElement | null>(null);
 	const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -499,7 +499,7 @@ export const GridScan: React.FC<GridScanProps> = ({
 			},
 			uScanStarts: { value: new Array(MAX_SCANS).fill(0) },
 			uScanCount: { value: 0 },
-			uIsLightTheme: { value: theme === 'light' ? 1 : 0 },
+			uIsLightTheme: { value: resolvedTheme === 'light' ? 1 : 0 },
 		};
 
 		const material = new THREE.ShaderMaterial({
@@ -668,7 +668,7 @@ export const GridScan: React.FC<GridScanProps> = ({
 			u.uPhaseTaper.value = scanPhaseTaper;
 			u.uScanDuration.value = Math.max(0.05, scanDuration);
 			u.uScanDelay.value = Math.max(0.0, scanDelay);
-			u.uIsLightTheme.value = theme === 'light' ? 1 : 0;
+			u.uIsLightTheme.value = resolvedTheme === 'light' ? 1 : 0;
 		}
 		if (bloomRef.current) {
 			bloomRef.current.blendMode.opacity.value = Math.max(0, bloomIntensity);
@@ -679,7 +679,7 @@ export const GridScan: React.FC<GridScanProps> = ({
 			chromaRef.current.offset.set(chromaticAberration, chromaticAberration);
 		}
 	}, [
-		theme,
+		resolvedTheme,
 		lineThickness,
 		linesColor,
 		scanColor,
