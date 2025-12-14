@@ -29,7 +29,7 @@ function LogoLoopItem({ item }: LogoLoopItemProps) {
 				<div className='flex items-center justify-center w-16 h-16 text-5xl'>
 					{isNodeItem && item.node}
 				</div>
-				<span className='text-xs font-medium text-center text-muted-foreground group-hover/tech:text-foreground transition-colors duration-200 whitespace-nowrap'>
+				<span className='text-xs font-medium text-center text-gray-700 dark:text-gray-300 group-hover/tech:text-foreground transition-colors duration-200 whitespace-nowrap'>
 					{title}
 				</span>
 			</Link>

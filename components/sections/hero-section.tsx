@@ -20,7 +20,8 @@ export function HeroSection() {
 					className='grid gap-12 lg:grid-cols-2 lg:gap-16 items-center'
 					variants={containerVariants}
 					initial='hidden'
-					animate='visible'
+					whileInView='visible'
+					viewport={{ once: true, amount: 0.15 }}
 				>
 					<motion.div
 						className='relative isolate rounded-2xl space-y-8 text-center lg:text-left'

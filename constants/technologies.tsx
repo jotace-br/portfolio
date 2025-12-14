@@ -615,7 +615,13 @@ export const technologies: LogoItem[] = [
 	},
 	{
 		node: (
-			<Image src='/logos/hygraph.svg' alt='Hygraph' width={48} height={48} />
+			<Image
+				src='/logos/hygraph.svg'
+				alt='Hygraph'
+				width={48}
+				height={48}
+				className='dark:invert'
+			/>
 		),
 		title: 'Hygraph',
 		href: 'https://hygraph.com',

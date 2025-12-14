@@ -9,20 +9,12 @@ import { LogoLoopItem } from '../ui/logo-loop-item';
 function AllTechnologiesLoop() {
 	return (
 		<motion.section
-			className='w-full border-y border-gray-200 dark:border-gray-800 py-16 overflow-x-hidden'
+			className='w-full border-y border-gray-200 dark:border-gray-800 py-4 overflow-x-hidden'
 			variants={containerVariants}
 			initial='hidden'
 			whileInView='visible'
 			viewport={{ once: true, amount: 0.3 }}
 		>
-			<motion.div
-				className='container mx-auto px-4 mb-12'
-				variants={itemVariants}
-			>
-				<h2 className='text-3xl md:text-4xl font-bold text-center mb-2'>
-					Technologies & Tools
-				</h2>
-			</motion.div>
 			<motion.div variants={itemVariants}>
 				<LogoLoop
 					logos={technologies}
