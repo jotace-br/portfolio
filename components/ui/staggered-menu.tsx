@@ -570,7 +570,7 @@ const StaggeredMenuComponent = React.forwardRef<
 				className={cn(
 					'sm-scope z-40',
 					isFixed
-						? 'isFixed fixed top-0 left-0 w-screen h-screen overflow-hidden'
+						? 'isFixed fixed top-0 left-0 w-screen h-dvh overflow-hidden'
 						: '!isFixed w-full h-full',
 					!open && 'pointer-events-none'
 				)}
@@ -711,6 +711,7 @@ const StaggeredMenuComponent = React.forwardRef<
 												aria-label={it.ariaLabel}
 												data-index={idx + 1}
 												tabIndex={open ? 0 : -1}
+												onClick={() => closeMenu()}
 											>
 												<span className='sm-panel-itemLabel inline-block origin-[50%_100%] will-change-transform'>
 													{it.label}
@@ -752,6 +753,7 @@ const StaggeredMenuComponent = React.forwardRef<
 													rel='noopener noreferrer'
 													className='sm-socials-link text-[1.2rem] font-medium no-underline relative inline-block py-0.5 transition-[color,opacity] duration-300 ease-linear'
 													tabIndex={open ? 0 : -1}
+													onClick={() => closeMenu()}
 												>
 													{s.label}
 												</Link>
