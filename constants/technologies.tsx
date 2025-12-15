@@ -71,7 +71,7 @@ import {
 } from 'react-icons/si';
 import { VscVscode } from 'react-icons/vsc';
 
-export const technologies: LogoItem[] = [
+export const TECHNOLOGIES: LogoItem[] = [
 	// Core Frontend
 	{
 		node: <SiReact className='text-[#61DAFB]' />,
@@ -176,9 +176,7 @@ export const technologies: LogoItem[] = [
 		ariaLabel: 'Redux',
 	},
 	{
-		node: (
-			<Image src='/logos/zustand.svg' alt='Zustand' width={48} height={48} />
-		),
+		node: <Image src='/logos/zustand.svg' alt='' width={48} height={48} />,
 		title: 'Zustand',
 		href: 'https://zustand-demo.pmnd.rs',
 		ariaLabel: 'Zustand',
@@ -187,7 +185,7 @@ export const technologies: LogoItem[] = [
 		node: (
 			<Image
 				src='/logos/jotai.svg'
-				alt='Jotai'
+				alt=''
 				width={48}
 				height={48}
 				className='dark:invert'
@@ -203,7 +201,7 @@ export const technologies: LogoItem[] = [
 		node: (
 			<Image
 				src='/logos/tanstack.svg'
-				alt='TanStack Query'
+				alt=''
 				width={48}
 				height={48}
 				className='dark:invert'
@@ -306,14 +304,7 @@ export const technologies: LogoItem[] = [
 		ariaLabel: 'Cypress',
 	},
 	{
-		node: (
-			<Image
-				src='/logos/playwright.svg'
-				alt='Playwright'
-				width={48}
-				height={48}
-			/>
-		),
+		node: <Image src='/logos/playwright.svg' alt='' width={48} height={48} />,
 		title: 'Playwright',
 		href: 'https://playwright.dev',
 		ariaLabel: 'Playwright',
@@ -467,6 +458,20 @@ export const technologies: LogoItem[] = [
 		ariaLabel: 'Three.js',
 	},
 	{
+		node: (
+			<Image
+				src='/logos/gsap.svg'
+				alt=''
+				width={16}
+				height={16}
+				className='dark:invert'
+			/>
+		),
+		title: 'GSAP',
+		href: 'https://gsap.com/',
+		ariaLabel: 'GSAP',
+	},
+	{
 		node: <SiWebgl className='text-[#990000]' />,
 		title: 'WebGL',
 		href: 'https://www.khronos.org/webgl',
@@ -521,14 +526,7 @@ export const technologies: LogoItem[] = [
 		ariaLabel: 'Auth0',
 	},
 	{
-		node: (
-			<Image
-				src='/logos/nextauth.svg'
-				alt='NextAuth.js'
-				width={48}
-				height={48}
-			/>
-		),
+		node: <Image src='/logos/nextauth.svg' alt='' width={48} height={48} />,
 		title: 'NextAuth.js',
 		href: 'https://next-auth.js.org',
 		ariaLabel: 'NextAuth.js',
@@ -617,7 +615,7 @@ export const technologies: LogoItem[] = [
 		node: (
 			<Image
 				src='/logos/hygraph.svg'
-				alt='Hygraph'
+				alt=''
 				width={48}
 				height={48}
 				className='dark:invert'

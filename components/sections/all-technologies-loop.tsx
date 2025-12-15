@@ -2,7 +2,7 @@
 
 import { LogoItem, LogoLoop } from '@/components/animations/logo-loop';
 import { containerVariants, itemVariants } from '@/constants/animations';
-import { technologies } from '@/constants/technologies';
+import { TECHNOLOGIES } from '@/constants/technologies';
 import { motion } from 'framer-motion';
 import { LogoLoopItem } from '../ui/logo-loop-item';
 
@@ -17,7 +17,7 @@ function AllTechnologiesLoop() {
 		>
 			<motion.div variants={itemVariants}>
 				<LogoLoop
-					logos={technologies}
+					logos={TECHNOLOGIES}
 					speed={60}
 					direction='left'
 					logoHeight={150}

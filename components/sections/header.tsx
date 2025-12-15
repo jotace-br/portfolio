@@ -1,7 +1,10 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import StaggeredMenu from '@/components/ui/staggered-menu';
+import StaggeredMenu, {
+	StaggeredMenuSocialItem,
+} from '@/components/ui/staggered-menu';
+import { SOCIAL_MEDIA_LINKS } from '@/constants/social-networks';
 import { cn } from '@/lib/utils';
 import {
 	motion,
@@ -16,14 +19,9 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
 const menuItems = [
-	{ label: 'About', ariaLabel: 'Go to about section', link: '#about' },
-	{ label: 'Work', ariaLabel: 'View my work', link: '#work' },
-	{ label: 'Contact', ariaLabel: 'Get in touch', link: '#contact' },
-];
-
-const socialItems = [
-	{ label: 'GitHub', link: 'https://github.com/jotace-br' },
-	{ label: 'LinkedIn', link: 'https://linkedin.com/in/juliocesardev' },
+	{ label: 'About', ariaLabel: 'Go to about section', link: '/#about' },
+	{ label: 'Work', ariaLabel: 'View my work', link: '/#work' },
+	{ label: 'Contact', ariaLabel: 'Get in touch', link: '/#contact' },
 ];
 
 function Header() {
@@ -99,7 +97,7 @@ function Header() {
 				>
 					<div className='flex items-center justify-between h-12 gap-4'>
 						<motion.a
-							href='#home'
+							href='/'
 							className='text-xl font-bold bg-accent-foreground bg-clip-text text-transparent'
 							initial={{ opacity: 0, y: -20 }}
 							animate={{ opacity: 1, y: 0 }}
@@ -150,6 +148,12 @@ function Header() {
 								variant='ghost'
 								size='icon-sm'
 								onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+								aria-label={
+									effectiveTheme === 'dark'
+										? 'Switch to light theme'
+										: 'Switch to dark theme'
+								}
+								aria-pressed={effectiveTheme === 'dark'}
 								className='cursor-pointer'
 							>
 								<motion.div
@@ -190,6 +194,12 @@ function Header() {
 										setTheme(theme === 'dark' ? 'light' : 'dark');
 										setMenuOpen(false);
 									}}
+									aria-label={
+										effectiveTheme === 'dark'
+											? 'Switch to light theme'
+											: 'Switch to dark theme'
+									}
+									aria-pressed={effectiveTheme === 'dark'}
 								>
 									<motion.div
 										key={mounted ? theme : 'mounted'}
@@ -229,6 +239,9 @@ function Header() {
 										e.stopPropagation();
 										setMenuOpen(!menuOpen);
 									}}
+									aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+									aria-expanded={menuOpen}
+									aria-haspopup='menu'
 								>
 									{menuOpen ? (
 										<X className='w-5 h-5' />
@@ -247,7 +260,7 @@ function Header() {
 				ref={menuRef}
 				open={menuOpen}
 				items={menuItems}
-				socialItems={socialItems}
+				socialItems={SOCIAL_MEDIA_LINKS satisfies StaggeredMenuSocialItem[]}
 				displaySocials={true}
 				menuButtonColor={effectiveTheme === 'dark' ? '#fff' : '#000'}
 				openMenuButtonColor={effectiveTheme === 'dark' ? '#000' : '#fff'}
