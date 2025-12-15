@@ -24,6 +24,7 @@ export function ProjectBanner({
 				alt={`${name} banner`}
 				fill
 				className='object-cover'
+				quality={95}
 				priority
 				sizes='100vw'
 			/>

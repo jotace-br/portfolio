@@ -458,6 +458,20 @@ export const TECHNOLOGIES: LogoItem[] = [
 		ariaLabel: 'Three.js',
 	},
 	{
+		node: (
+			<Image
+				src='/logos/gsap.svg'
+				alt=''
+				width={16}
+				height={16}
+				className='dark:invert'
+			/>
+		),
+		title: 'GSAP',
+		href: 'https://gsap.com/',
+		ariaLabel: 'GSAP',
+	},
+	{
 		node: <SiWebgl className='text-[#990000]' />,
 		title: 'WebGL',
 		href: 'https://www.khronos.org/webgl',

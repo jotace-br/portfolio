@@ -82,7 +82,9 @@ function ProjectCard({ project, isHovered, onHover }: ProjectCardProps) {
 						{remainingCount > 0 && (
 							<div
 								className='flex items-center text-slate-700 dark:text-zinc-300'
-								title={`${remainingCount} more ${remainingCount === 1 ? 'technology' : 'technologies'}`}
+								title={`${remainingCount} more ${
+									remainingCount === 1 ? 'technology' : 'technologies'
+								}`}
 							>
 								<span className='text-xs font-semibold'>+{remainingCount}</span>
 							</div>

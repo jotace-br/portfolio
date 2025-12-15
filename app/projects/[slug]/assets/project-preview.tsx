@@ -63,6 +63,7 @@ export function ProjectPreview({
 							src={media}
 							alt={name}
 							fill
+							quality={100}
 							className='object-cover'
 							sizes='(max-width: 1024px) 100vw, 1024px'
 						/>
