@@ -25,7 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
 			template: '%s — Júlio César',
 		},
 		description:
-			'Senior Front-end Engineer with 5+ years building performant, SEO-friendly React and Next.js applications. Focused on Web Vitals, architecture, and sustainable codebases. Based in Maceió, Brazil. Contact: jc10ferreira@gmail.com',
+			'Senior Front-end Engineer with 5+ years building performant, SEO-friendly React and Next.js apps. Focused on Web Vitals, architecture, and clean code.',
 		keywords: [
 			'React',
 			'Next.js',
