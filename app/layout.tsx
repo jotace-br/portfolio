@@ -1,4 +1,5 @@
 import { getBaseUrl } from '@/utils/url';
+import { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { Header } from '../components/sections/header';
 import { ThemeProvider } from '../providers/theme-provider';
@@ -14,7 +15,11 @@ const geistMono = Geist_Mono({
 	subsets: ['latin'],
 });
 
-export async function generateMetadata({ request }: { request?: Request }) {
+export async function generateMetadata({
+	request,
+}: {
+	request?: Request;
+}): Promise<Metadata> {
 	const origin =
 		typeof request !== 'undefined' && request?.url
 			? new URL(request.url).origin
@@ -68,6 +73,7 @@ export async function generateMetadata({ request }: { request?: Request }) {
 			title: 'Júlio César — Senior Front-end Engineer',
 			description:
 				'Performance-driven Front-end Engineer (React, Next.js). Focused on Web Vitals, SEO and scalable architectures.',
+			images: [`${origin}/og/og-image.png`],
 		},
 		alternates: {
 			canonical: origin,

@@ -735,9 +735,9 @@ const StaggeredMenuComponent = React.forwardRef<
 									className='sm-socials mt-auto pt-8 flex flex-col gap-3'
 									aria-label='Social links'
 								>
-									<h3 className='sm-socials-title m-0 text-base font-medium text-(--sm-accent,#ff0000)'>
+									<p className='sm-socials-title m-0 text-base font-medium text-(--sm-accent,#ff0000)'>
 										Socials
-									</h3>
+									</p>
 									<ul
 										className='sm-socials-list list-none m-0 p-0 flex flex-row items-center gap-4 flex-wrap'
 										role='list'

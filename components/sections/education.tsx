@@ -1,7 +1,7 @@
 'use client';
 
 import { containerVariants, itemVariants } from '@/constants/animations';
-import { JOB_EXPERIENCES } from '@/constants/job-experiences';
+import { EDUCATION_EXPERIENCES } from '@/constants/education';
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Sparkle } from 'lucide-react';
@@ -10,31 +10,21 @@ import ShinyText from '../animations/shiny-text';
 import { Accordion, ExpandableAccordionDetails } from '../ui/accordion';
 import { Button } from '../ui/button';
 
-export interface JobExperience {
-	id: string;
-	company: string;
-	companyLink: string;
-	logo: string;
-	role: string;
-	period: string;
-	achievements: string[];
-}
-
 const INITIAL_ITEMS_TO_SHOW = 4;
 
-function WorkExperience() {
+function Education() {
 	const [showAll, setShowAll] = useState(false);
 
-	const displayedJobs = showAll
-		? JOB_EXPERIENCES
-		: JOB_EXPERIENCES.slice(0, INITIAL_ITEMS_TO_SHOW);
-	const hasMore = JOB_EXPERIENCES.length > INITIAL_ITEMS_TO_SHOW;
+	const displayedEducationExperiences = showAll
+		? EDUCATION_EXPERIENCES
+		: EDUCATION_EXPERIENCES.slice(0, INITIAL_ITEMS_TO_SHOW);
+	const hasMore = EDUCATION_EXPERIENCES.length > INITIAL_ITEMS_TO_SHOW;
 
 	return (
 		<section
-			id='work'
+			id='education'
 			className='w-full py-8 sm:py-16 px-4 sm:px-6 lg:px-8'
-			aria-labelledby='work-heading'
+			aria-labelledby='education-heading'
 		>
 			<div className='max-w-6xl mx-auto w-full'>
 				<motion.div
@@ -57,7 +47,7 @@ function WorkExperience() {
 							>
 								<Sparkle size={16} />
 								<ShinyText
-									text='Work History'
+									text='Education'
 									className='word-spacing text-sm uppercase leading-none text-highlight-primary font-semibold'
 								/>
 							</motion.div>
@@ -67,7 +57,7 @@ function WorkExperience() {
 								className='text-3xl sm:text-5xl tracking-tight font-bold text-slate-900 dark:text-gray-100'
 								variants={itemVariants}
 							>
-								Experience
+								Educational Background
 							</motion.h2>
 						</motion.div>
 
@@ -75,10 +65,9 @@ function WorkExperience() {
 							className='text-base sm:text-lg text-slate-700 dark:text-gray-400 font-medium leading-relaxed'
 							variants={itemVariants}
 						>
-							I&apos;ve worked on production systems in close collaboration with
-							product, design, and engineering teams. My approach prioritizes
-							clarity, long-term maintainability, and decisions that scale with
-							the product.
+							My academic background provided a strong foundation in software
+							development concepts, problem-solving, and structured thinking,
+							supporting my professional growth as an engineer.
 						</motion.p>
 					</div>
 
@@ -88,9 +77,9 @@ function WorkExperience() {
 					>
 						<Accordion type='single' collapsible className='w-full'>
 							<AnimatePresence mode='popLayout'>
-								{displayedJobs.map((job, index) => (
+								{displayedEducationExperiences.map((education, index) => (
 									<motion.div
-										key={job.id}
+										key={education.id}
 										initial={{ scale: 0.8, opacity: 0, y: 20 }}
 										animate={{ scale: 1, opacity: 1, y: 0 }}
 										exit={{ scale: 0.8, opacity: 0, y: -20 }}
@@ -103,7 +92,7 @@ function WorkExperience() {
 											ease: [0.32, 0.72, 0, 1],
 										}}
 									>
-										<ExpandableAccordionDetails item={job} />
+										<ExpandableAccordionDetails item={education} />
 									</motion.div>
 								))}
 							</AnimatePresence>
@@ -125,4 +114,4 @@ function WorkExperience() {
 	);
 }
 
-export { WorkExperience };
+export { Education };

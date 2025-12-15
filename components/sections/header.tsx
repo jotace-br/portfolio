@@ -16,9 +16,9 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
 const menuItems = [
-	{ label: 'About', ariaLabel: 'Go to about section', link: '#about' },
-	{ label: 'Work', ariaLabel: 'View my work', link: '#work' },
-	{ label: 'Contact', ariaLabel: 'Get in touch', link: '#contact' },
+	{ label: 'About', ariaLabel: 'Go to about section', link: '/#about' },
+	{ label: 'Work', ariaLabel: 'View my work', link: '/#work' },
+	{ label: 'Contact', ariaLabel: 'Get in touch', link: '/#contact' },
 ];
 
 const socialItems = [
@@ -99,7 +99,7 @@ function Header() {
 				>
 					<div className='flex items-center justify-between h-12 gap-4'>
 						<motion.a
-							href='#home'
+							href='/'
 							className='text-xl font-bold bg-accent-foreground bg-clip-text text-transparent'
 							initial={{ opacity: 0, y: -20 }}
 							animate={{ opacity: 1, y: 0 }}

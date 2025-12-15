@@ -5,6 +5,9 @@ import { ChevronDownIcon } from 'lucide-react';
 import * as React from 'react';
 
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
+import Link from 'next/link';
+import { JobExperience } from '../sections/work-experience';
 
 function Accordion({
 	...props
@@ -63,4 +66,58 @@ function AccordionContent({
 	);
 }
 
-export { Accordion, AccordionContent, AccordionItem, AccordionTrigger };
+function ExpandableAccordionDetails({ item }: { item: JobExperience }) {
+	return (
+		<AccordionItem value={item.id} className='px-4'>
+			<AccordionTrigger className='hover:no-underline'>
+				<div className='flex items-center gap-4 w-full'>
+					<div className='relative size-14 rounded-lg overflow-hidden shrink-0'>
+						<Image
+							src={item.logo}
+							alt={`${item.company} logo`}
+							fill
+							quality={100}
+							className='object-contain'
+						/>
+					</div>
+					<div className='flex flex-col items-start text-left flex-1 min-w-0'>
+						<h3 className='font-semibold text-slate-900 dark:text-gray-100 truncate w-full text-pretty'>
+							{item.role}
+						</h3>
+						<Link
+							href={item.companyLink}
+							target='_blank'
+							rel='noopener noreferrer'
+							className='text-sm text-slate-600 dark:text-gray-400 truncate hover:underline w-fit text-pretty line-clamp-1'
+						>
+							{item.company}
+						</Link>
+						<p className='text-xs text-slate-500 dark:text-gray-500'>
+							{item.period}
+						</p>
+					</div>
+				</div>
+			</AccordionTrigger>
+			<AccordionContent>
+				<ul className='space-y-2 mt-4 list-disc list-inside'>
+					{item.achievements.map((achievement, index) => (
+						<li
+							key={index}
+							className='text-sm text-gray-900 dark:text-gray-400 marker:text-slate-900 dark:marker:text-gray-400'
+						>
+							{achievement}
+						</li>
+					))}
+				</ul>
+			</AccordionContent>
+		</AccordionItem>
+	);
+}
+
+export {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+	ExpandableAccordionDetails,
+};
