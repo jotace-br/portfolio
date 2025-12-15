@@ -1,5 +1,6 @@
 import { PageReveal } from '@/components/animations/page-reveal';
 import { PROJECTS } from '@/constants/projects';
+import { getBaseUrl } from '@/utils/url';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { ProjectBanner } from './assets/project-banner';
@@ -21,23 +22,32 @@ export async function generateMetadata({
 }: ProjectPageProps): Promise<Metadata> {
 	const { slug } = await params;
 	const project = PROJECTS.find((p) => p.slug === slug);
+	const baseUrl = getBaseUrl();
+	const canonicalUrl = `${baseUrl}/projects/${slug}`;
 
 	if (!project) {
 		return {
 			title: 'Project Not Found',
 			description: 'The requested project could not be found.',
+			alternates: {
+				canonical: canonicalUrl,
+			},
 		};
 	}
 
 	return {
 		title: `${project.name} | Projects`,
 		description: project.description,
+		alternates: {
+			canonical: canonicalUrl,
+		},
 		openGraph: {
 			title: project.name,
 			description: project.description,
 			images: [project.banner],
 			type: 'article',
 			publishedTime: project.date,
+			url: canonicalUrl,
 		},
 		twitter: {
 			card: 'summary_large_image',

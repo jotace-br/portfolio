@@ -87,10 +87,11 @@ export function HeroSection() {
 							<div className='relative size-48 sm:h-56 sm:w-56 lg:h-64 lg:w-64'>
 								<div className='absolute inset-0 rounded-full bg-linear-to-br from-highlight-primary to-purple-600 opacity-10' />
 								<Image
-									src='/profile.png'
+									src='/profile.webp'
 									alt='Júlio César - Front-End Developer'
 									fill
 									priority
+									fetchPriority='high'
 									quality={100}
 									className='rounded-full object-cover border-4 border-gray-200 dark:border-gray-800 shadow-2xl'
 									sizes='(max-width: 640px) 192px, (max-width: 1024px) 224px, 256px'

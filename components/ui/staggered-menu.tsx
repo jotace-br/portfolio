@@ -691,6 +691,7 @@ const StaggeredMenuComponent = React.forwardRef<
 							backdropFilter: 'blur(12px)',
 						}}
 						aria-hidden={!open}
+						inert={!open ? true : undefined}
 					>
 						<div className='sm-panel-inner flex-1 flex flex-col gap-5'>
 							<ul
@@ -709,6 +710,7 @@ const StaggeredMenuComponent = React.forwardRef<
 												href={it.link}
 												aria-label={it.ariaLabel}
 												data-index={idx + 1}
+												tabIndex={open ? 0 : -1}
 											>
 												<span className='sm-panel-itemLabel inline-block origin-[50%_100%] will-change-transform'>
 													{it.label}
@@ -749,6 +751,7 @@ const StaggeredMenuComponent = React.forwardRef<
 													target='_blank'
 													rel='noopener noreferrer'
 													className='sm-socials-link text-[1.2rem] font-medium no-underline relative inline-block py-0.5 transition-[color,opacity] duration-300 ease-linear'
+													tabIndex={open ? 0 : -1}
 												>
 													{s.label}
 												</Link>

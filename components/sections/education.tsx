@@ -53,7 +53,7 @@ function Education() {
 							</motion.div>
 
 							<motion.h2
-								id='about-heading'
+								id='education-heading'
 								className='text-3xl sm:text-5xl tracking-tight font-bold text-slate-900 dark:text-gray-100'
 								variants={itemVariants}
 							>

@@ -148,6 +148,12 @@ function Header() {
 								variant='ghost'
 								size='icon-sm'
 								onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+								aria-label={
+									effectiveTheme === 'dark'
+										? 'Switch to light theme'
+										: 'Switch to dark theme'
+								}
+								aria-pressed={effectiveTheme === 'dark'}
 								className='cursor-pointer'
 							>
 								<motion.div
@@ -188,6 +194,12 @@ function Header() {
 										setTheme(theme === 'dark' ? 'light' : 'dark');
 										setMenuOpen(false);
 									}}
+									aria-label={
+										effectiveTheme === 'dark'
+											? 'Switch to light theme'
+											: 'Switch to dark theme'
+									}
+									aria-pressed={effectiveTheme === 'dark'}
 								>
 									<motion.div
 										key={mounted ? theme : 'mounted'}
@@ -227,6 +239,9 @@ function Header() {
 										e.stopPropagation();
 										setMenuOpen(!menuOpen);
 									}}
+									aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+									aria-expanded={menuOpen}
+									aria-haspopup='menu'
 								>
 									{menuOpen ? (
 										<X className='w-5 h-5' />

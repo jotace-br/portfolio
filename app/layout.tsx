@@ -16,15 +16,8 @@ const geistMono = Geist_Mono({
 	subsets: ['latin'],
 });
 
-export async function generateMetadata({
-	request,
-}: {
-	request?: Request;
-}): Promise<Metadata> {
-	const origin =
-		typeof request !== 'undefined' && request?.url
-			? new URL(request.url).origin
-			: getBaseUrl();
+export async function generateMetadata(): Promise<Metadata> {
+	const origin = getBaseUrl();
 
 	return {
 		title: {
