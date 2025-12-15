@@ -17,6 +17,9 @@ export interface Project {
 	overview: string;
 	date: string;
 	stack: { name: string; icon: ReactNode }[];
+	keyFeatures: string[];
+	decisions: string[];
+	impact: string[];
 	media: string;
 	banner: string;
 	mediaType: 'image' | 'video';
@@ -85,7 +88,12 @@ function ProjectsShowcase() {
 						className='flex w-full flex-col items-center gap-6'
 						variants={itemVariants}
 					>
-						<div className='grid grid-cols-1 lg:grid-cols-2 gap-6 w-full'>
+						<motion.div
+							className='grid grid-cols-1 lg:grid-cols-2 gap-6 w-full'
+							variants={containerVariants}
+							initial='hidden'
+							animate='visible'
+						>
 							<AnimatePresence mode='popLayout'>
 								{displayedProjects.map((project, index) => (
 									<motion.div
@@ -110,7 +118,7 @@ function ProjectsShowcase() {
 									</motion.div>
 								))}
 							</AnimatePresence>
-						</div>
+						</motion.div>
 
 						{hasMore && (
 							<Button

@@ -1,7 +1,10 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import StaggeredMenu from '@/components/ui/staggered-menu';
+import StaggeredMenu, {
+	StaggeredMenuSocialItem,
+} from '@/components/ui/staggered-menu';
+import { SOCIAL_MEDIA_LINKS } from '@/constants/social-networks';
 import { cn } from '@/lib/utils';
 import {
 	motion,
@@ -19,11 +22,6 @@ const menuItems = [
 	{ label: 'About', ariaLabel: 'Go to about section', link: '/#about' },
 	{ label: 'Work', ariaLabel: 'View my work', link: '/#work' },
 	{ label: 'Contact', ariaLabel: 'Get in touch', link: '/#contact' },
-];
-
-const socialItems = [
-	{ label: 'GitHub', link: 'https://github.com/jotace-br' },
-	{ label: 'LinkedIn', link: 'https://linkedin.com/in/juliocesardev' },
 ];
 
 function Header() {
@@ -247,7 +245,7 @@ function Header() {
 				ref={menuRef}
 				open={menuOpen}
 				items={menuItems}
-				socialItems={socialItems}
+				socialItems={SOCIAL_MEDIA_LINKS satisfies StaggeredMenuSocialItem[]}
 				displaySocials={true}
 				menuButtonColor={effectiveTheme === 'dark' ? '#fff' : '#000'}
 				openMenuButtonColor={effectiveTheme === 'dark' ? '#000' : '#fff'}
