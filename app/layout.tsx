@@ -1,5 +1,6 @@
 import { Footer } from '@/components/sections/footer';
 import { getBaseUrl } from '@/utils/url';
+import { Analytics } from '@vercel/analytics/next';
 import { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { Header } from '../components/sections/header';
@@ -90,6 +91,7 @@ export default function RootLayout({
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 dark:bg-zinc-950`}
 			>
+				<Analytics />
 				<ThemeProvider
 					attribute='class'
 					defaultTheme='system'
