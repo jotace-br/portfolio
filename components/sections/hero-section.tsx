@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight, Files } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { BsLinkedin } from 'react-icons/bs';
+import { SiGithub } from 'react-icons/si';
 import CircularText from '../text-animations/circular-text';
 import { VariableProximity } from '../text-animations/variable-proximity';
 import { Button } from '../ui/button';
@@ -62,7 +64,7 @@ export function HeroSection() {
 						</motion.p>
 
 						<motion.div
-							className='flex justify-center lg:justify-start'
+							className='flex justify-center lg:justify-start gap-2'
 							variants={itemVariants}
 						>
 							<Link
@@ -73,6 +75,28 @@ export function HeroSection() {
 							>
 								<Button size='lg' variant='default' className='cursor-pointer'>
 									<Files /> My Resume
+								</Button>
+							</Link>
+							<Link
+								href='https://www.linkedin.com/in/juliocesardev/'
+								target='_blank'
+								rel='noopener noreferrer'
+								className='pointer-events-auto'
+							>
+								<Button size='lg' variant='outline' className='cursor-pointer'>
+									<BsLinkedin size={20} />{' '}
+									<span className='hidden sm:inline'>LinkedIn</span>
+								</Button>
+							</Link>
+							<Link
+								href='https://github.com/juliocesardev'
+								target='_blank'
+								rel='noopener noreferrer'
+								className='pointer-events-auto'
+							>
+								<Button size='lg' variant='outline' className='cursor-pointer'>
+									<SiGithub size={20} />{' '}
+									<span className='hidden sm:inline'>GitHub</span>
 								</Button>
 							</Link>
 						</motion.div>
