@@ -22,15 +22,15 @@ export async function generateMetadata(): Promise<Metadata> {
 
 	return {
 		title: {
-			default: 'Júlio César — Senior Front-end Engineer | React · Next.js',
+			default: 'Júlio César — Frontend Engineer | React · Next.js',
 			template: '%s — Júlio César',
 		},
 		description:
-			'Senior Front-end Engineer with 5+ years building performant, SEO-friendly React and Next.js apps. Focused on Web Vitals, architecture, and clean code.',
+			'Frontend Engineer with 5+ years building performant, SEO-friendly React and Next.js apps. Focused on Web Vitals, architecture, and clean code.',
 		keywords: [
 			'React',
 			'Next.js',
-			'Front-end',
+			'Frontend',
 			'Performance',
 			'Web Vitals',
 			'SEO',
@@ -47,9 +47,9 @@ export async function generateMetadata(): Promise<Metadata> {
 		creator: 'Júlio César Almeida Ferreira',
 		publisher: 'Júlio César Almeida Ferreira',
 		openGraph: {
-			title: 'Júlio César — Senior Front-end Engineer',
+			title: 'Júlio César — Frontend Engineer',
 			description:
-				'Senior Front-end Engineer with 5+ years building high-performance React/Next.js applications, focusing on Web Vitals, SEO and scalable architecture.',
+				'Frontend Engineer with 5+ years building high-performance React/Next.js applications, focusing on Web Vitals, SEO and scalable architecture.',
 			url: origin,
 			siteName: 'Júlio César — Portfolio',
 			images: [
@@ -57,7 +57,7 @@ export async function generateMetadata(): Promise<Metadata> {
 					url: `${origin}/og/og-image.png`,
 					width: 1200,
 					height: 630,
-					alt: 'Júlio César — Front-end Engineer',
+					alt: 'Júlio César — Frontend Engineer',
 				},
 			],
 			locale: 'en_US',
@@ -65,9 +65,9 @@ export async function generateMetadata(): Promise<Metadata> {
 		},
 		twitter: {
 			card: 'summary_large_image',
-			title: 'Júlio César — Senior Front-end Engineer',
+			title: 'Júlio César — Frontend Engineer',
 			description:
-				'Performance-driven Front-end Engineer (React, Next.js). Focused on Web Vitals, SEO and scalable architectures.',
+				'Performance-driven Frontend Engineer (React, Next.js). Focused on Web Vitals, SEO and scalable architectures.',
 			images: [`${origin}/og/og-image.png`],
 		},
 		alternates: {

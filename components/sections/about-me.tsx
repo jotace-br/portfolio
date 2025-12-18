@@ -39,7 +39,7 @@ function AboutMe() {
 							rotationEnd='center center'
 							wordAnimationEnd='center top'
 						>
-							I&apos;m Júlio César, a front-end engineer with over 5+ years of
+							I&apos;m Júlio César, a frontend engineer with over 5+ years of
 							experience building web applications for real-world use. I focus
 							on writing clean, reliable code and contributing to products that
 							evolve over time.

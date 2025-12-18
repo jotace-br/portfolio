@@ -51,14 +51,14 @@ export function HeroSection() {
 								/>
 							</h1>
 							<p className='text-xl text-slate-900 dark:text-gray-100 sm:text-2xl md:text-3xl font-medium'>
-								Senior Front-End Engineer
+								Frontend Engineer
 							</p>
 						</motion.div>
 						<motion.p
 							className='mx-auto max-w-2xl text-base text-slate-900 dark:text-slate-50 sm:text-lg lg:mx-0 font-medium leading-relaxed'
 							variants={itemVariants}
 						>
-							I design and ship fast, scalable front-end systems using React and
+							I design and ship fast, scalable frontendystems using React and
 							Next.js, with a strong focus on Web Vitals and production
 							performance.
 						</motion.p>
@@ -112,7 +112,7 @@ export function HeroSection() {
 								<div className='absolute inset-0 rounded-full bg-linear-to-br from-highlight-primary to-purple-600 opacity-10' />
 								<Image
 									src='/profile.webp'
-									alt='Júlio César - Front-End Developer'
+									alt='Júlio César - Frontend Engineer'
 									fill
 									priority
 									fetchPriority='high'

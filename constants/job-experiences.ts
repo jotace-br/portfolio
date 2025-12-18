@@ -6,7 +6,7 @@ export const JOB_EXPERIENCES: JobExperience[] = [
 		company: 'Compare Games',
 		companyLink: 'https://comparegames.com.br/',
 		logo: '/logos/companies/compare-games.webp',
-		role: 'Front-End Developer',
+		role: 'Frontend Engineer',
 		period: 'May 2024 - Present',
 		achievements: [
 			'Achieved 90+ Web Vitals scores and reduced FCP to 0.2s by applying Semantic HTML, SSR, and SEO optimizations across critical pages such as Home, Product, Blog, Catalog, and multiple Landing Pages, significantly improving organic ranking and user experience.',
@@ -14,7 +14,7 @@ export const JOB_EXPERIENCES: JobExperience[] = [
 			'A/B testing implementation with PostHog, enabling data-driven decisions that enhanced user engagement and conversion rates.',
 			"Collaborated closely with UX designers to revamp the platform's UI/UX, resulting in a modern, user-friendly interface that boosted user satisfaction and retention.",
 			'Designed and implemented a modular, secure checkout system, eliminating fraud risks and integrating a Headless CMS (Hygraph), decentralizing content management and accelerating time-to-market for new features.',
-			'Led the front-end technical evolution as the sole developer in the squad, conducting code reviews, writing technical documentation, defining code quality standards, and providing technical mentoring to support team growth.',
+			'Led the frontend technical evolution as the sole engineer in the squad, conducting code reviews, writing technical documentation, defining code quality standards, and providing technical mentoring to support team growth.',
 		],
 	},
 	{
@@ -22,7 +22,7 @@ export const JOB_EXPERIENCES: JobExperience[] = [
 		company: 'Audora Tecnologia e Serviços',
 		companyLink: 'https://audora.com.br/',
 		logo: '/logos/companies/audora.webp',
-		role: 'Front-End Developer',
+		role: 'Frontend Engineer',
 		period: 'Sep 2021 - Jan 2024',
 		achievements: [
 			'Microfrontends and modular architecture experience, enabling independent development and deployment of application components',
@@ -38,7 +38,7 @@ export const JOB_EXPERIENCES: JobExperience[] = [
 		company: 'Xgrow Learning Experience',
 		companyLink: 'https://www.xgrow.com/',
 		logo: '/logos/companies/xgrow.webp',
-		role: 'Junior Frontend Developer',
+		role: 'Frontend Engineer',
 		period: 'Sep 2020 - Sep 2021',
 		achievements: [
 			'Increased customer retention by 60% by developing a responsive, customizable white-label checkout using Next.js and Chakra UI.',
@@ -52,7 +52,7 @@ export const JOB_EXPERIENCES: JobExperience[] = [
 		company: 'Plataforma Internacional',
 		companyLink: 'https://globalplatform.com.br/',
 		logo: '/logos/companies/plataforma-internacional.webp',
-		role: 'Junior Full-Stack Developer',
+		role: 'Full-Stack Engineer',
 		period: 'Sep 2020 - Jan 2021',
 		achievements: [
 			'Improved application performance by 85%, reducing report response times from 8 seconds to 1.2 seconds through RESTful API optimizations.',
