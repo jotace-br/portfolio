@@ -7,7 +7,7 @@ export const EDUCATION_EXPERIENCES: JobExperience[] = [
 		companyLink: 'https://www.uninter.com/',
 		logo: '/logos/companies/uninter.webp',
 		role: 'Associate Degree in Analysis and Systems Development',
-		period: 'Sep 2023 - Mar 2026',
+		period: 'Sep 2023 - Dec 2025',
 		achievements: [
 			'Pursuing an Associate Degree in Analysis and Systems Development, focusing on acquiring foundational knowledge and practical skills in software development, systems analysis, and IT project management.',
 		],
