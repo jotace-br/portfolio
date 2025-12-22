@@ -58,7 +58,7 @@ export function HeroSection() {
 							className='mx-auto max-w-2xl text-base text-slate-900 dark:text-slate-50 sm:text-lg lg:mx-0 font-medium leading-relaxed'
 							variants={itemVariants}
 						>
-							I design and ship fast, scalable frontendystems using React and
+							I design and ship fast, scalable frontend systems using React and
 							Next.js, with a strong focus on Web Vitals and production
 							performance.
 						</motion.p>
