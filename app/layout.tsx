@@ -93,7 +93,6 @@ export default function RootLayout({
 				className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 dark:bg-zinc-950`}
 			>
 				<Analytics />
-				<SpeedInsights />
 				<ThemeProvider
 					attribute='class'
 					defaultTheme='system'
@@ -101,7 +100,10 @@ export default function RootLayout({
 					disableTransitionOnChange={false}
 				>
 					<Header />
-					<main>{children}</main>
+					<main>
+						{children}
+						<SpeedInsights />
+					</main>
 					<Footer />
 				</ThemeProvider>
 			</body>
