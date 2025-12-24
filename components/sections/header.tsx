@@ -98,7 +98,7 @@ function Header() {
 					<div className='flex items-center justify-between h-12 gap-4'>
 						<motion.a
 							href='/'
-							className='text-xl font-bold bg-accent-foreground bg-clip-text text-transparent'
+							className='text-xl font-bold bg-accent-foreground bg-clip-text text-transparent relative inline-block group'
 							initial={{ opacity: 0, y: -20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{
@@ -107,6 +107,25 @@ function Header() {
 								ease: [0.43, 0.13, 0.23, 0.96],
 							}}
 						>
+							{process.env.NEXT_PUBLIC_ENABLE_CHRISTMAS === 'true' && (
+								<motion.span
+									className='absolute -top-3 -right-6 text-2xl z-10 text-accent cursor-pointer'
+									whileHover={{
+										rotate: [0, -15, 15, -15, 0],
+										transition: { duration: 0.5 },
+									}}
+									onMouseEnter={() => {
+										const audio = new Audio(
+											'/sounds/im-a-gnome-meme-sound-effect-woo.mp3'
+										);
+										audio.volume = 0.2;
+										audio.play().catch(() => {});
+									}}
+									style={{ transformOrigin: 'bottom center' }}
+								>
+									🎅
+								</motion.span>
+							)}
 							JC
 						</motion.a>
 

@@ -1,3 +1,4 @@
+import { ChristmasSnowfall } from '@/components/backgrounds/christmas-snowfall';
 import { Footer } from '@/components/sections/footer';
 import { getBaseUrl } from '@/utils/url';
 import { Analytics } from '@vercel/analytics/next';
@@ -99,6 +100,7 @@ export default function RootLayout({
 					enableSystem
 					disableTransitionOnChange={false}
 				>
+					<ChristmasSnowfall />
 					<Header />
 					<main>
 						{children}
