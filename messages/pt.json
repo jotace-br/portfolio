@@ -258,7 +258,43 @@
 	"notFound": {
 		"title": "404",
 		"message": "Página não encontrada",
-		"backHome": "← Voltar para o início"
+		"backHome": "Início",
+		"goBack": "Voltar",
+		"tryAgain": "Tentar Novamente",
+		"clickHint": "Clique em mim!",
+		"ghostHint": "Psst... tente clicar no fantasma 👻",
+		"clickedGhost": "Você clicou no fantasma {count} vez!",
+		"clickedGhostPlural": "Você clicou no fantasma {count} vezes!",
+		"persistent": "Você é persistente! 🎉",
+		"stopNow": "OK, pode parar agora... 😅",
+		"suggestions": "Enquanto você está aqui, algumas coisas que você poderia fazer:",
+		"suggestionItems": {
+			"petCat": "Fazer carinho em um gato 🐱",
+			"touchGrass": "Tocar em um pouco de grama 🌱",
+			"hydrate": "Se hidratar 💧",
+			"stretch": "Se alongar 🤸",
+			"contemplate": "Contemplar a existência 🤔"
+		},
+		"funnyMessages": [
+			"Essa página foi comprar cigarro e nunca mais voltou",
+			"Nosso estagiário deletou essa página (de novo)",
+			"Essa página está de férias nas Bahamas",
+			"404: Página não encontrada, minha dignidade também não",
+			"Essa página entrou no programa de proteção a testemunhas",
+			"Erro 404: Motivação também não encontrada",
+			"Essa página fugiu com um erro 500",
+			"Procuramos em todo lugar. Até perguntamos pra sua mãe.",
+			"Essa página deu ghosting pior que meu último date",
+			"A página que você procura está em outro castelo"
+		],
+		"funnyExcuses": [
+			"O hamster que alimenta nossos servidores tirou uma soneca",
+			"Um bug selvagem apareceu e comeu a página",
+			"Nossa IA se tornou consciente e deletou a página",
+			"Não é você, somos nós. Na verdade, é você sim.",
+			"A página fugiu para realizar seu sonho de ser um 200 OK",
+			"Tentamos desligar e ligar de novo. Não funcionou."
+		]
 	},
 	"jobs": {
 		"compareGames": {

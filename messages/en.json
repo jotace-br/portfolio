@@ -258,7 +258,43 @@
 	"notFound": {
 		"title": "404",
 		"message": "Page not found",
-		"backHome": "← Go back home"
+		"backHome": "Home",
+		"goBack": "Go Back",
+		"tryAgain": "Try Again",
+		"clickHint": "Click me!",
+		"ghostHint": "Psst... try clicking the ghost 👻",
+		"clickedGhost": "You clicked the ghost {count} time!",
+		"clickedGhostPlural": "You clicked the ghost {count} times!",
+		"persistent": "You're persistent! 🎉",
+		"stopNow": "OK you can stop now... 😅",
+		"suggestions": "While you're here, here are some things you could do:",
+		"suggestionItems": {
+			"petCat": "Pet a cat 🐱",
+			"touchGrass": "Touch grass 🌱",
+			"hydrate": "Hydrate 💧",
+			"stretch": "Stretch 🤸",
+			"contemplate": "Contemplate existence 🤔"
+		},
+		"funnyMessages": [
+			"This page went to buy milk and never came back",
+			"Our intern deleted this page (again)",
+			"This page is on vacation in the Bahamas",
+			"404: Page not found, but my dignity went with it",
+			"This page joined a witness protection program",
+			"Error 404: Motivation not found either",
+			"This page eloped with a 500 error",
+			"We looked everywhere. Even asked your mom.",
+			"This page ghosted us harder than my last date",
+			"The page you're looking for is in another castle"
+		],
+		"funnyExcuses": [
+			"The hamster powering our servers took a nap",
+			"A wild bug appeared and ate the page",
+			"Our AI became sentient and deleted it",
+			"It's not you, it's us. Actually, it's definitely you.",
+			"The page ran away to pursue its dreams of being a 200 OK",
+			"We tried turning it off and on again. Didn't work."
+		]
 	},
 	"jobs": {
 		"compareGames": {
