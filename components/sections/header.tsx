@@ -1,10 +1,12 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import { LanguageSwitcher } from '@/components/ui/language-switcher';
 import StaggeredMenu, {
 	StaggeredMenuSocialItem,
 } from '@/components/ui/staggered-menu';
 import { SOCIAL_MEDIA_LINKS } from '@/constants/social-networks';
+import { Link } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
 import {
 	motion,
@@ -14,17 +16,18 @@ import {
 	useTransform,
 } from 'framer-motion';
 import { Menu, Moon, Sun, X } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useTheme } from 'next-themes';
-import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
 const menuItems = [
-	{ label: 'About', ariaLabel: 'Go to about section', link: '/#about' },
-	{ label: 'Work', ariaLabel: 'View my work', link: '/#work' },
-	{ label: 'Contact', ariaLabel: 'Get in touch', link: '/#contact' },
+	{ label: 'about', ariaLabel: 'Go to about section', link: '/#about' },
+	{ label: 'work', ariaLabel: 'View my work', link: '/#work' },
+	{ label: 'contact', ariaLabel: 'Get in touch', link: '/#contact' },
 ];
 
 function Header() {
+	const t = useTranslations('header');
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [mounted, setMounted] = useState(false);
 	const [menuOpen, setMenuOpen] = useState(false);
@@ -147,14 +150,14 @@ function Header() {
 										asChild
 										className='font-light text-sm'
 									>
-										<Link href={item.link}>{item.label}</Link>
+										<Link href={item.link}>{t(item.label)}</Link>
 									</Button>
 								</motion.div>
 							))}
 						</div>
 
 						<motion.div
-							className='hidden md:block'
+							className='hidden md:flex items-center gap-1'
 							initial={{ opacity: 0, y: -20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{
@@ -163,14 +166,15 @@ function Header() {
 								ease: [0.43, 0.13, 0.23, 0.96],
 							}}
 						>
+							<LanguageSwitcher />
 							<Button
 								variant='ghost'
 								size='icon-sm'
 								onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
 								aria-label={
 									effectiveTheme === 'dark'
-										? 'Switch to light theme'
-										: 'Switch to dark theme'
+										? t('switchToLight')
+										: t('switchToDark')
 								}
 								aria-pressed={effectiveTheme === 'dark'}
 								className='cursor-pointer'
@@ -215,8 +219,8 @@ function Header() {
 									}}
 									aria-label={
 										effectiveTheme === 'dark'
-											? 'Switch to light theme'
-											: 'Switch to dark theme'
+											? t('switchToLight')
+											: t('switchToDark')
 									}
 									aria-pressed={effectiveTheme === 'dark'}
 								>
@@ -258,7 +262,7 @@ function Header() {
 										e.stopPropagation();
 										setMenuOpen(!menuOpen);
 									}}
-									aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+									aria-label={menuOpen ? t('closeMenu') : t('openMenu')}
 									aria-expanded={menuOpen}
 									aria-haspopup='menu'
 								>
@@ -278,7 +282,10 @@ function Header() {
 				position='right'
 				ref={menuRef}
 				open={menuOpen}
-				items={menuItems}
+				items={menuItems.map((item) => ({
+					...item,
+					label: t(item.label),
+				}))}
 				socialItems={SOCIAL_MEDIA_LINKS satisfies StaggeredMenuSocialItem[]}
 				displaySocials={true}
 				menuButtonColor={effectiveTheme === 'dark' ? '#fff' : '#000'}
@@ -304,6 +311,10 @@ function Header() {
 				onMenuOpen={() => setMenuOpen(true)}
 				onMenuClose={() => setMenuOpen(false)}
 				className='md:hidden'
+				languageSwitcher={
+					<LanguageSwitcher variant='mobile' className='mt-2' />
+				}
+				noItemsText={t('noItems')}
 			/>
 		</>
 	);

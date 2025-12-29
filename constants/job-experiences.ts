@@ -1,77 +1,45 @@
-import { JobExperience } from '@/components/sections/work-experience';
+export interface JobExperienceData {
+	id: string;
+	translationKey: string;
+	company: string;
+	companyLink: string;
+	logo: string;
+}
 
-export const JOB_EXPERIENCES: JobExperience[] = [
+export const JOB_EXPERIENCES: JobExperienceData[] = [
 	{
 		id: '1',
+		translationKey: 'compareGames',
 		company: 'Compare Games',
 		companyLink: 'https://comparegames.com.br/',
 		logo: '/logos/companies/compare-games.webp',
-		role: 'Frontend Engineer',
-		period: 'May 2024 - Present',
-		achievements: [
-			'Achieved 90+ Web Vitals scores and reduced FCP to 0.2s by applying Semantic HTML, SSR, and SEO optimizations across critical pages such as Home, Product, Blog, Catalog, and multiple Landing Pages, significantly improving organic ranking and user experience.',
-			'Diagnosed and resolved complex AWS memory leaks, reducing server RAM consumption to under 300MB (<17%), ensuring platform stability even during traffic peaks.',
-			'A/B testing implementation with PostHog, enabling data-driven decisions that enhanced user engagement and conversion rates.',
-			"Collaborated closely with UX designers to revamp the platform's UI/UX, resulting in a modern, user-friendly interface that boosted user satisfaction and retention.",
-			'Designed and implemented a modular, secure checkout system, eliminating fraud risks and integrating a Headless CMS (Hygraph), decentralizing content management and accelerating time-to-market for new features.',
-			'Led the frontend technical evolution as the sole engineer in the squad, conducting code reviews, writing technical documentation, defining code quality standards, and providing technical mentoring to support team growth.',
-		],
 	},
 	{
 		id: '2',
+		translationKey: 'audora',
 		company: 'Audora Tecnologia e Serviços',
 		companyLink: 'https://audora.com.br/',
 		logo: '/logos/companies/audora.webp',
-		role: 'Frontend Engineer',
-		period: 'Sep 2021 - Jan 2024',
-		achievements: [
-			'Microfrontends and modular architecture experience, enabling independent development and deployment of application components',
-			'SaaS product development for diverse clients across various industries',
-			'Optimized workflows in public-sector institutions by developing a dynamic PDF reader, reducing download requirements from 1GB to approximately 1MB per page, improving end-user efficiency by 90%.',
-			'Managed the evolution of internal methodologies and maintenance of complex projects, working with legacy systems (jQuery / JSF / early React versions) and leading migrations to React 18.',
-			'Contributed to accessibility implementation, automated tests, and performance improvements, ensuring long-term sustainability of multi-faceted applications.',
-			'A11y audits and improvements across multiple projects',
-		],
 	},
 	{
 		id: '3',
+		translationKey: 'xgrow',
 		company: 'Xgrow Learning Experience',
 		companyLink: 'https://www.xgrow.com/',
 		logo: '/logos/companies/xgrow.webp',
-		role: 'Frontend Engineer',
-		period: 'Sep 2020 - Sep 2021',
-		achievements: [
-			'Increased customer retention by 60% by developing a responsive, customizable white-label checkout using Next.js and Chakra UI.',
-			'Contributed to an ecosystem of platforms (EdTech, FinTech, Events) responsible for processing over BRL 300 million in annual revenue.',
-			'Strengthened financial transaction security on the PxPay platform through robust integration with the Zoop payment gateway.',
-			'Integrated gateways through Zoop API, including Pix, credit card, and boleto, ensuring secure and efficient payment processing.',
-		],
 	},
 	{
 		id: '4',
+		translationKey: 'plataformaInternacional',
 		company: 'Plataforma Internacional',
 		companyLink: 'https://globalplatform.com.br/',
 		logo: '/logos/companies/plataforma-internacional.webp',
-		role: 'Full-Stack Engineer',
-		period: 'Sep 2020 - Jan 2021',
-		achievements: [
-			'Improved application performance by 85%, reducing report response times from 8 seconds to 1.2 seconds through RESTful API optimizations.',
-			'Reduced hosting costs by 50% by architecting an efficient monolithic solution using Laravel Mix and React.',
-			'Increased operational efficiency by 75% through delivery of a customizable ERP for international management.',
-		],
 	},
 	{
 		id: '5',
+		translationKey: 'ifal',
 		company: 'Instituto Federal de Alagoas',
 		companyLink: 'https://www2.ifal.edu.br/',
 		logo: '/logos/companies/ifal.webp',
-		role: 'Computer Maintenance Monitor',
-		period: 'Jun 2019 - Feb 2020',
-		achievements: [
-			'Conducted hands-on activities and assisted classes on computer maintenance and assembly, guiding students through practical repairs and builds.',
-			'Developed simulators and practical demonstrations to reinforce technical concepts and troubleshooting skills.',
-			'Improved student practical performance and job placement rates by implementing hands-on practices and real-world scenarios.',
-			'Raised quality of practical assessments and increased adherence to technical content through standardized evaluation and curriculum-aligned labs.',
-		],
 	},
 ];

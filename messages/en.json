@@ -1,0 +1,363 @@
+{
+	"metadata": {
+		"title": "Júlio César — Frontend Engineer | React · Next.js",
+		"titleTemplate": "%s — Júlio César",
+		"description": "Frontend Engineer with 5+ years building performant, SEO-friendly React and Next.js apps. Focused on Web Vitals, architecture, and clean code.",
+		"ogTitle": "Júlio César — Frontend Engineer",
+		"ogDescription": "Frontend Engineer with 5+ years building high-performance React/Next.js applications, focusing on Web Vitals, SEO and scalable architecture."
+	},
+	"header": {
+		"about": "About",
+		"work": "Work",
+		"contact": "Contact",
+		"switchToLight": "Switch to light theme",
+		"switchToDark": "Switch to dark theme",
+		"openMenu": "Open menu",
+		"closeMenu": "Close menu",
+		"noItems": "No items"
+	},
+	"hero": {
+		"greeting": "Hi, I'm Júlio César 👋",
+		"role": "Frontend Engineer",
+		"description": "I design and ship fast, scalable frontend systems using React and Next.js, with a strong focus on Web Vitals and production performance.",
+		"resume": "My Resume",
+		"resumeUrl": "https://docs.google.com/document/d/1_qtAf8m3escXsqSDzLz5tiJ_eP_CZvMcNn6npJFKHos/edit?usp=sharing",
+		"getInTouch": "GET•IN•TOUCH•",
+		"contactMe": "Contact me",
+		"profileAlt": "Júlio César - Frontend Engineer"
+	},
+	"about": {
+		"label": "About Me",
+		"content": "I'm Júlio César, a frontend engineer with over 5+ years of experience building web applications for real-world use. I focus on writing clean, reliable code and contributing to products that evolve over time."
+	},
+	"work": {
+		"label": "Work History",
+		"title": "Experience",
+		"description": "I've worked on production systems in close collaboration with product, design, and engineering teams. My approach prioritizes clarity, long-term maintainability, and decisions that scale with the product.",
+		"showMore": "Show More ({count} more)",
+		"showLess": "Show Less",
+		"present": "Present"
+	},
+	"projects": {
+		"label": "Projects",
+		"title": "Projects that shipped",
+		"description": "A selection of projects I've built — from checkout systems to real-time platforms. Built with a focus on performance, architecture, and user experience.",
+		"viewProject": "View Project",
+		"liveDemo": "Live Demo",
+		"sourceCode": "Source Code",
+		"showMore": "Show More",
+		"showLess": "Show Less",
+		"items": {
+			"portfolio": {
+				"name": "Personal Portfolio",
+				"description": "Is this a temporal loop? You are already here! 😄",
+				"overview": "This repository contains a production-ready Next.js portfolio with a modular component structure, custom design tokens, and accessibility-focused UI. It includes a homepage with hero, projects, education and contact sections, plus dedicated project pages and a minimal CMS-like data structure driven by TypeScript types.",
+				"keyFeatures": [
+					"Server and client components where appropriate (app router structure)",
+					"Type-safe content model for projects and metadata",
+					"Responsive layout and modern UI tokens (dark + light mode)",
+					"Optimized images and metadata for social sharing"
+				],
+				"decisions": [
+					"Use Next.js App Router for a clear separation between server and client rendering",
+					"TypeScript-first data shapes so project pages are strongly typed and editor-friendly",
+					"Tailwind for rapid, consistent styling and small bundle size"
+				],
+				"impact": [
+					"Smaller time-to-market for new content because projects are simple data objects",
+					"Improved UX on mobile and desktop with optimized images and semantic markup",
+					"Easier maintenance thanks to component-driven architecture"
+				]
+			},
+			"radio-seeker": {
+				"name": "Radio Seeker",
+				"description": "A web application that lets users search, add, edit, remove, and listen to online radio stations. With a simple, user-friendly interface and practical features, users can easily manage their favorite radio stations.",
+				"overview": "Radio Seeker is a Next.js (v14.2.3) application built with JavaScript that emphasizes usability and accessibility. The UI is implemented with Radix UI and shadcn/ui and styled with Tailwind CSS. Forms and validation are handled with react-hook-form, @hookform/resolvers, and Zod, while notifications use Sonner. The app supports station search, inline playback, local persistence of favorites (localStorage), and quick editing. Architecturally, Next.js was chosen for hybrid routing and SSG/SSR where appropriate, keeping a lean bundle and a fast developer experience.",
+				"keyFeatures": [
+					"Search stations by name or metadata",
+					"Add, edit and remove stations from a persisted list",
+					"Inline audio player with play/pause and basic controls",
+					"Persist favorites locally with optional backend sync",
+					"Accessible, component-driven UI built with Radix + shadcn/ui"
+				],
+				"decisions": [
+					"Choose Next.js for hybrid routing and SSG/SSR where appropriate",
+					"Use Radix UI + shadcn/ui to build accessible, composable components",
+					"Use react-hook-form + Zod for resilient form handling and validation",
+					"Persist favorites in localStorage for offline-first UX and optional sync",
+					"Centralize audio playback in a shared component to avoid concurrent streams"
+				],
+				"impact": [
+					"Demonstrates reliable inline audio playback and media controls",
+					"Showcases accessible, component-driven UI patterns (Radix + shadcn)",
+					"Provides a practical example of client-side persistence and CRUD flows",
+					"Good technical talking point for form validation and UX trade-offs"
+				]
+			},
+			"weather98": {
+				"name": "Weather98",
+				"description": "Compact weather dashboard with a nostalgic Windows 98 aesthetic. Integrates OpenWeather One Call 3.0, provides geolocation and search, short-term forecasts, local caching, and resilient error handling.",
+				"overview": "Weather98 pairs a playful retro UI with pragmatic engineering: Vite + React for a snappy dev experience, TypeScript for safer code, Axios for API requests, and local caching to limit network calls. Features include current conditions, a 3-day forecast, city search with geolocation fallback, and graceful handling of rate limits and missing data.",
+				"keyFeatures": [
+					"Current weather card and 10-day forecast",
+					"Search by city and optional geolocation fallback",
+					"Network error handling and user-friendly messages",
+					"Language and unit preferences settable and persisted",
+					"Nostalgic Windows 98-inspired UI design"
+				],
+				"decisions": [
+					"Cache results for a short TTL to improve UX and stay within API rate limits",
+					"Abstract API client so swapping providers is straightforward",
+					"Prioritize clear micro-interactions to surface loading and error states"
+				],
+				"impact": [
+					"Shows competency integrating third-party APIs and handling edge cases",
+					"Practical pattern for caching and error-handling in small apps",
+					"Great interview talking point for trade-offs when designing API-driven UI"
+				]
+			},
+			"burger-app": {
+				"name": "Burger App",
+				"description": "Interactive burger menu app with component-driven UI and state management for assembling orders.",
+				"overview": "A small single-page application that demonstrates modular component design, dynamic state for building orders and a lightweight UI system. The app focuses on composition patterns and predictable state updates to simulate an ordering flow.",
+				"keyFeatures": [
+					"Composable UI components for burger ingredients",
+					"Local state management for cart/build flow",
+					"Responsive layout and keyboard-accessible controls"
+				],
+				"decisions": [
+					"Favor small, focused components so the ordering flow is easy to reason about",
+					"Keep state local where possible to avoid unnecessary global complexity",
+					"Use Tailwind to iterate quickly on UI without a large stylesheet"
+				],
+				"impact": [
+					"Clear demonstration of component composition and state-driven UI",
+					"Lightweight bundle suitable for quick prototypes",
+					"Easy to fork and adapt as a UI pattern library example"
+				]
+			}
+		}
+	},
+	"education": {
+		"label": "Education",
+		"title": "Education",
+		"description": "Academic background that complements my professional experience.",
+		"showMore": "Show More",
+		"showLess": "Show Less"
+	},
+	"faq": {
+		"label": "FAQ",
+		"title": "Frequently Asked Questions",
+		"items": {
+			"faq-1": {
+				"question": "What technologies do you specialize in?",
+				"answer": "I specialize in React, Next.js (App Router), TypeScript and Tailwind CSS. I also work with state management (Zustand, Redux), testing (Jest, React Testing Library), and modern build/CI workflows. I prefer a component-driven architecture with strong typing and automated tests."
+			},
+			"faq-2": {
+				"question": "Do you build accessible interfaces?",
+				"answer": "Yes. Accessibility (WCAG) is part of my standard delivery: semantic HTML, keyboard navigation, ARIA where appropriate, and automated/auditory checks during CI. I include accessibility testing in acceptance criteria."
+			},
+			"faq-3": {
+				"question": "Can you work with existing design systems or component libraries?",
+				"answer": "Absolutely. I integrate with existing design systems and can either adapt components to match the system or create a scalable component library (tokens, stories, docs) when one is missing."
+			},
+			"faq-4": {
+				"question": "What is your development workflow?",
+				"answer": "I follow feature-branch Git workflow, small PRs with descriptive commits, peer reviews, automated tests, and CI that runs linting, type checks and tests. Releases are automated via CI/CD with versioned deployments and changelogs when needed."
+			},
+			"faq-5": {
+				"question": "Do you write tests? What kind?",
+				"answer": "Yes. I write unit and integration tests using Jest and React Testing Library, and add end-to-end tests with Playwright or Cypress for critical flows. Tests are part of the definition of done."
+			},
+			"faq-6": {
+				"question": "How do you approach performance optimization?",
+				"answer": "I optimize performance via code-splitting, lazy-loading, image optimization, caching headers, and careful bundle analysis. I also measure using Lighthouse and real-user metrics when available."
+			},
+			"faq-7": {
+				"question": "Do you handle SEO and metadata for projects?",
+				"answer": "Yes. For public-facing sites I implement semantic markup, structured data (JSON-LD), proper meta tags and server-side rendering or static rendering strategies for crawlability."
+			},
+			"faq-8": {
+				"question": "Are you available for remote work and collaboration?",
+				"answer": "Yes, I collaborate remotely using asynchronous tools (Slack, Notion, Figma, GitHub). I align work with your timezone and team rituals and use frequent check-ins for alignment."
+			},
+			"faq-9": {
+				"question": "What is your typical delivery timeline for a medium-sized feature?",
+				"answer": "A medium feature (component + integration + tests + docs) typically takes 2–5 working days, depending on complexity and review cycles. I prioritize incremental delivery so you get working value early."
+			},
+			"faq-10": {
+				"question": "How do you handle design handoffs and collaboration with designers?",
+				"answer": "I collaborate closely with designers using Figma: tokens extraction, responsive specs, and component parity. I provide prototypes and work with designers to keep components consistent and maintainable."
+			},
+			"faq-11": {
+				"question": "Will I own the code and intellectual property?",
+				"answer": "Yes. Unless otherwise agreed in a contract, delivered code and assets are transferred to the client with clear licensing and repository access. I can sign any standard IP assignment if required."
+			},
+			"faq-12": {
+				"question": "Do you provide post-launch support and maintenance?",
+				"answer": "Yes. I offer post-launch support packages for bug fixes, performance monitoring, and small improvements. I also recommend maintenance plans for dependency updates and security patches."
+			},
+			"faq-13": {
+				"question": "How do you price projects or features?",
+				"answer": "Pricing can be hourly or fixed depending on scope. I prefer fixed-price for well-defined scopes and hourly for exploratory work. I always provide a clear proposal breaking down deliverables, milestones and payment terms."
+			},
+			"faq-14": {
+				"question": "Can you help with architecture decisions for larger apps?",
+				"answer": "Yes. I provide architecture guidance including modularization, boundaries between frontend and backend, state management strategy, performance budgets, and CI/CD recommendations to scale the team and codebase."
+			},
+			"faq-15": {
+				"question": "Do you contribute to open-source or provide references?",
+				"answer": "I contribute to and maintain open-source projects and can share references or case studies on request. Open-source work demonstrates my coding standards and collaboration style."
+			},
+			"faq-16": {
+				"question": "How should I get in touch to discuss a project?",
+				"answer": "The best way is via the contact form below or a direct email. Provide a short brief, your goals, timeline, and any relevant links and I will respond with next steps and availability."
+			}
+		}
+	},
+	"contact": {
+		"badge": "Get in Touch",
+		"title": "Let's build something great together.",
+		"description": "Whether you have a question, a project idea, or just want to say hi, feel free to reach out. I'm here to help and collaborate.",
+		"emailCard": {
+			"label": "Email Me",
+			"responseTime": "💬 Usually replies within 24 hours"
+		},
+		"linkedinCard": {
+			"cta": "Connect with me →"
+		},
+		"githubCard": {
+			"cta": "Check my work →"
+		},
+		"form": {
+			"fullName": "Full Name",
+			"email": "Email",
+			"message": "Message",
+			"submit": "Send Message",
+			"sending": "Sending...",
+			"successMessage": "Message sent successfully! I'll get back to you soon.",
+			"errorMessage": "Failed to send message. Please try again.",
+			"validation": {
+				"nameRequired": "Name is required.",
+				"nameMinLength": "Name must be at least 2 characters.",
+				"emailRequired": "Email is required.",
+				"emailInvalid": "Invalid email address.",
+				"messageRequired": "Message is required.",
+				"messageMinLength": "Message must be at least 10 characters."
+			}
+		}
+	},
+	"footer": {
+		"copyright": "© 2025-{year} Júlio César. All rights reserved."
+	},
+	"languageSwitcher": {
+		"label": "Change language",
+		"en": "English",
+		"pt": "Português"
+	},
+	"notFound": {
+		"title": "404",
+		"message": "Page not found",
+		"backHome": "Home",
+		"goBack": "Go Back",
+		"tryAgain": "Try Again",
+		"clickHint": "Click me!",
+		"ghostHint": "Psst... try clicking the ghost 👻",
+		"clickedGhost": "You clicked the ghost {count} time!",
+		"clickedGhostPlural": "You clicked the ghost {count} times!",
+		"persistent": "You're persistent! 🎉",
+		"stopNow": "OK you can stop now... 😅",
+		"suggestions": "While you're here, here are some things you could do:",
+		"suggestionItems": {
+			"petCat": "Pet a cat 🐱",
+			"touchGrass": "Touch grass 🌱",
+			"hydrate": "Hydrate 💧",
+			"stretch": "Stretch 🤸",
+			"contemplate": "Contemplate existence 🤔"
+		},
+		"funnyMessages": [
+			"This page went to buy milk and never came back",
+			"Our intern deleted this page (again)",
+			"This page is on vacation in the Bahamas",
+			"404: Page not found, but my dignity went with it",
+			"This page joined a witness protection program",
+			"Error 404: Motivation not found either",
+			"This page eloped with a 500 error",
+			"We looked everywhere. Even asked your mom.",
+			"This page ghosted us harder than my last date",
+			"The page you're looking for is in another castle"
+		],
+		"funnyExcuses": [
+			"The hamster powering our servers took a nap",
+			"A wild bug appeared and ate the page",
+			"Our AI became sentient and deleted it",
+			"It's not you, it's us. Actually, it's definitely you.",
+			"The page ran away to pursue its dreams of being a 200 OK",
+			"We tried turning it off and on again. Didn't work."
+		]
+	},
+	"jobs": {
+		"compareGames": {
+			"role": "Frontend Engineer",
+			"period": "May 2024 - Present",
+			"achievements": [
+				"Achieved 90+ Web Vitals scores and reduced FCP to 0.2s by applying Semantic HTML, SSR, and SEO optimizations across critical pages such as Home, Product, Blog, Catalog, and multiple Landing Pages, significantly improving organic ranking and user experience.",
+				"Diagnosed and resolved complex AWS memory leaks, reducing server RAM consumption to under 300MB (<17%), ensuring platform stability even during traffic peaks.",
+				"A/B testing implementation with PostHog, enabling data-driven decisions that enhanced user engagement and conversion rates.",
+				"Collaborated closely with UX designers to revamp the platform's UI/UX, resulting in a modern, user-friendly interface that boosted user satisfaction and retention.",
+				"Designed and implemented a modular, secure checkout system, eliminating fraud risks and integrating a Headless CMS (Hygraph), decentralizing content management and accelerating time-to-market for new features.",
+				"Led the frontend technical evolution as the sole engineer in the squad, conducting code reviews, writing technical documentation, defining code quality standards, and providing technical mentoring to support team growth."
+			]
+		},
+		"audora": {
+			"role": "Frontend Engineer",
+			"period": "Sep 2021 - Jan 2024",
+			"achievements": [
+				"Microfrontends and modular architecture experience, enabling independent development and deployment of application components",
+				"SaaS product development for diverse clients across various industries",
+				"Optimized workflows in public-sector institutions by developing a dynamic PDF reader, reducing download requirements from 1GB to approximately 1MB per page, improving end-user efficiency by 90%.",
+				"Managed the evolution of internal methodologies and maintenance of complex projects, working with legacy systems (jQuery / JSF / early React versions) and leading migrations to React 18.",
+				"Contributed to accessibility implementation, automated tests, and performance improvements, ensuring long-term sustainability of multi-faceted applications.",
+				"A11y audits and improvements across multiple projects"
+			]
+		},
+		"xgrow": {
+			"role": "Frontend Engineer",
+			"period": "Sep 2020 - Sep 2021",
+			"achievements": [
+				"Increased customer retention by 60% by developing a responsive, customizable white-label checkout using Next.js and Chakra UI.",
+				"Contributed to an ecosystem of platforms (EdTech, FinTech, Events) responsible for processing over BRL 300 million in annual revenue.",
+				"Strengthened financial transaction security on the PxPay platform through robust integration with the Zoop payment gateway.",
+				"Integrated gateways through Zoop API, including Pix, credit card, and boleto, ensuring secure and efficient payment processing."
+			]
+		},
+		"plataformaInternacional": {
+			"role": "Full-Stack Engineer",
+			"period": "Sep 2020 - Jan 2021",
+			"achievements": [
+				"Improved application performance by 85%, reducing report response times from 8 seconds to 1.2 seconds through RESTful API optimizations.",
+				"Reduced hosting costs by 50% by architecting an efficient monolithic solution using Laravel Mix and React.",
+				"Increased operational efficiency by 75% through delivery of a customizable ERP for international management."
+			]
+		},
+		"ifal": {
+			"role": "Computer Maintenance Monitor",
+			"period": "Jun 2019 - Feb 2020",
+			"achievements": [
+				"Conducted hands-on activities and assisted classes on computer maintenance and assembly, guiding students through practical repairs and builds.",
+				"Developed simulators and practical demonstrations to reinforce technical concepts and troubleshooting skills.",
+				"Improved student practical performance and job placement rates by implementing hands-on practices and real-world scenarios.",
+				"Raised quality of practical assessments and increased adherence to technical content through standardized evaluation and curriculum-aligned labs."
+			]
+		}
+	},
+	"educationItems": {
+		"uninter": {
+			"role": "Associate Degree in Analysis and Systems Development",
+			"period": "Sep 2023 - Dec 2025",
+			"achievements": [
+				"Completed a Technology Degree (bachelor's level) in Analysis and Systems Development, acquiring foundational knowledge and practical skills in software development, systems analysis, and IT project management."
+			]
+		}
+	}
+}

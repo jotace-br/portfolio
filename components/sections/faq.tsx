@@ -2,9 +2,9 @@
 
 import ShinyText from '@/components/animations/shiny-text';
 import { containerVariants, itemVariants } from '@/constants/animations';
-import { FAQ_ITEMS } from '@/constants/faq';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Sparkle } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import {
 	Accordion,
 	AccordionContent,
@@ -12,7 +12,19 @@ import {
 	AccordionTrigger,
 } from '../ui/accordion';
 
+type FaqItemTranslation = {
+	question: string;
+	answer: string;
+};
+
 function Faq() {
+	const t = useTranslations('faq');
+	const itemsRaw = t.raw('items') as Record<string, FaqItemTranslation>;
+	const items = Object.entries(itemsRaw).map(([id, item]) => ({
+		id,
+		...item,
+	}));
+
 	return (
 		<section
 			id='faq'
@@ -34,7 +46,7 @@ function Faq() {
 						>
 							<Sparkle size={16} />
 							<ShinyText
-								text='FAQ'
+								text={t('label')}
 								className='word-spacing text-sm uppercase leading-none text-highlight-primary font-semibold'
 							/>
 						</motion.div>
@@ -44,7 +56,7 @@ function Faq() {
 							className='text-3xl sm:text-5xl tracking-tight font-bold text-slate-900 dark:text-gray-100'
 							variants={itemVariants}
 						>
-							Frequently Asked Questions
+							{t('title')}
 						</motion.h2>
 					</motion.div>
 
@@ -54,7 +66,7 @@ function Faq() {
 					>
 						<Accordion type='single' collapsible className='w-full'>
 							<AnimatePresence mode='popLayout'>
-								{FAQ_ITEMS.map((faq) => (
+								{items.map((faq) => (
 									<motion.div
 										key={faq.id}
 										initial={{ scale: 0.8, opacity: 0, y: 20 }}

@@ -1,10 +1,11 @@
 'use client';
 
 import { containerVariants, itemVariants } from '@/constants/animations';
+import { Link } from '@/i18n/navigation';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Files } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import Link from 'next/link';
 import { BsLinkedin } from 'react-icons/bs';
 import { SiGithub } from 'react-icons/si';
 import CircularText from '../text-animations/circular-text';
@@ -12,6 +13,8 @@ import { VariableProximity } from '../text-animations/variable-proximity';
 import { Button } from '../ui/button';
 
 export function HeroSection() {
+	const t = useTranslations('hero');
+
 	return (
 		<section
 			id='home'
@@ -43,7 +46,7 @@ export function HeroSection() {
 								className='text-5xl font-bold tracking-tight text-slate-900 dark:text-gray-100 sm:text-6xl md:text-7xl lg:text-8xl [-webkit-text-stroke:0.6px_#0f172bd8] dark:[-webkit-text-stroke:0px_rgba(0,0,0,0)]'
 							>
 								<VariableProximity
-									text="Hi, I'm Júlio César 👋"
+									text={t('greeting')}
 									className='block'
 									falloff={150}
 									baseSize={1}
@@ -51,33 +54,31 @@ export function HeroSection() {
 								/>
 							</h1>
 							<p className='text-xl text-slate-900 dark:text-gray-100 sm:text-2xl md:text-3xl font-medium'>
-								Frontend Engineer
+								{t('role')}
 							</p>
 						</motion.div>
 						<motion.p
 							className='mx-auto max-w-2xl text-base text-slate-900 dark:text-slate-50 sm:text-lg lg:mx-0 font-medium leading-relaxed'
 							variants={itemVariants}
 						>
-							I design and ship fast, scalable frontend systems using React and
-							Next.js, with a strong focus on Web Vitals and production
-							performance.
+							{t('description')}
 						</motion.p>
 
 						<motion.div
 							className='flex justify-center lg:justify-start gap-2'
 							variants={itemVariants}
 						>
-							<Link
-								href='https://docs.google.com/document/d/1J5eUoPhEYmL2C8OuStbRq745tFnkjZcEh8t7fURl2ZE/edit?usp=sharing'
+							<a
+								href={t('resumeUrl')}
 								target='_blank'
 								rel='noopener noreferrer'
 								className='pointer-events-auto'
 							>
 								<Button size='lg' variant='default' className='cursor-pointer'>
-									<Files /> My Resume
+									<Files /> {t('resume')}
 								</Button>
-							</Link>
-							<Link
+							</a>
+							<a
 								href='https://www.linkedin.com/in/juliocesardev/'
 								target='_blank'
 								rel='noopener noreferrer'
@@ -87,8 +88,8 @@ export function HeroSection() {
 									<BsLinkedin size={20} />{' '}
 									<span className='hidden sm:inline'>LinkedIn</span>
 								</Button>
-							</Link>
-							<Link
+							</a>
+							<a
 								href='https://github.com/juliocesardev'
 								target='_blank'
 								rel='noopener noreferrer'
@@ -98,7 +99,7 @@ export function HeroSection() {
 									<SiGithub size={20} />{' '}
 									<span className='hidden sm:inline'>GitHub</span>
 								</Button>
-							</Link>
+							</a>
 						</motion.div>
 					</motion.div>
 
@@ -112,7 +113,7 @@ export function HeroSection() {
 								<div className='absolute inset-0 rounded-full bg-linear-to-br from-highlight-primary to-purple-600 opacity-10' />
 								<Image
 									src='/profile.webp'
-									alt='Júlio César - Frontend Engineer'
+									alt={t('profileAlt')}
 									fill
 									priority
 									fetchPriority='high'
@@ -124,10 +125,10 @@ export function HeroSection() {
 								<Link
 									href='#contact'
 									className='absolute -bottom-8 sm:-bottom-10 md:-bottom-12 -left-6 sm:-left-8 md:-left-10 pointer-events-auto'
-									aria-label='Contact me'
+									aria-label={t('contactMe')}
 								>
 									<CircularText
-										text='GET•IN•TOUCH•'
+										text={t('getInTouch')}
 										onHover='goBonkers'
 										spinDuration={20}
 										className='text-slate-950 dark:text-gray-100 size-24 sm:size-28 md:size-32'

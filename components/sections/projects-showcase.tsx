@@ -1,10 +1,11 @@
 'use client';
 
 import { containerVariants, itemVariants } from '@/constants/animations';
-import { PROJECTS } from '@/constants/projects';
+import { PROJECTS, ProjectData } from '@/constants/projects';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Sparkle } from 'lucide-react';
-import { ReactNode, useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { ReactNode, useMemo, useState } from 'react';
 import ShinyText from '../animations/shiny-text';
 import { Button } from '../ui/button';
 import { ProjectCard } from '../ui/project-card';
@@ -30,13 +31,35 @@ export interface Project {
 const INITIAL_ITEMS_TO_SHOW = 4;
 
 function ProjectsShowcase() {
+	const t = useTranslations('projects');
 	const [showAll, setShowAll] = useState(false);
 	const [hoveredId, setHoveredId] = useState<string | null>(null);
 
+	// Merge static data with translations
+	const projects: Project[] = useMemo(() => {
+		return PROJECTS.map((project: ProjectData) => ({
+			id: project.id,
+			slug: project.slug,
+			date: project.date,
+			stack: project.stack,
+			media: project.media,
+			banner: project.banner,
+			mediaType: project.mediaType,
+			liveUrl: project.liveUrl,
+			githubUrl: project.githubUrl,
+			name: t(`items.${project.slug}.name`),
+			description: t(`items.${project.slug}.description`),
+			overview: t(`items.${project.slug}.overview`),
+			keyFeatures: t.raw(`items.${project.slug}.keyFeatures`) as string[],
+			decisions: t.raw(`items.${project.slug}.decisions`) as string[],
+			impact: t.raw(`items.${project.slug}.impact`) as string[],
+		}));
+	}, [t]);
+
 	const displayedProjects = showAll
-		? PROJECTS
-		: PROJECTS.slice(0, INITIAL_ITEMS_TO_SHOW);
-	const hasMore = PROJECTS.length > INITIAL_ITEMS_TO_SHOW;
+		? projects
+		: projects.slice(0, INITIAL_ITEMS_TO_SHOW);
+	const hasMore = projects.length > INITIAL_ITEMS_TO_SHOW;
 
 	return (
 		<section
@@ -60,7 +83,7 @@ function ProjectsShowcase() {
 							>
 								<Sparkle size={16} />
 								<ShinyText
-									text='My Projects'
+									text={t('label')}
 									className='word-spacing text-sm uppercase leading-none text-highlight-primary font-semibold'
 								/>
 							</motion.div>
@@ -70,17 +93,14 @@ function ProjectsShowcase() {
 								className='text-3xl sm:text-5xl tracking-tight font-bold text-slate-900 dark:text-gray-100'
 								variants={itemVariants}
 							>
-								Checkout out my latest projects
+								{t('title')}
 							</motion.h2>
 						</motion.div>
 						<motion.p
 							className='text-base sm:text-lg text-slate-700 dark:text-gray-400 font-medium leading-relaxed max-w-3xl'
 							variants={itemVariants}
 						>
-							I&apos;ve worked on production systems in close collaboration with
-							product, design, and engineering teams. My approach prioritizes
-							clarity, long-term maintainability, and decisions that scale with
-							the product.
+							{t('description')}
 						</motion.p>
 					</div>
 
@@ -126,7 +146,7 @@ function ProjectsShowcase() {
 								onClick={() => setShowAll(!showAll)}
 								className='w-fit'
 							>
-								{showAll ? 'Show Less' : 'Show More'}
+								{showAll ? t('showLess') : t('showMore')}
 							</Button>
 						)}
 					</motion.div>

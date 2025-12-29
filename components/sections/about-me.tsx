@@ -3,10 +3,13 @@
 import { containerVariants, itemVariants } from '@/constants/animations';
 import { motion } from 'framer-motion';
 import { Sparkle } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import ShinyText from '../animations/shiny-text';
 import ScrollReveal from '../text-animations/scroll-reveal';
 
 function AboutMe() {
+	const t = useTranslations('about');
+
 	return (
 		<section
 			id='about'
@@ -27,7 +30,7 @@ function AboutMe() {
 					>
 						<Sparkle size={16} />
 						<ShinyText
-							text='About Me'
+							text={t('label')}
 							className='word-spacing text-sm uppercase leading-none text-highlight-primary font-semibold'
 						/>
 					</motion.div>
@@ -39,10 +42,7 @@ function AboutMe() {
 							rotationEnd='center center'
 							wordAnimationEnd='center top'
 						>
-							I&apos;m Júlio César, a frontend engineer with over 5+ years of
-							experience building web applications for real-world use. I focus
-							on writing clean, reliable code and contributing to products that
-							evolve over time.
+							{t('content')}
 						</ScrollReveal>
 					</motion.div>
 				</motion.div>

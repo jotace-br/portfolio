@@ -5,6 +5,7 @@ import { SOCIAL_MEDIA_LINKS } from '@/constants/social-networks';
 import emailjs from '@emailjs/browser';
 import { motion } from 'framer-motion';
 import { Dot } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -24,6 +25,8 @@ type ContactFormData = {
 };
 
 function Footer() {
+	const t = useTranslations('contact');
+	const tFooter = useTranslations('footer');
 	const {
 		register,
 		handleSubmit,
@@ -60,14 +63,14 @@ function Footer() {
 
 			setSubmitStatus({
 				type: 'success',
-				message: "Message sent successfully! I'll get back to you soon.",
+				message: t('form.successMessage'),
 			});
 			reset();
 		} catch (error) {
 			console.error('Error submitting form:', error);
 			setSubmitStatus({
 				type: 'error',
-				message: 'Failed to send message. Please try again.',
+				message: t('form.errorMessage'),
 			});
 		}
 	};
@@ -89,7 +92,7 @@ function Footer() {
 				>
 					<Badge variant='secondary'>
 						<Dot className='text-green-600 dark:text-green-400 animate-pulse' />{' '}
-						Get in Touch
+						{t('badge')}
 					</Badge>
 
 					<motion.h2
@@ -97,15 +100,14 @@ function Footer() {
 						className='text-3xl sm:text-5xl tracking-tight font-bold text-slate-900 dark:text-gray-100 text-center'
 						variants={itemVariants}
 					>
-						Let&apos;s build something great together.
+						{t('title')}
 					</motion.h2>
 
 					<motion.p
 						className='text-base sm:text-lg text-slate-700 dark:text-gray-400 font-medium leading-relaxed text-center max-w-2xl'
 						variants={itemVariants}
 					>
-						Whether you have a question, a project idea, or just want to say hi,
-						feel free to reach out. I&apos;m here to help and collaborate.
+						{t('description')}
 					</motion.p>
 
 					<motion.div
@@ -120,7 +122,7 @@ function Footer() {
 									</div>
 									<div className='flex-1'>
 										<p className='text-xs font-semibold text-slate-600 dark:text-gray-400 uppercase tracking-wider mb-1'>
-											Email Me
+											{t('emailCard.label')}
 										</p>
 										<Link
 											href='mailto:jc10ferreira@gmail.com'
@@ -129,7 +131,7 @@ function Footer() {
 											jc10ferreira@gmail.com
 										</Link>
 										<p className='text-xs text-slate-600 dark:text-gray-400 mt-2'>
-											💬 Usually replies within 24 hours
+											{t('emailCard.responseTime')}
 										</p>
 									</div>
 								</div>
@@ -148,7 +150,7 @@ function Footer() {
 											LinkedIn
 										</p>
 										<p className='text-xs text-slate-600 dark:text-gray-400 group-hover:text-slate-900 dark:group-hover:text-gray-200'>
-											Connect with me →
+											{t('linkedinCard.cta')}
 										</p>
 									</div>
 								</Link>
@@ -165,7 +167,7 @@ function Footer() {
 											GitHub
 										</p>
 										<p className='text-xs text-slate-600 dark:text-gray-400 group-hover:text-slate-900 dark:group-hover:text-gray-200'>
-											Check my work →
+											{t('githubCard.cta')}
 										</p>
 									</div>
 								</Link>
@@ -178,15 +180,15 @@ function Footer() {
 							onSubmit={handleSubmit(onSubmit)}
 						>
 							<Field>
-								<FieldLabel htmlFor='fullName'>Full Name</FieldLabel>
+								<FieldLabel htmlFor='fullName'>{t('form.fullName')}</FieldLabel>
 								<Input
 									id='fullName'
 									aria-invalid={!!errors.fullName}
 									{...register('fullName', {
-										required: 'Name is required.',
+										required: t('form.validation.nameRequired'),
 										minLength: {
 											value: 2,
-											message: 'Name must be at least 2 characters.',
+											message: t('form.validation.nameMinLength'),
 										},
 									})}
 								/>
@@ -196,16 +198,16 @@ function Footer() {
 							</Field>
 
 							<Field>
-								<FieldLabel htmlFor='email'>Email</FieldLabel>
+								<FieldLabel htmlFor='email'>{t('form.email')}</FieldLabel>
 								<Input
 									id='email'
 									type='email'
 									aria-invalid={!!errors.email}
 									{...register('email', {
-										required: 'Email is required.',
+										required: t('form.validation.emailRequired'),
 										pattern: {
 											value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-											message: 'Invalid email address.',
+											message: t('form.validation.emailInvalid'),
 										},
 									})}
 								/>
@@ -215,17 +217,17 @@ function Footer() {
 							</Field>
 
 							<Field>
-								<FieldLabel htmlFor='message'>Message</FieldLabel>
+								<FieldLabel htmlFor='message'>{t('form.message')}</FieldLabel>
 								<Textarea
 									id='message'
 									rows={4}
 									className='resize-none'
 									aria-invalid={!!errors.message}
 									{...register('message', {
-										required: 'Message is required.',
+										required: t('form.validation.messageRequired'),
 										minLength: {
 											value: 10,
-											message: 'Message must be at least 10 characters.',
+											message: t('form.validation.messageMinLength'),
 										},
 									})}
 								/>
@@ -247,7 +249,7 @@ function Footer() {
 								</motion.div>
 							)}
 							<Button type='submit' disabled={isSubmitting} className='w-full'>
-								{isSubmitting ? 'Sending...' : 'Send Message'}
+								{isSubmitting ? t('form.sending') : t('form.submit')}
 							</Button>
 						</motion.form>
 					</motion.div>
@@ -258,7 +260,7 @@ function Footer() {
 					variants={itemVariants}
 				>
 					<motion.p className='text-sm text-slate-600 dark:text-gray-400'>
-						© {new Date().getFullYear()} Júlio César. All rights reserved.
+						{tFooter('copyright', { year: new Date().getFullYear() })}
 					</motion.p>
 
 					<motion.div
