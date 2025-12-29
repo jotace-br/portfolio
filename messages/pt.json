@@ -1,0 +1,327 @@
+{
+	"metadata": {
+		"title": "Júlio César — Engenheiro Frontend | React · Next.js",
+		"titleTemplate": "%s — Júlio César",
+		"description": "Engenheiro Frontend com mais de 5 anos construindo aplicações React e Next.js performantes e otimizadas para SEO. Focado em Web Vitals, arquitetura e código limpo.",
+		"ogTitle": "Júlio César — Engenheiro Frontend",
+		"ogDescription": "Engenheiro Frontend com mais de 5 anos construindo aplicações React/Next.js de alta performance, focado em Web Vitals, SEO e arquitetura escalável."
+	},
+	"header": {
+		"about": "Sobre",
+		"work": "Trabalho",
+		"contact": "Contato",
+		"switchToLight": "Mudar para tema claro",
+		"switchToDark": "Mudar para tema escuro",
+		"openMenu": "Abrir menu",
+		"closeMenu": "Fechar menu",
+		"noItems": "Sem itens"
+	},
+	"hero": {
+		"greeting": "Olá, sou Júlio César 👋",
+		"role": "Engenheiro Frontend",
+		"description": "Projeto e entrego sistemas frontend rápidos e escaláveis usando React e Next.js, com forte foco em Web Vitals e performance em produção.",
+		"resume": "Meu Currículo",
+		"resumeUrl": "https://docs.google.com/document/d/1J5eUoPhEYmL2C8OuStbRq745tFnkjZcEh8t7fURl2ZE/edit?usp=sharing",
+		"getInTouch": "ENTRAR•EM•CONTATO•",
+		"contactMe": "Entre em contato",
+		"profileAlt": "Júlio César - Engenheiro Frontend"
+	},
+	"about": {
+		"label": "Sobre Mim",
+		"content": "Sou Júlio César, engenheiro frontend com mais de 5 anos de experiência construindo aplicações web para uso real. Foco em escrever código limpo e confiável, contribuindo para produtos que evoluem ao longo do tempo."
+	},
+	"work": {
+		"label": "Minha trajetória",
+		"title": "Experiência",
+		"description": "Trabalhei em sistemas de produção em colaboração próxima com times de produto, design e engenharia. Minha abordagem prioriza clareza, manutenibilidade de longo prazo e decisões que escalam com o produto.",
+		"showMore": "Mostrar Mais ({count} restantes)",
+		"showLess": "Mostrar Menos",
+		"present": "Atual"
+	},
+	"projects": {
+		"label": "Projetos",
+		"title": "Projetos que construí",
+		"description": "Uma seleção de projetos que construí — de sistemas de checkout a plataformas em tempo real. Construídos com foco em performance, arquitetura e experiência do usuário.",
+		"viewProject": "Ver Projeto",
+		"liveDemo": "Demo ao Vivo",
+		"sourceCode": "Código Fonte",
+		"showMore": "Mostrar Mais",
+		"showLess": "Mostrar Menos",
+		"items": {
+			"portfolio": {
+				"name": "Portfólio Pessoal",
+				"description": "Isso é um loop temporal? Você já está aqui! 😄",
+				"overview": "Este repositório contém um portfólio Next.js pronto para produção com estrutura de componentes modular, tokens de design customizados e UI focada em acessibilidade. Inclui homepage com seções de hero, projetos, educação e contato, além de páginas dedicadas de projetos e uma estrutura de dados tipo CMS mínimo dirigida por tipos TypeScript.",
+				"keyFeatures": [
+					"Componentes de servidor e cliente onde apropriado (estrutura app router)",
+					"Modelo de conteúdo type-safe para projetos e metadados",
+					"Layout responsivo e tokens de UI modernos (modo escuro + claro)",
+					"Imagens otimizadas e metadados para compartilhamento social"
+				],
+				"decisions": [
+					"Usar Next.js App Router para separação clara entre renderização de servidor e cliente",
+					"Shapes de dados TypeScript-first para que páginas de projetos sejam fortemente tipadas e amigáveis ao editor",
+					"Tailwind para estilização rápida, consistente e bundle pequeno"
+				],
+				"impact": [
+					"Menor time-to-market para novo conteúdo porque projetos são objetos de dados simples",
+					"UX melhorada em mobile e desktop com imagens otimizadas e markup semântico",
+					"Manutenção mais fácil graças à arquitetura orientada a componentes"
+				]
+			},
+			"radio-seeker": {
+				"name": "Radio Seeker",
+				"description": "Uma aplicação web que permite aos usuários buscar, adicionar, editar, remover e ouvir estações de rádio online. Com uma interface simples e amigável e recursos práticos, os usuários podem gerenciar facilmente suas estações de rádio favoritas.",
+				"overview": "Radio Seeker é uma aplicação Next.js (v14.2.3) construída com JavaScript que enfatiza usabilidade e acessibilidade. A UI é implementada com Radix UI e shadcn/ui e estilizada com Tailwind CSS. Formulários e validação são tratados com react-hook-form, @hookform/resolvers e Zod, enquanto notificações usam Sonner. O app suporta busca de estações, reprodução inline, persistência local de favoritos (localStorage) e edição rápida. Arquiteturalmente, Next.js foi escolhido para roteamento híbrido e SSG/SSR onde apropriado, mantendo um bundle enxuto e experiência de desenvolvedor rápida.",
+				"keyFeatures": [
+					"Buscar estações por nome ou metadados",
+					"Adicionar, editar e remover estações de uma lista persistida",
+					"Player de áudio inline com play/pause e controles básicos",
+					"Persistir favoritos localmente com sync opcional de backend",
+					"UI acessível e orientada a componentes construída com Radix + shadcn/ui"
+				],
+				"decisions": [
+					"Escolher Next.js para roteamento híbrido e SSG/SSR onde apropriado",
+					"Usar Radix UI + shadcn/ui para construir componentes acessíveis e composáveis",
+					"Usar react-hook-form + Zod para tratamento e validação de formulários resilientes",
+					"Persistir favoritos em localStorage para UX offline-first e sync opcional",
+					"Centralizar reprodução de áudio em componente compartilhado para evitar streams concorrentes"
+				],
+				"impact": [
+					"Demonstra reprodução de áudio inline confiável e controles de mídia",
+					"Mostra padrões de UI acessível e orientada a componentes (Radix + shadcn)",
+					"Fornece exemplo prático de persistência client-side e fluxos CRUD",
+					"Bom ponto de discussão técnica para validação de formulários e trade-offs de UX"
+				]
+			},
+			"weather98": {
+				"name": "Weather98",
+				"description": "Dashboard de clima compacto com estética nostálgica do Windows 98. Integra OpenWeather One Call 3.0, fornece geolocalização e busca, previsões de curto prazo, cache local e tratamento de erros resiliente.",
+				"overview": "Weather98 combina uma UI retrô divertida com engenharia pragmática: Vite + React para experiência de dev ágil, TypeScript para código mais seguro, Axios para requisições de API e cache local para limitar chamadas de rede. Recursos incluem condições atuais, previsão de 3 dias, busca por cidade com fallback de geolocalização e tratamento gracioso de rate limits e dados faltantes.",
+				"keyFeatures": [
+					"Card de clima atual e previsão de 10 dias",
+					"Busca por cidade e fallback opcional de geolocalização",
+					"Tratamento de erros de rede e mensagens amigáveis ao usuário",
+					"Preferências de idioma e unidade configuráveis e persistidas",
+					"Design de UI inspirado no Windows 98 nostálgico"
+				],
+				"decisions": [
+					"Cachear resultados com TTL curto para melhorar UX e permanecer dentro dos rate limits da API",
+					"Abstrair cliente de API para que trocar provedores seja simples",
+					"Priorizar micro-interações claras para exibir estados de loading e erro"
+				],
+				"impact": [
+					"Mostra competência integrando APIs de terceiros e tratando edge cases",
+					"Padrão prático para caching e tratamento de erros em apps pequenos",
+					"Ótimo ponto de discussão para trade-offs ao projetar UI dirigida por API"
+				]
+			},
+			"burger-app": {
+				"name": "Burger App",
+				"description": "App interativo de menu de hambúrguer com UI orientada a componentes e gerenciamento de estado para montar pedidos.",
+				"overview": "Uma pequena aplicação single-page que demonstra design de componentes modulares, estado dinâmico para construir pedidos e um sistema de UI leve. O app foca em padrões de composição e atualizações de estado previsíveis para simular um fluxo de pedido.",
+				"keyFeatures": [
+					"Componentes de UI composáveis para ingredientes de hambúrguer",
+					"Gerenciamento de estado local para fluxo de carrinho/montagem",
+					"Layout responsivo e controles acessíveis por teclado"
+				],
+				"decisions": [
+					"Favorecer componentes pequenos e focados para que o fluxo de pedido seja fácil de entender",
+					"Manter estado local onde possível para evitar complexidade global desnecessária",
+					"Usar Tailwind para iterar rapidamente na UI sem uma stylesheet grande"
+				],
+				"impact": [
+					"Demonstração clara de composição de componentes e UI dirigida por estado",
+					"Bundle leve adequado para protótipos rápidos",
+					"Fácil de fazer fork e adaptar como exemplo de biblioteca de padrões de UI"
+				]
+			}
+		}
+	},
+	"education": {
+		"label": "Educação",
+		"title": "Formação",
+		"description": "Formação acadêmica que complementa minha experiência profissional.",
+		"showMore": "Mostrar Mais",
+		"showLess": "Mostrar Menos"
+	},
+	"faq": {
+		"label": "FAQ",
+		"title": "Perguntas Frequentes",
+		"items": {
+			"faq-1": {
+				"question": "Em quais tecnologias você é especialista?",
+				"answer": "Sou especialista em React, Next.js (App Router), TypeScript e Tailwind CSS. Também trabalho com gerenciamento de estado (Zustand, Redux), testes (Jest, React Testing Library) e workflows modernos de build/CI. Prefiro uma arquitetura orientada a componentes com tipagem forte e testes automatizados."
+			},
+			"faq-2": {
+				"question": "Você constrói interfaces acessíveis?",
+				"answer": "Sim. Acessibilidade (WCAG) faz parte da minha entrega padrão: HTML semântico, navegação por teclado, ARIA quando apropriado, e verificações automatizadas/auditivas durante CI. Incluo testes de acessibilidade nos critérios de aceitação."
+			},
+			"faq-3": {
+				"question": "Você pode trabalhar com design systems ou bibliotecas de componentes existentes?",
+				"answer": "Absolutamente. Integro com design systems existentes e posso adaptar componentes para corresponder ao sistema ou criar uma biblioteca de componentes escalável (tokens, stories, docs) quando não existe uma."
+			},
+			"faq-4": {
+				"question": "Qual é seu fluxo de desenvolvimento?",
+				"answer": "Sigo o workflow Git de feature-branch, PRs pequenos com commits descritivos, revisões de código, testes automatizados e CI que executa linting, verificação de tipos e testes. Releases são automatizados via CI/CD com deployments versionados e changelogs quando necessário."
+			},
+			"faq-5": {
+				"question": "Você escreve testes? Que tipo?",
+				"answer": "Sim. Escrevo testes unitários e de integração usando Jest e React Testing Library, e adiciono testes end-to-end com Playwright ou Cypress para fluxos críticos. Testes fazem parte da definição de pronto."
+			},
+			"faq-6": {
+				"question": "Como você aborda otimização de performance?",
+				"answer": "Otimizo performance via code-splitting, lazy-loading, otimização de imagens, headers de cache e análise cuidadosa de bundles. Também meço usando Lighthouse e métricas de usuário real quando disponíveis."
+			},
+			"faq-7": {
+				"question": "Você lida com SEO e metadata para projetos?",
+				"answer": "Sim. Para sites públicos implemento markup semântico, dados estruturados (JSON-LD), meta tags adequadas e estratégias de renderização server-side ou estática para rastreabilidade."
+			},
+			"faq-8": {
+				"question": "Você está disponível para trabalho remoto e colaboração?",
+				"answer": "Sim, colaboro remotamente usando ferramentas assíncronas (Slack, Notion, Figma, GitHub). Alinho o trabalho com seu fuso horário e rituais do time e uso check-ins frequentes para alinhamento."
+			},
+			"faq-9": {
+				"question": "Qual é seu prazo típico de entrega para uma feature de médio porte?",
+				"answer": "Uma feature média (componente + integração + testes + docs) tipicamente leva 2–5 dias úteis, dependendo da complexidade e ciclos de revisão. Priorizo entrega incremental para que você tenha valor funcionando cedo."
+			},
+			"faq-10": {
+				"question": "Como você lida com handoffs de design e colaboração com designers?",
+				"answer": "Colaboro de perto com designers usando Figma: extração de tokens, specs responsivos e paridade de componentes. Forneço protótipos e trabalho com designers para manter componentes consistentes e manuteníveis."
+			},
+			"faq-11": {
+				"question": "Eu serei dono do código e propriedade intelectual?",
+				"answer": "Sim. Salvo acordo em contrato, código entregue e assets são transferidos ao cliente com licenciamento claro e acesso ao repositório. Posso assinar qualquer cessão de PI padrão se necessário."
+			},
+			"faq-12": {
+				"question": "Você oferece suporte pós-lançamento e manutenção?",
+				"answer": "Sim. Ofereço pacotes de suporte pós-lançamento para correção de bugs, monitoramento de performance e pequenas melhorias. Também recomendo planos de manutenção para atualizações de dependências e patches de segurança."
+			},
+			"faq-13": {
+				"question": "Como você precifica projetos ou features?",
+				"answer": "Precificação pode ser por hora ou fixa dependendo do escopo. Prefiro preço fixo para escopos bem definidos e por hora para trabalho exploratório. Sempre forneço uma proposta clara detalhando entregáveis, marcos e termos de pagamento."
+			},
+			"faq-14": {
+				"question": "Você pode ajudar com decisões de arquitetura para apps maiores?",
+				"answer": "Sim. Forneço orientação de arquitetura incluindo modularização, fronteiras entre frontend e backend, estratégia de gerenciamento de estado, budgets de performance e recomendações de CI/CD para escalar o time e a codebase."
+			},
+			"faq-15": {
+				"question": "Você contribui para open-source ou fornece referências?",
+				"answer": "Contribuo e mantenho projetos open-source e posso compartilhar referências ou estudos de caso mediante solicitação. O trabalho open-source demonstra meus padrões de código e estilo de colaboração."
+			},
+			"faq-16": {
+				"question": "Como devo entrar em contato para discutir um projeto?",
+				"answer": "A melhor forma é via formulário de contato abaixo ou email direto. Forneça um breve resumo, seus objetivos, cronograma e links relevantes e eu responderei com próximos passos e disponibilidade."
+			}
+		}
+	},
+	"contact": {
+		"badge": "Entre em Contato",
+		"title": "Vamos construir algo incrível juntos.",
+		"description": "Se você tem uma dúvida, uma ideia de projeto, ou só quer dar um oi, fique à vontade para entrar em contato. Estou aqui para ajudar e colaborar.",
+		"emailCard": {
+			"label": "Me Envie um Email",
+			"responseTime": "💬 Geralmente respondo em 24 horas"
+		},
+		"linkedinCard": {
+			"cta": "Conecte-se comigo →"
+		},
+		"githubCard": {
+			"cta": "Veja meu trabalho →"
+		},
+		"form": {
+			"fullName": "Nome Completo",
+			"email": "Email",
+			"message": "Mensagem",
+			"submit": "Enviar Mensagem",
+			"sending": "Enviando...",
+			"successMessage": "Mensagem enviada com sucesso! Responderei em breve.",
+			"errorMessage": "Falha ao enviar mensagem. Por favor, tente novamente.",
+			"validation": {
+				"nameRequired": "Nome é obrigatório.",
+				"nameMinLength": "Nome deve ter pelo menos 2 caracteres.",
+				"emailRequired": "Email é obrigatório.",
+				"emailInvalid": "Endereço de email inválido.",
+				"messageRequired": "Mensagem é obrigatória.",
+				"messageMinLength": "Mensagem deve ter pelo menos 10 caracteres."
+			}
+		}
+	},
+	"footer": {
+		"copyright": "© 2025-{year} Júlio César. Todos os direitos reservados."
+	},
+	"languageSwitcher": {
+		"label": "Mudar idioma",
+		"en": "English",
+		"pt": "Português"
+	},
+	"notFound": {
+		"title": "404",
+		"message": "Página não encontrada",
+		"backHome": "← Voltar para o início"
+	},
+	"jobs": {
+		"compareGames": {
+			"role": "Engenheiro Frontend",
+			"period": "Mai 2024 - Atual",
+			"achievements": [
+				"Alcancei scores de Web Vitals acima de 90 e reduzi FCP para 0.2s aplicando HTML Semântico, SSR e otimizações de SEO em páginas críticas como Home, Produto, Blog, Catálogo e múltiplas Landing Pages, melhorando significativamente o ranking orgânico e experiência do usuário.",
+				"Diagnostiquei e resolvi vazamentos de memória complexos na AWS, reduzindo o consumo de RAM do servidor para menos de 300MB (<17%), garantindo estabilidade da plataforma mesmo durante picos de tráfego.",
+				"Implementação de testes A/B com PostHog, permitindo decisões baseadas em dados que aumentaram engajamento e taxas de conversão.",
+				"Colaborei de perto com designers UX para renovar a UI/UX da plataforma, resultando em uma interface moderna e amigável que aumentou satisfação e retenção de usuários.",
+				"Projetei e implementei um sistema de checkout modular e seguro, eliminando riscos de fraude e integrando um Headless CMS (Hygraph), descentralizando gestão de conteúdo e acelerando time-to-market para novas features.",
+				"Liderei a evolução técnica do frontend como único engenheiro do squad, conduzindo code reviews, escrevendo documentação técnica, definindo padrões de qualidade de código e fornecendo mentoria técnica para apoiar o crescimento do time."
+			]
+		},
+		"audora": {
+			"role": "Engenheiro Frontend",
+			"period": "Set 2021 - Jan 2024",
+			"achievements": [
+				"Experiência com microfrontends e arquitetura modular, permitindo desenvolvimento e deploy independentes de componentes da aplicação",
+				"Desenvolvimento de produtos SaaS para diversos clientes em várias indústrias",
+				"Otimizei workflows em instituições do setor público desenvolvendo um leitor dinâmico de PDF, reduzindo requisitos de download de 1GB para aproximadamente 1MB por página, melhorando eficiência do usuário final em 90%.",
+				"Gerenciei a evolução de metodologias internas e manutenção de projetos complexos, trabalhando com sistemas legados (jQuery / JSF / versões iniciais do React) e liderando migrações para React 18.",
+				"Contribuí para implementação de acessibilidade, testes automatizados e melhorias de performance, garantindo sustentabilidade de longo prazo de aplicações multifacetadas.",
+				"Auditorias e melhorias de A11y em múltiplos projetos"
+			]
+		},
+		"xgrow": {
+			"role": "Engenheiro Frontend",
+			"period": "Set 2020 - Set 2021",
+			"achievements": [
+				"Aumentei a retenção de clientes em 60% desenvolvendo um checkout white-label responsivo e customizável usando Next.js e Chakra UI.",
+				"Contribuí para um ecossistema de plataformas (EdTech, FinTech, Eventos) responsável por processar mais de R$ 300 milhões em receita anual.",
+				"Fortaleci a segurança de transações financeiras na plataforma PxPay através de integração robusta com o gateway de pagamento Zoop.",
+				"Integrei gateways através da API Zoop, incluindo Pix, cartão de crédito e boleto, garantindo processamento de pagamentos seguro e eficiente."
+			]
+		},
+		"plataformaInternacional": {
+			"role": "Engenheiro Full-Stack",
+			"period": "Set 2020 - Jan 2021",
+			"achievements": [
+				"Melhorei a performance da aplicação em 85%, reduzindo tempos de resposta de relatórios de 8 segundos para 1.2 segundos através de otimizações de API RESTful.",
+				"Reduzi custos de hospedagem em 50% arquitetando uma solução monolítica eficiente usando Laravel Mix e React.",
+				"Aumentei a eficiência operacional em 75% através da entrega de um ERP customizável para gestão internacional."
+			]
+		},
+		"ifal": {
+			"role": "Monitor de Manutenção de Computadores",
+			"period": "Jun 2019 - Fev 2020",
+			"achievements": [
+				"Conduzi atividades práticas e auxiliei aulas sobre manutenção e montagem de computadores, guiando estudantes através de reparos práticos e montagens.",
+				"Desenvolvi simuladores e demonstrações práticas para reforçar conceitos técnicos e habilidades de troubleshooting.",
+				"Melhorei o desempenho prático dos estudantes e taxas de empregabilidade implementando práticas hands-on e cenários do mundo real.",
+				"Elevei a qualidade das avaliações práticas e aumentei a aderência ao conteúdo técnico através de avaliação padronizada e laboratórios alinhados ao currículo."
+			]
+		}
+	},
+	"educationItems": {
+		"uninter": {
+			"role": "Tecnólogo em Análise e Desenvolvimento de Sistemas",
+			"period": "Set 2023 - Dez 2025",
+			"achievements": [
+				"Graduação tecnológica (nível superior) completa em Análise e Desenvolvimento de Sistemas, adquirindo conhecimentos fundamentais e habilidades práticas em desenvolvimento de software, análise de sistemas e gestão de projetos de TI."
+			]
+		}
+	}
+}

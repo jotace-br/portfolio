@@ -1,7 +1,10 @@
+'use client';
+
 import { Button } from '@/components/ui/button';
+import { Link } from '@/i18n/navigation';
 import { ExternalLink } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import Link from 'next/link';
 import { SiGithub } from 'react-icons/si';
 
 interface ProjectBannerProps {
@@ -17,6 +20,8 @@ export function ProjectBanner({
 	liveUrl,
 	githubUrl,
 }: ProjectBannerProps) {
+	const t = useTranslations('projects');
+
 	return (
 		<div className='relative w-full h-100 sm:h-125 lg:h-150 overflow-hidden'>
 			<Image
@@ -41,7 +46,7 @@ export function ProjectBanner({
 							>
 								<Link href={liveUrl} target='_blank' rel='noopener noreferrer'>
 									<ExternalLink size={18} />
-									View Live Demo
+									{t('liveDemo')}
 								</Link>
 							</Button>
 						)}
@@ -58,7 +63,7 @@ export function ProjectBanner({
 									rel='noopener noreferrer'
 								>
 									<SiGithub size={18} />
-									View on GitHub
+									{t('sourceCode')}
 								</Link>
 							</Button>
 						)}

@@ -1,24 +1,43 @@
 'use client';
 
 import { containerVariants, itemVariants } from '@/constants/animations';
-import { EDUCATION_EXPERIENCES } from '@/constants/education';
+import { EDUCATION_EXPERIENCES, EducationData } from '@/constants/education';
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Sparkle } from 'lucide-react';
-import { useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { useMemo, useState } from 'react';
 import ShinyText from '../animations/shiny-text';
 import { Accordion, ExpandableAccordionDetails } from '../ui/accordion';
 import { Button } from '../ui/button';
+import { JobExperience } from './work-experience';
 
 const INITIAL_ITEMS_TO_SHOW = 4;
 
 function Education() {
+	const t = useTranslations('education');
+	const tEducation = useTranslations('educationItems');
 	const [showAll, setShowAll] = useState(false);
 
+	// Merge static data with translations
+	const educationExperiences: JobExperience[] = useMemo(() => {
+		return EDUCATION_EXPERIENCES.map((edu: EducationData) => ({
+			id: edu.id,
+			company: edu.company,
+			companyLink: edu.companyLink,
+			logo: edu.logo,
+			role: tEducation(`${edu.translationKey}.role`),
+			period: tEducation(`${edu.translationKey}.period`),
+			achievements: tEducation.raw(
+				`${edu.translationKey}.achievements`
+			) as string[],
+		}));
+	}, [tEducation]);
+
 	const displayedEducationExperiences = showAll
-		? EDUCATION_EXPERIENCES
-		: EDUCATION_EXPERIENCES.slice(0, INITIAL_ITEMS_TO_SHOW);
-	const hasMore = EDUCATION_EXPERIENCES.length > INITIAL_ITEMS_TO_SHOW;
+		? educationExperiences
+		: educationExperiences.slice(0, INITIAL_ITEMS_TO_SHOW);
+	const hasMore = educationExperiences.length > INITIAL_ITEMS_TO_SHOW;
 
 	return (
 		<section
@@ -47,7 +66,7 @@ function Education() {
 							>
 								<Sparkle size={16} />
 								<ShinyText
-									text='Education'
+									text={t('label')}
 									className='word-spacing text-sm uppercase leading-none text-highlight-primary font-semibold'
 								/>
 							</motion.div>
@@ -57,7 +76,7 @@ function Education() {
 								className='text-3xl sm:text-5xl tracking-tight font-bold text-slate-900 dark:text-gray-100'
 								variants={itemVariants}
 							>
-								Educational Background
+								{t('title')}
 							</motion.h2>
 						</motion.div>
 
@@ -65,9 +84,7 @@ function Education() {
 							className='text-base sm:text-lg text-slate-700 dark:text-gray-400 font-medium leading-relaxed'
 							variants={itemVariants}
 						>
-							My academic background provided a strong foundation in software
-							development concepts, problem-solving, and structured thinking,
-							supporting my professional growth as an engineer.
+							{t('description')}
 						</motion.p>
 					</div>
 
@@ -104,7 +121,7 @@ function Education() {
 								onClick={() => setShowAll(!showAll)}
 								className='w-fit'
 							>
-								{showAll ? 'Show Less' : 'Show More'}
+								{showAll ? t('showLess') : t('showMore')}
 							</Button>
 						)}
 					</motion.div>

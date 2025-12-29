@@ -44,6 +44,8 @@ export interface StaggeredMenuProps {
 	open?: boolean;
 	onMenuOpen?: () => void;
 	onMenuClose?: () => void;
+	languageSwitcher?: React.ReactNode;
+	noItemsText?: string;
 }
 
 export interface StaggeredMenuRef {
@@ -77,6 +79,8 @@ const StaggeredMenuComponent = React.forwardRef<
 			open: controlledOpen,
 			onMenuOpen,
 			onMenuClose,
+			languageSwitcher,
+			noItemsText = 'No items',
 		},
 		ref
 	) => {
@@ -685,7 +689,7 @@ const StaggeredMenuComponent = React.forwardRef<
 					<aside
 						id='staggered-menu-panel'
 						ref={panelRef}
-						className='staggered-menu-panel absolute top-0 right-0 h-full flex flex-col p-[6em_2em_2em_2em] overflow-y-auto z-10'
+						className='staggered-menu-panel absolute top-0 right-0 h-full flex flex-col p-[6em_1em_1em_1em] overflow-y-auto z-10'
 						style={{
 							WebkitBackdropFilter: 'blur(12px)',
 							backdropFilter: 'blur(12px)',
@@ -726,7 +730,7 @@ const StaggeredMenuComponent = React.forwardRef<
 									>
 										<span className='sm-panel-item relative font-semibold text-[4rem] cursor-pointer leading-none tracking-[-2px] uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em]'>
 											<span className='sm-panel-itemLabel inline-block origin-[50%_100%] will-change-transform'>
-												No items
+												{noItemsText}
 											</span>
 										</span>
 									</li>
@@ -760,6 +764,7 @@ const StaggeredMenuComponent = React.forwardRef<
 											</li>
 										))}
 									</ul>
+									{languageSwitcher}
 								</div>
 							)}
 						</div>
@@ -783,7 +788,7 @@ const StaggeredMenuComponent = React.forwardRef<
 .sm-scope .sm-panel-itemWrap { position: relative; overflow: hidden; line-height: 1; }
 .sm-scope .sm-icon-line { position: absolute; left: 50%; top: 50%; width: 100%; height: 2px; background: currentColor; border-radius: 2px; transform: translate(-50%, -50%); will-change: transform; }
 .sm-scope .sm-line { display: none !important; }
-.sm-scope .staggered-menu-panel { position: absolute; top: 0; right: 0; width: clamp(260px, 38vw, 420px); height: 100%; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); display: flex; flex-direction: column; padding: 6em 2em 2em 2em; overflow-y: auto; z-index: 10; background: var(--sm-panel-bg, #fff); border-left: 1px solid var(--sm-border-color, rgba(0, 0, 0, 0.1)); }
+.sm-scope .staggered-menu-panel { position: absolute; top: 0; right: 0; width: clamp(260px, 38vw, 420px); height: 100%; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); display: flex; flex-direction: column; padding: 6em 1em 1em 1em; overflow-y: auto; z-index: 10; background: var(--sm-panel-bg, #fff); border-left: 1px solid var(--sm-border-color, rgba(0, 0, 0, 0.1)); }
 .sm-scope [data-position='left'] .staggered-menu-panel { right: auto; left: 0; }
 .sm-scope .sm-prelayers { position: absolute; top: 0; right: 0; bottom: 0; width: clamp(260px, 38vw, 420px); pointer-events: none; z-index: 5; }
 .sm-scope [data-position='left'] .sm-prelayers { right: auto; left: 0; }

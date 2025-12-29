@@ -1,11 +1,15 @@
 'use client';
 
 import { containerVariants, itemVariants } from '@/constants/animations';
-import { JOB_EXPERIENCES } from '@/constants/job-experiences';
+import {
+	JOB_EXPERIENCES,
+	JobExperienceData,
+} from '@/constants/job-experiences';
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Sparkle } from 'lucide-react';
-import { useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { useMemo, useState } from 'react';
 import ShinyText from '../animations/shiny-text';
 import { Accordion, ExpandableAccordionDetails } from '../ui/accordion';
 import { Button } from '../ui/button';
@@ -23,12 +27,28 @@ export interface JobExperience {
 const INITIAL_ITEMS_TO_SHOW = 4;
 
 function WorkExperience() {
+	const t = useTranslations('work');
+	const tJobs = useTranslations('jobs');
 	const [showAll, setShowAll] = useState(false);
 
+	// Merge static data with translations
+	const jobExperiences: JobExperience[] = useMemo(() => {
+		return JOB_EXPERIENCES.map((job: JobExperienceData) => ({
+			id: job.id,
+			company: job.company,
+			companyLink: job.companyLink,
+			logo: job.logo,
+			role: tJobs(`${job.translationKey}.role`),
+			period: tJobs(`${job.translationKey}.period`),
+			achievements: tJobs.raw(`${job.translationKey}.achievements`) as string[],
+		}));
+	}, [tJobs]);
+
 	const displayedJobs = showAll
-		? JOB_EXPERIENCES
-		: JOB_EXPERIENCES.slice(0, INITIAL_ITEMS_TO_SHOW);
-	const hasMore = JOB_EXPERIENCES.length > INITIAL_ITEMS_TO_SHOW;
+		? jobExperiences
+		: jobExperiences.slice(0, INITIAL_ITEMS_TO_SHOW);
+	const hasMore = jobExperiences.length > INITIAL_ITEMS_TO_SHOW;
+	const remainingCount = jobExperiences.length - INITIAL_ITEMS_TO_SHOW;
 
 	return (
 		<section
@@ -57,7 +77,7 @@ function WorkExperience() {
 							>
 								<Sparkle size={16} />
 								<ShinyText
-									text='Work History'
+									text={t('label')}
 									className='word-spacing text-sm uppercase leading-none text-highlight-primary font-semibold'
 								/>
 							</motion.div>
@@ -67,7 +87,7 @@ function WorkExperience() {
 								className='text-3xl sm:text-5xl tracking-tight font-bold text-slate-900 dark:text-gray-100'
 								variants={itemVariants}
 							>
-								Experience
+								{t('title')}
 							</motion.h2>
 						</motion.div>
 
@@ -75,10 +95,7 @@ function WorkExperience() {
 							className='text-base sm:text-lg text-slate-700 dark:text-gray-400 font-medium leading-relaxed'
 							variants={itemVariants}
 						>
-							I&apos;ve worked on production systems in close collaboration with
-							product, design, and engineering teams. My approach prioritizes
-							clarity, long-term maintainability, and decisions that scale with
-							the product.
+							{t('description')}
 						</motion.p>
 					</div>
 
@@ -115,7 +132,9 @@ function WorkExperience() {
 								onClick={() => setShowAll(!showAll)}
 								className='w-fit'
 							>
-								{showAll ? 'Show Less' : 'Show More'}
+								{showAll
+									? t('showLess')
+									: t('showMore', { count: remainingCount })}
 							</Button>
 						)}
 					</motion.div>

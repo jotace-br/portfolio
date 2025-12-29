@@ -3,13 +3,23 @@
 import ShinyText from '@/components/animations/shiny-text';
 import { containerVariants, itemVariants } from '@/constants/animations';
 import { motion } from 'framer-motion';
-import { Check, Sparkle } from 'lucide-react';
+import { Sparkle, TrendingUp } from 'lucide-react';
+import { useLocale } from 'next-intl';
 
-interface ProjectFeaturesProps {
-	features: string[];
+interface ProjectImpactProps {
+	impact: string[];
 }
 
-export function ProjectFeatures({ features }: ProjectFeaturesProps) {
+export function ProjectImpact({ impact }: ProjectImpactProps) {
+	const locale = useLocale();
+
+	const labels = {
+		en: { section: 'Results & Metrics', title: 'Impact' },
+		pt: { section: 'Resultados e Métricas', title: 'Impacto' },
+	};
+
+	const { section, title } = labels[locale as keyof typeof labels] || labels.en;
+
 	return (
 		<motion.section
 			className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-12'
@@ -26,7 +36,7 @@ export function ProjectFeatures({ features }: ProjectFeaturesProps) {
 					>
 						<Sparkle size={16} />
 						<ShinyText
-							text='What Makes It Special'
+							text={section}
 							className='word-spacing text-sm uppercase leading-none text-highlight-primary font-semibold'
 						/>
 					</motion.div>
@@ -35,28 +45,28 @@ export function ProjectFeatures({ features }: ProjectFeaturesProps) {
 						className='text-3xl sm:text-5xl tracking-tight font-bold text-slate-900 dark:text-gray-100'
 						variants={itemVariants}
 					>
-						Key Features
+						{title}
 					</motion.h2>
 				</motion.div>
 				<motion.ul
 					className='grid grid-cols-1 md:grid-cols-2 gap-4'
 					variants={itemVariants}
 				>
-					{features.map((feature, index) => (
+					{impact.map((item, index) => (
 						<li
 							key={index}
 							className='flex items-start gap-3 text-slate-700 dark:text-gray-300'
 						>
 							<div className='shrink-0 mt-1'>
-								<div className='flex items-center justify-center w-5 h-5 rounded-full bg-green-500/10 dark:bg-green-500/20'>
-									<Check
+								<div className='flex items-center justify-center w-5 h-5 rounded-full bg-purple-500/10 dark:bg-purple-500/20'>
+									<TrendingUp
 										size={14}
-										className='text-green-600 dark:text-green-400'
+										className='text-purple-600 dark:text-purple-400'
 									/>
 								</div>
 							</div>
 							<span className='text-base font-medium leading-relaxed'>
-								{feature}
+								{item}
 							</span>
 						</li>
 					))}

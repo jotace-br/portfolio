@@ -4,6 +4,7 @@ import ShinyText from '@/components/animations/shiny-text';
 import { containerVariants, itemVariants } from '@/constants/animations';
 import { motion } from 'framer-motion';
 import { Sparkle } from 'lucide-react';
+import { useLocale } from 'next-intl';
 import Image from 'next/image';
 
 interface ProjectPreviewProps {
@@ -17,6 +18,15 @@ export function ProjectPreview({
 	mediaType,
 	name,
 }: ProjectPreviewProps) {
+	const locale = useLocale();
+
+	const labels = {
+		en: { section: 'Visual Showcase', title: 'Project Preview' },
+		pt: { section: 'Demonstração Visual', title: 'Prévia do Projeto' },
+	};
+
+	const { section, title } = labels[locale as keyof typeof labels] || labels.en;
+
 	return (
 		<motion.section
 			className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-12'
@@ -33,7 +43,7 @@ export function ProjectPreview({
 					>
 						<Sparkle size={16} />
 						<ShinyText
-							text='Visual Showcase'
+							text={section}
 							className='word-spacing text-sm uppercase leading-none text-highlight-primary font-semibold'
 						/>
 					</motion.div>
@@ -42,7 +52,7 @@ export function ProjectPreview({
 						className='text-3xl sm:text-5xl tracking-tight font-bold text-slate-900 dark:text-gray-100'
 						variants={itemVariants}
 					>
-						Project Preview
+						{title}
 					</motion.h2>
 				</motion.div>
 

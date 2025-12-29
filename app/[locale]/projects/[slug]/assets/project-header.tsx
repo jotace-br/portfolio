@@ -1,5 +1,8 @@
+'use client';
+
+import { Link } from '@/i18n/navigation';
 import { ArrowLeft } from 'lucide-react';
-import Link from 'next/link';
+import { useLocale } from 'next-intl';
 import { ProjectTechStack } from './project-tech-stack';
 
 interface ProjectHeaderProps {
@@ -15,11 +18,19 @@ export function ProjectHeader({
 	description,
 	stack,
 }: ProjectHeaderProps) {
-	const formattedDate = new Date(date).toLocaleDateString('en-US', {
-		year: 'numeric',
-		month: 'long',
-		day: 'numeric',
-	});
+	const locale = useLocale();
+
+	const formattedDate = new Date(date).toLocaleDateString(
+		locale === 'pt' ? 'pt-BR' : 'en-US',
+		{
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric',
+		}
+	);
+
+	const backText =
+		locale === 'pt' ? 'Voltar para Projetos' : 'Back to Projects';
 
 	return (
 		<div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12'>
@@ -32,7 +43,7 @@ export function ProjectHeader({
 						size={16}
 						className='transition-transform group-hover:-translate-x-1'
 					/>
-					Back to Projects
+					{backText}
 				</Link>
 
 				<time

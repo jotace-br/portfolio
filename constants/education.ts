@@ -1,15 +1,17 @@
-import { JobExperience } from '@/components/sections/work-experience';
+export interface EducationData {
+	id: string;
+	translationKey: string;
+	company: string;
+	companyLink: string;
+	logo: string;
+}
 
-export const EDUCATION_EXPERIENCES: JobExperience[] = [
+export const EDUCATION_EXPERIENCES: EducationData[] = [
 	{
 		id: '1',
+		translationKey: 'uninter',
 		company: 'UNINTER - Centro Universitário Internacional',
 		companyLink: 'https://www.uninter.com/',
 		logo: '/logos/companies/uninter.webp',
-		role: 'Associate Degree in Analysis and Systems Development',
-		period: 'Sep 2023 - Dec 2025',
-		achievements: [
-			'Pursuing an Associate Degree in Analysis and Systems Development, focusing on acquiring foundational knowledge and practical skills in software development, systems analysis, and IT project management.',
-		],
 	},
 ];
