@@ -68,7 +68,7 @@ export function HeroSection() {
 							variants={itemVariants}
 						>
 							<Link
-								href='https://docs.google.com/document/d/1J5eUoPhEYmL2C8OuStbRq745tFnkjZcEh8t7fURl2ZE/edit?usp=sharing'
+								href='https://docs.google.com/document/d/1_qtAf8m3escXsqSDzLz5tiJ_eP_CZvMcNn6npJFKHos/edit?usp=sharing'
 								target='_blank'
 								rel='noopener noreferrer'
 								className='pointer-events-auto'
