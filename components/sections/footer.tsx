@@ -256,7 +256,7 @@ function Footer() {
 				</motion.section>
 
 				<motion.div
-					className='flex flex-col sm:flex-row gap-4 justify-between'
+					className='flex flex-col sm:flex-row gap-4 justify-between items-center text-center'
 					variants={itemVariants}
 				>
 					<motion.p className='text-sm text-slate-600 dark:text-gray-400'>

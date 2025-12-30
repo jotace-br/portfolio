@@ -73,6 +73,15 @@ function Header() {
 		};
 	}, [menuOpen]);
 
+	const handleThemeChange = () => {
+		if (theme === 'dark' || effectiveTheme === 'dark') {
+			setTheme('light');
+			return;
+		}
+
+		setTheme('dark');
+	};
+
 	return (
 		<>
 			{/* Shadow overlay for mobile */}
@@ -170,7 +179,7 @@ function Header() {
 							<Button
 								variant='ghost'
 								size='icon-sm'
-								onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+								onClick={handleThemeChange}
 								aria-label={
 									effectiveTheme === 'dark'
 										? t('switchToLight')
@@ -214,7 +223,7 @@ function Header() {
 									size='icon-sm'
 									onClick={(e) => {
 										e.stopPropagation();
-										setTheme(theme === 'dark' ? 'light' : 'dark');
+										handleThemeChange();
 										setMenuOpen(false);
 									}}
 									aria-label={
