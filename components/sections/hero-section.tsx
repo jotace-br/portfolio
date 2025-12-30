@@ -90,7 +90,7 @@ export function HeroSection() {
 								</Button>
 							</a>
 							<a
-								href='https://github.com/juliocesardev'
+								href='https://github.com/jotace-br'
 								target='_blank'
 								rel='noopener noreferrer'
 								className='pointer-events-auto'
