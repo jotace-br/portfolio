@@ -147,7 +147,6 @@ export default async function LocaleLayout({
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 dark:bg-zinc-950`}
 			>
-				<Analytics />
 				<NextIntlClientProvider messages={messages}>
 					<ThemeProvider
 						attribute='class'
@@ -157,13 +156,13 @@ export default async function LocaleLayout({
 					>
 						<ChristmasSnowfall />
 						<Header />
-						<main>
-							{children}
-							<SpeedInsights />
-						</main>
+						<main>{children}</main>
 						<Footer />
 					</ThemeProvider>
 				</NextIntlClientProvider>
+
+				<Analytics />
+				<SpeedInsights />
 			</body>
 		</html>
 	);
