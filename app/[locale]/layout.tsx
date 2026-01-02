@@ -4,8 +4,6 @@ import { Header } from '@/components/sections/header';
 import { routing } from '@/i18n/routing';
 import { ThemeProvider } from '@/providers/theme-provider';
 import { getBaseUrl } from '@/utils/url';
-import { Analytics } from '@vercel/analytics/next';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
@@ -160,9 +158,6 @@ export default async function LocaleLayout({
 						<Footer />
 					</ThemeProvider>
 				</NextIntlClientProvider>
-
-				<Analytics />
-				<SpeedInsights />
 			</body>
 		</html>
 	);
