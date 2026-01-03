@@ -180,6 +180,12 @@ const StaggeredMenuComponent = React.forwardRef<
 				}
 				preLayerElsRef.current = preLayers;
 
+				// Clear inline transforms so GSAP can take over
+				if (preContainer) {
+					gsap.set(preContainer, { clearProps: 'transform' });
+				}
+				gsap.set([panel, ...preLayers], { clearProps: 'transform' });
+
 				const offscreen = position === 'left' ? -100 : 100;
 				gsap.set([panel, ...preLayers], { xPercent: offscreen });
 
@@ -600,6 +606,7 @@ const StaggeredMenuComponent = React.forwardRef<
 						ref={preLayersRef}
 						className='sm-prelayers absolute top-0 right-0 bottom-0 pointer-events-none z-5'
 						aria-hidden='true'
+						style={{ transform: `translateX(${position === 'left' ? '-100%' : '100%'})` }}
 					>
 						{(() => {
 							const raw =
@@ -615,7 +622,10 @@ const StaggeredMenuComponent = React.forwardRef<
 								<div
 									key={i}
 									className='sm-prelayer absolute top-0 right-0 h-full w-full translate-x-0'
-									style={{ background: c }}
+									style={{ 
+										background: c,
+										transform: `translateX(${position === 'left' ? '-100%' : '100%'})`
+									}}
 									suppressHydrationWarning
 								/>
 							));
@@ -693,6 +703,7 @@ const StaggeredMenuComponent = React.forwardRef<
 						style={{
 							WebkitBackdropFilter: 'blur(12px)',
 							backdropFilter: 'blur(12px)',
+							transform: `translateX(${position === 'left' ? '-100%' : '100%'})`,
 						}}
 						aria-hidden={!open}
 						inert={!open ? true : undefined}
