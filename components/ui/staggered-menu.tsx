@@ -66,7 +66,7 @@ const StaggeredMenuComponent = React.forwardRef<
 			displaySocials = true,
 			displayItemNumbering = true,
 			className,
-			logoUrl = '/src/assets/logos/reactbits-gh-white.svg',
+			logoUrl = '',
 			menuButtonColor = '#fff',
 			openMenuButtonColor = '#fff',
 			changeMenuColorOnOpen = true,
@@ -606,7 +606,11 @@ const StaggeredMenuComponent = React.forwardRef<
 						ref={preLayersRef}
 						className='sm-prelayers absolute top-0 right-0 bottom-0 pointer-events-none z-5'
 						aria-hidden='true'
-						style={{ transform: `translateX(${position === 'left' ? '-100%' : '100%'})` }}
+						style={{
+							transform: `translateX(${
+								position === 'left' ? '-100%' : '100%'
+							})`,
+						}}
 					>
 						{(() => {
 							const raw =
@@ -622,9 +626,11 @@ const StaggeredMenuComponent = React.forwardRef<
 								<div
 									key={i}
 									className='sm-prelayer absolute top-0 right-0 h-full w-full translate-x-0'
-									style={{ 
+									style={{
 										background: c,
-										transform: `translateX(${position === 'left' ? '-100%' : '100%'})`
+										transform: `translateX(${
+											position === 'left' ? '-100%' : '100%'
+										})`,
 									}}
 									suppressHydrationWarning
 								/>
@@ -641,7 +647,7 @@ const StaggeredMenuComponent = React.forwardRef<
 							aria-label='Logo'
 						>
 							<Image
-								src={logoUrl || '/src/assets/logos/reactbits-gh-white.svg'}
+								src={logoUrl}
 								alt='Logo'
 								className='sm-logo-img block h-8 w-auto object-contain'
 								draggable={false}
@@ -703,7 +709,9 @@ const StaggeredMenuComponent = React.forwardRef<
 						style={{
 							WebkitBackdropFilter: 'blur(12px)',
 							backdropFilter: 'blur(12px)',
-							transform: `translateX(${position === 'left' ? '-100%' : '100%'})`,
+							transform: `translateX(${
+								position === 'left' ? '-100%' : '100%'
+							})`,
 						}}
 						aria-hidden={!open}
 						inert={!open ? true : undefined}

@@ -306,7 +306,6 @@ function Header() {
 						? ['#09090b', '#c182f5']
 						: ['#f9fafb', '#7016ba']
 				}
-				logoUrl=''
 				accentColor={effectiveTheme === 'dark' ? '#c182f5' : '#7016ba'}
 				textColor={effectiveTheme === 'dark' ? '#fff' : '#000'}
 				borderColor={
