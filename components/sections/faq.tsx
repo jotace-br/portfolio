@@ -79,9 +79,7 @@ function Faq() {
 										}}
 									>
 										<AccordionItem value={faq.id}>
-											<AccordionTrigger className='hover:no-underline'>
-												{faq.question}
-											</AccordionTrigger>
+											<AccordionTrigger>{faq.question}</AccordionTrigger>
 											<AccordionContent>{faq.answer}</AccordionContent>
 										</AccordionItem>
 									</motion.div>
