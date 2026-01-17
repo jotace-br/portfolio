@@ -1,12 +1,40 @@
 import { PageReveal } from '@/components/animations/page-reveal';
-import { AboutMe } from '@/components/sections/about-me';
 import { AllTechnologiesLoop } from '@/components/sections/all-technologies-loop';
-import { Education } from '@/components/sections/education';
-import { Faq } from '@/components/sections/faq';
-import { HeroSectionWithGridScan } from '@/components/sections/hero-section-with-grid-scan';
-import { ProjectsShowcase } from '@/components/sections/projects-showcase';
-import { WorkExperience } from '@/components/sections/work-experience';
+import { HeroSectionWithGridScan } from '@/components/sections/hero-section-with-grid-scan-lazy';
 import { setRequestLocale } from 'next-intl/server';
+import dynamic from 'next/dynamic';
+
+// Lazy load below-the-fold sections to reduce initial bundle and improve FCP/LCP
+const AboutMe = dynamic(
+	() => import('@/components/sections/about-me').then((mod) => mod.AboutMe),
+	{ ssr: true }
+);
+
+const WorkExperience = dynamic(
+	() =>
+		import('@/components/sections/work-experience').then(
+			(mod) => mod.WorkExperience
+		),
+	{ ssr: true }
+);
+
+const ProjectsShowcase = dynamic(
+	() =>
+		import('@/components/sections/projects-showcase').then(
+			(mod) => mod.ProjectsShowcase
+		),
+	{ ssr: true }
+);
+
+const Education = dynamic(
+	() => import('@/components/sections/education').then((mod) => mod.Education),
+	{ ssr: true }
+);
+
+const Faq = dynamic(
+	() => import('@/components/sections/faq').then((mod) => mod.Faq),
+	{ ssr: true }
+);
 
 export default async function Home({
 	params,

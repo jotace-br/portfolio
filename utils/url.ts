@@ -3,18 +3,29 @@ export function getBaseUrl() {
 		return window.location.origin;
 	}
 
-	if (process.env.NEXT_PUBLIC_SITE_URL) {
-		return process.env.NEXT_PUBLIC_SITE_URL.endsWith('/')
-			? process.env.NEXT_PUBLIC_SITE_URL.slice(0, -1)
-			: process.env.NEXT_PUBLIC_SITE_URL;
+	const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+	if (siteUrl) {
+		return siteUrl.endsWith('/') ? siteUrl.slice(0, -1) : siteUrl;
+	}
+
+	const vercelUrl = process.env.VERCEL_URL;
+	if (vercelUrl) {
+		return `https://${vercelUrl}`;
 	}
 
 	return 'http://localhost:3000';
 }
 
-export function getFormattedUrl(params: string) {
-	// sanitize params and remove leading slash
-	params = params.replace(/^\/+/g, '');
+export function getBaseUrlObject(): URL {
+	return new URL(getBaseUrl());
+}
 
-	return `${getBaseUrl()}/${params}`;
+export function getFormattedUrl(pathname: string): string {
+	const sanitizedPathname = pathname.replace(/^\/+/g, '');
+	return `${getBaseUrl()}/${sanitizedPathname}`;
+}
+
+export function getAbsoluteUrl(pathname: string): string {
+	const sanitizedPathname = pathname.replace(/^\/+/g, '');
+	return new URL(sanitizedPathname, getBaseUrlObject()).toString();
 }

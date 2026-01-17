@@ -558,11 +558,19 @@ const StaggeredMenuComponent = React.forwardRef<
 		useEffect(() => {
 			if (!open) return;
 
+			let rafId: number | null = null;
+
 			const handleResize = () => {
-				// Close menu if screen width exceeds 768px (md breakpoint)
-				if (window.innerWidth > 768) {
-					closeMenu();
-				}
+				// Debounce with requestAnimationFrame to prevent forced reflows
+				if (rafId) return;
+
+				rafId = requestAnimationFrame(() => {
+					rafId = null;
+					// Close menu if screen width exceeds 768px (md breakpoint)
+					if (window.innerWidth > 768) {
+						closeMenu();
+					}
+				});
 			};
 
 			// Listen for both resize and orientation change events
@@ -572,6 +580,7 @@ const StaggeredMenuComponent = React.forwardRef<
 			return () => {
 				window.removeEventListener('resize', handleResize);
 				window.removeEventListener('orientationchange', handleResize);
+				if (rafId) cancelAnimationFrame(rafId);
 			};
 		}, [open, closeMenu]);
 
@@ -642,19 +651,21 @@ const StaggeredMenuComponent = React.forwardRef<
 						className='staggered-menu-header absolute top-0 left-0 w-full flex items-center justify-between p-[2em] bg-transparent pointer-events-auto z-20'
 						aria-label='Main navigation header'
 					>
-						<div
-							className='sm-logo flex items-center select-none pointer-events-auto'
-							aria-label='Logo'
-						>
-							<Image
-								src={logoUrl}
-								alt='Logo'
-								className='sm-logo-img block h-8 w-auto object-contain'
-								draggable={false}
-								width={110}
-								height={24}
-							/>
-						</div>
+						{logoUrl && (
+							<div
+								className='sm-logo flex items-center select-none pointer-events-auto'
+								aria-label='Logo'
+							>
+								<Image
+									src={logoUrl}
+									alt='Logo'
+									className='sm-logo-img block h-8 w-auto object-contain'
+									draggable={false}
+									width={110}
+									height={24}
+								/>
+							</div>
+						)}
 
 						<button
 							ref={toggleBtnRef}
