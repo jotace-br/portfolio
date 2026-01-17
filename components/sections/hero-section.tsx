@@ -104,7 +104,6 @@ export function HeroSection() {
 							<Link
 								href='#contact'
 								className='absolute -bottom-8 sm:-bottom-10 md:-bottom-12 -left-6 sm:-left-8 md:-left-10 pointer-events-auto'
-								aria-label={t('contactMe')}
 							>
 								<CircularText
 									text={t('getInTouch')}
@@ -112,6 +111,7 @@ export function HeroSection() {
 									spinDuration={20}
 									className='text-slate-950 dark:text-gray-100 size-24 sm:size-28 md:size-32'
 								>
+									<span className='sr-only'>{t('getInTouch')}</span>
 									<ArrowUpRight className='size-4 sm:size-5 md:size-6 text-slate-950 dark:text-gray-100' />
 								</CircularText>
 							</Link>
