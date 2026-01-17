@@ -1,7 +1,4 @@
 export type GridScanProps = {
-	enableWebcam?: boolean;
-	showPreview?: boolean;
-	modelsPath?: string;
 	sensitivity?: number;
 
 	lineThickness?: number;

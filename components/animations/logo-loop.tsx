@@ -270,36 +270,47 @@ export const LogoLoop = React.memo<LogoLoopProps>(
 		}, [speed, direction, isVertical]);
 
 		const updateDimensions = useCallback(() => {
-			const containerWidth = containerRef.current?.clientWidth ?? 0;
-			const sequenceRect = seqRef.current?.getBoundingClientRect?.();
-			const sequenceWidth = sequenceRect?.width ?? 0;
-			const sequenceHeight = sequenceRect?.height ?? 0;
-			if (isVertical) {
-				const parentHeight =
-					containerRef.current?.parentElement?.clientHeight ?? 0;
-				if (containerRef.current && parentHeight > 0) {
-					const targetHeight = Math.ceil(parentHeight);
-					if (containerRef.current.style.height !== `${targetHeight}px`)
-						containerRef.current.style.height = `${targetHeight}px`;
-				}
-				if (sequenceHeight > 0) {
-					setSeqHeight(Math.ceil(sequenceHeight));
-					const viewport =
-						containerRef.current?.clientHeight ??
-						parentHeight ??
-						sequenceHeight;
+			// Use requestAnimationFrame to batch all DOM reads and prevent forced reflows
+			requestAnimationFrame(() => {
+				if (!containerRef.current || !seqRef.current) return;
+
+				// Batch all DOM reads first
+				const containerWidth = containerRef.current.clientWidth;
+				const sequenceRect = seqRef.current.getBoundingClientRect();
+				const sequenceWidth = sequenceRect.width;
+				const sequenceHeight = sequenceRect.height;
+
+				if (isVertical) {
+					const parentHeight =
+						containerRef.current.parentElement?.clientHeight ?? 0;
+
+					// Batch DOM writes after all reads
+					if (parentHeight > 0) {
+						const targetHeight = Math.ceil(parentHeight);
+						if (containerRef.current.style.height !== `${targetHeight}px`) {
+							containerRef.current.style.height = `${targetHeight}px`;
+						}
+					}
+
+					if (sequenceHeight > 0) {
+						setSeqHeight(Math.ceil(sequenceHeight));
+						const viewport =
+							containerRef.current.clientHeight ??
+							parentHeight ??
+							sequenceHeight;
+						const copiesNeeded =
+							Math.ceil(viewport / sequenceHeight) +
+							ANIMATION_CONFIG.COPY_HEADROOM;
+						setCopyCount(Math.max(ANIMATION_CONFIG.MIN_COPIES, copiesNeeded));
+					}
+				} else if (sequenceWidth > 0) {
+					setSeqWidth(Math.ceil(sequenceWidth));
 					const copiesNeeded =
-						Math.ceil(viewport / sequenceHeight) +
+						Math.ceil(containerWidth / sequenceWidth) +
 						ANIMATION_CONFIG.COPY_HEADROOM;
 					setCopyCount(Math.max(ANIMATION_CONFIG.MIN_COPIES, copiesNeeded));
 				}
-			} else if (sequenceWidth > 0) {
-				setSeqWidth(Math.ceil(sequenceWidth));
-				const copiesNeeded =
-					Math.ceil(containerWidth / sequenceWidth) +
-					ANIMATION_CONFIG.COPY_HEADROOM;
-				setCopyCount(Math.max(ANIMATION_CONFIG.MIN_COPIES, copiesNeeded));
-			}
+			});
 		}, [isVertical]);
 
 		useResizeObserver(
@@ -434,7 +445,12 @@ export const LogoLoop = React.memo<LogoLoopProps>(
 						{content}
 					</a>
 				) : (
-					<div className={cx('inline-flex items-center justify-center', 'h-(--logoloop-logoHeight) w-(--logoloop-logoHeight)')}>
+					<div
+						className={cx(
+							'inline-flex items-center justify-center',
+							'h-(--logoloop-logoHeight) w-(--logoloop-logoHeight)'
+						)}
+					>
 						{content}
 					</div>
 				);

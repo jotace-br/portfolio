@@ -9,9 +9,11 @@ interface PageRevealProps {
 }
 
 export function PageReveal({ children, delay = 1.2 }: PageRevealProps) {
-	const [isRevealing, setIsRevealing] = useState(false);
+	const [isRevealing, setIsRevealing] = useState(delay === 0);
 
 	useEffect(() => {
+		if (delay === 0) return;
+
 		const timer = setTimeout(() => {
 			setIsRevealing(true);
 		}, delay * 1000);
@@ -19,11 +21,15 @@ export function PageReveal({ children, delay = 1.2 }: PageRevealProps) {
 		return () => clearTimeout(timer);
 	}, [delay]);
 
+	if (delay === 0) {
+		return <>{children}</>;
+	}
+
 	return (
 		<div className='relative'>
 			<motion.div
-				initial={{ opacity: 0 }}
-				animate={{ opacity: isRevealing ? 1 : 0 }}
+				initial={{ opacity: 1 }}
+				animate={{ opacity: 1 }}
 				transition={{ duration: 0.3 }}
 			>
 				{children}
@@ -34,8 +40,7 @@ export function PageReveal({ children, delay = 1.2 }: PageRevealProps) {
 				initial={{ x: 0 }}
 				animate={{ x: isRevealing ? '100%' : 0 }}
 				transition={{
-					duration: 0.8,
-					delay: 0.1,
+					duration: 0.6,
 					ease: [0.43, 0.13, 0.23, 0.96],
 				}}
 				style={{

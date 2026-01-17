@@ -3,7 +3,7 @@ import { Footer } from '@/components/sections/footer';
 import { Header } from '@/components/sections/header';
 import { routing } from '@/i18n/routing';
 import { ThemeProvider } from '@/providers/theme-provider';
-import { getBaseUrl } from '@/utils/url';
+import { getBaseUrlObject } from '@/utils/url';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
@@ -23,6 +23,42 @@ const geistMono = Geist_Mono({
 	subsets: ['latin'],
 });
 
+type SeoCopy = {
+	title: { default: string; template: string };
+	description: string;
+	ogTitle: string;
+	ogDescription: string;
+};
+
+const seoCopyByLocale: Record<'en' | 'pt', SeoCopy> = {
+	en: {
+		title: {
+			default: 'Júlio César — Frontend Engineer | React · Next.js',
+			template: '%s — Júlio César',
+		},
+		description:
+			'Senior Frontend Engineer building fast, SEO-friendly React and Next.js apps with strong architecture and Web Vitals focus.',
+		ogTitle: 'Júlio César — Frontend Engineer',
+		ogDescription:
+			'Senior Frontend Engineer building high-performance React/Next.js products focused on Web Vitals, SEO, and scalability.',
+	},
+	pt: {
+		title: {
+			default: 'Júlio César — Engenheiro Frontend | React · Next.js',
+			template: '%s — Júlio César',
+		},
+		description:
+			'Engenheiro Frontend Sênior criando apps React e Next.js rápidos e otimizados para SEO, com foco em arquitetura e Web Vitals.',
+		ogTitle: 'Júlio César — Engenheiro Frontend',
+		ogDescription:
+			'Engenheiro Frontend Sênior criando produtos React/Next.js de alta performance, com foco em Web Vitals, SEO e escalabilidade.',
+	},
+};
+
+function getSeoCopy(locale: string): SeoCopy {
+	return locale === 'pt' ? seoCopyByLocale.pt : seoCopyByLocale.en;
+}
+
 export function generateStaticParams() {
 	return routing.locales.map((locale) => ({ locale }));
 }
@@ -33,39 +69,20 @@ export async function generateMetadata({
 	params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
 	const { locale } = await params;
-	const origin = getBaseUrl();
 
-	const metadata = {
-		en: {
-			title: {
-				default: 'Júlio César — Frontend Engineer | React · Next.js',
-				template: '%s — Júlio César',
-			},
-			description:
-				'Frontend Engineer with 5+ years building performant, SEO-friendly React and Next.js apps. Focused on Web Vitals, architecture, and clean code.',
-			ogTitle: 'Júlio César — Frontend Engineer',
-			ogDescription:
-				'Frontend Engineer with 5+ years building high-performance React/Next.js applications, focusing on Web Vitals, SEO and scalable architecture.',
-		},
-		pt: {
-			title: {
-				default: 'Júlio César — Engenheiro Frontend | React · Next.js',
-				template: '%s — Júlio César',
-			},
-			description:
-				'Engenheiro Frontend com mais de 5 anos construindo aplicações React e Next.js performantes e otimizadas para SEO. Focado em Web Vitals, arquitetura e código limpo.',
-			ogTitle: 'Júlio César — Engenheiro Frontend',
-			ogDescription:
-				'Engenheiro Frontend com mais de 5 anos construindo aplicações React/Next.js de alta performance, focado em Web Vitals, SEO e arquitetura escalável.',
-		},
-	};
+	const localizedSeoCopy = getSeoCopy(locale);
 
-	const localizedMetadata =
-		metadata[locale as keyof typeof metadata] || metadata.en;
+	const metadataBase = getBaseUrlObject();
+
+	const normalizedLocale = locale === 'pt' ? 'pt' : 'en';
+
+	const canonicalUrl = new URL(`/${normalizedLocale}`, metadataBase).toString();
+	const profileImageUrl = new URL('/profile.webp', metadataBase).toString();
 
 	return {
-		title: localizedMetadata.title,
-		description: localizedMetadata.description,
+		metadataBase,
+		title: localizedSeoCopy.title,
+		description: localizedSeoCopy.description,
 		keywords: [
 			'React',
 			'Next.js',
@@ -86,32 +103,32 @@ export async function generateMetadata({
 		creator: 'Júlio César Almeida Ferreira',
 		publisher: 'Júlio César Almeida Ferreira',
 		openGraph: {
-			title: localizedMetadata.ogTitle,
-			description: localizedMetadata.ogDescription,
-			url: origin,
+			title: localizedSeoCopy.ogTitle,
+			description: localizedSeoCopy.ogDescription,
+			url: canonicalUrl,
 			siteName: 'Júlio César — Portfolio',
 			images: [
 				{
-					url: `${origin}/profile.webp`,
+					url: profileImageUrl,
 					width: 1200,
 					height: 630,
-					alt: localizedMetadata.ogTitle,
+					alt: localizedSeoCopy.ogTitle,
 				},
 			],
-			locale: locale === 'pt' ? 'pt_BR' : 'en_US',
+			locale: normalizedLocale === 'pt' ? 'pt_BR' : 'en_US',
 			type: 'website',
 		},
 		twitter: {
 			card: 'summary_large_image',
-			title: localizedMetadata.ogTitle,
-			description: localizedMetadata.ogDescription,
-			images: [`${origin}/profile.webp`],
+			title: localizedSeoCopy.ogTitle,
+			description: localizedSeoCopy.ogDescription,
+			images: [profileImageUrl],
 		},
 		alternates: {
-			canonical: origin,
+			canonical: canonicalUrl,
 			languages: {
-				en: `${origin}/en`,
-				pt: `${origin}/pt`,
+				en: new URL('/en', metadataBase).toString(),
+				pt: new URL('/pt', metadataBase).toString(),
 			},
 		},
 		robots: {
@@ -141,9 +158,20 @@ export default async function LocaleLayout({
 
 	// Providing all messages to the client side is the easiest way to get started
 	const messages = await getMessages();
+	const localizedSeoCopy = getSeoCopy(locale);
 
 	return (
 		<html lang={locale} className='scroll-smooth' suppressHydrationWarning>
+			<head>
+				<meta name='description' content={localizedSeoCopy.description} />
+
+				<link
+					rel='preload'
+					as='image'
+					href='/profile.webp'
+					fetchPriority='high'
+				/>
+			</head>
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 dark:bg-zinc-950`}
 			>
@@ -160,6 +188,7 @@ export default async function LocaleLayout({
 						<Footer />
 					</ThemeProvider>
 				</NextIntlClientProvider>
+
 				<SpeedInsights />
 				<Analytics />
 			</body>
