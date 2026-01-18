@@ -1,6 +1,6 @@
 import { PageReveal } from '@/components/animations/page-reveal';
 import { AllTechnologiesLoop } from '@/components/sections/all-technologies-loop';
-import { HeroSectionWithGridScan } from '@/components/sections/hero-section-with-grid-scan-lazy';
+import { HeroSectionWithGridScan } from '@/components/sections/hero-section-with-grid-scan';
 import { setRequestLocale } from 'next-intl/server';
 import dynamic from 'next/dynamic';
 

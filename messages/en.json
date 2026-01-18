@@ -30,6 +30,12 @@
 		"label": "About Me",
 		"content": "I'm Júlio César, a frontend engineer with over 5+ years of experience building web applications for real-world use. I focus on writing clean, reliable code and contributing to products that evolve over time."
 	},
+	"technologies": {
+		"listMode": "List mode",
+		"autoScroll": "Auto-scroll",
+		"previousTech": "Previous technologies",
+		"nextTech": "Next technologies"
+	},
 	"work": {
 		"label": "Work History",
 		"title": "Experience",

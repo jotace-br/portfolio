@@ -30,6 +30,12 @@
 		"label": "Sobre Mim",
 		"content": "Sou Júlio César, engenheiro frontend com mais de 5 anos de experiência construindo aplicações web para uso real. Foco em escrever código limpo e confiável, contribuindo para produtos que evoluem ao longo do tempo."
 	},
+	"technologies": {
+		"listMode": "Modo lista",
+		"autoScroll": "Rolagem automática",
+		"previousTech": "Tecnologias anteriores",
+		"nextTech": "Próximas tecnologias"
+	},
 	"work": {
 		"label": "Minha trajetória",
 		"title": "Experiência",

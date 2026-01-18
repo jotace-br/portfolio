@@ -1,5 +1,6 @@
 'use client';
 
+import { useReducedMotion } from '@/hooks/use-reduced-motion';
 import { cn } from '@/lib/utils';
 import {
 	motion,
@@ -8,7 +9,7 @@ import {
 	useAnimation,
 	useMotionValue,
 } from 'motion/react';
-import React, { useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 
 interface CircularTextProps {
 	text: string;
@@ -40,18 +41,22 @@ const getTransition = (duration: number, from: number) => ({
 	},
 });
 
-const CircularText: React.FC<CircularTextProps> = ({
+const CircularText: React.FC<CircularTextProps> = memo(function CircularText({
 	text,
 	spinDuration = 20,
 	onHover = 'speedUp',
 	className = '',
 	children,
-}) => {
+}) {
+	const { shouldReduceMotion } = useReducedMotion();
 	const letters = Array.from(text);
 	const controls = useAnimation();
 	const rotation: MotionValue<number> = useMotionValue(0);
 
 	useEffect(() => {
+		// Skip animation for reduced motion preference
+		if (shouldReduceMotion) return;
+
 		const start = rotation.get();
 		controls.start({
 			rotate: start + 360,
@@ -59,9 +64,12 @@ const CircularText: React.FC<CircularTextProps> = ({
 			transition: getTransition(spinDuration, start),
 		});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [spinDuration, text, onHover, controls]);
+	}, [spinDuration, text, onHover, controls, shouldReduceMotion]);
 
 	const handleHoverStart = () => {
+		// Skip hover animations for reduced motion preference
+		if (shouldReduceMotion) return;
+
 		const start = rotation.get();
 
 		if (!onHover) return;
@@ -98,6 +106,8 @@ const CircularText: React.FC<CircularTextProps> = ({
 	};
 
 	const handleHoverEnd = () => {
+		// Skip hover animations for reduced motion preference
+		if (shouldReduceMotion) return;
 		const start = rotation.get();
 		controls.start({
 			rotate: start + 360,
@@ -116,9 +126,9 @@ const CircularText: React.FC<CircularTextProps> = ({
 					'shadow-lg',
 					className
 				)}
-				style={{ rotate: rotation }}
+				style={{ rotate: shouldReduceMotion ? 0 : rotation }}
 				initial={{ rotate: 0 }}
-				animate={controls}
+				animate={shouldReduceMotion ? undefined : controls}
 				onMouseEnter={handleHoverStart}
 				onMouseLeave={handleHoverEnd}
 			>
@@ -132,7 +142,7 @@ const CircularText: React.FC<CircularTextProps> = ({
 					return (
 						<span
 							key={i}
-							className='absolute inline-block inset-0 text-sm sm:text-base md:text-xl transition-all duration-500 ease-[cubic-bezier(0,0,0,1)]'
+							className='absolute inline-block inset-0 text-sm sm:text-base md:text-xl transition-all duration-500 ease-[cubic-bezier(0,0,0,1)] motion-reduce:transition-none'
 							style={{ transform, WebkitTransform: transform }}
 						>
 							{letter}
@@ -141,12 +151,12 @@ const CircularText: React.FC<CircularTextProps> = ({
 				})}
 			</motion.div>
 			{children && (
-				<div className='absolute inset-0 flex items-center justify-center pointer-events-none transition-transform duration-300 group-hover:rotate-135'>
+				<div className='absolute inset-0 flex items-center justify-center pointer-events-none transition-transform duration-300 group-hover:rotate-135 motion-reduce:transition-none motion-reduce:group-hover:rotate-0'>
 					{children}
 				</div>
 			)}
 		</div>
 	);
-};
+});
 
 export default CircularText;
