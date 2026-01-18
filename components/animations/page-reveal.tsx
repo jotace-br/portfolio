@@ -1,27 +1,40 @@
 'use client';
 
+import { useReducedMotion } from '@/hooks/use-reduced-motion';
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 
 interface PageRevealProps {
 	children: React.ReactNode;
 	delay?: number;
 }
 
-export function PageReveal({ children, delay = 1.2 }: PageRevealProps) {
-	const [isRevealing, setIsRevealing] = useState(delay === 0);
+export const PageReveal = memo(function PageReveal({
+	children,
+	delay = 1.2,
+}: PageRevealProps) {
+	const { shouldReduceMotion } = useReducedMotion();
+	const [isRevealing, setIsRevealing] = useState(
+		delay === 0 || shouldReduceMotion
+	);
 
 	useEffect(() => {
-		if (delay === 0) return;
+		if (delay === 0 || shouldReduceMotion) {
+			const id = setTimeout(() => {
+				setIsRevealing(true);
+			}, 0);
+
+			return () => clearTimeout(id);
+		}
 
 		const timer = setTimeout(() => {
 			setIsRevealing(true);
 		}, delay * 1000);
 
 		return () => clearTimeout(timer);
-	}, [delay]);
+	}, [delay, shouldReduceMotion]);
 
-	if (delay === 0) {
+	if (delay === 0 || shouldReduceMotion) {
 		return <>{children}</>;
 	}
 
@@ -49,4 +62,4 @@ export function PageReveal({ children, delay = 1.2 }: PageRevealProps) {
 			/>
 		</div>
 	);
-}
+});

@@ -1,11 +1,12 @@
 'use client';
 
-import { containerVariants, itemVariants } from '@/constants/animations';
-import { PROJECTS, ProjectData } from '@/constants/projects';
+import { getAnimationVariants } from '@/constants/animations';
+import { ProjectData, PROJECTS } from '@/constants/projects';
+import { useReducedMotion } from '@/hooks/use-reduced-motion';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Sparkle } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { ReactNode, useMemo, useState } from 'react';
+import { memo, ReactNode, useCallback, useMemo, useState } from 'react';
 import ShinyText from '../animations/shiny-text';
 import { Button } from '../ui/button';
 import { ProjectCard } from '../ui/project-card';
@@ -30,10 +31,17 @@ export interface Project {
 
 const INITIAL_ITEMS_TO_SHOW = 4;
 
-function ProjectsShowcase() {
+const ProjectsShowcase = memo(function ProjectsShowcase() {
 	const t = useTranslations('projects');
 	const [showAll, setShowAll] = useState(false);
 	const [hoveredId, setHoveredId] = useState<string | null>(null);
+	const { shouldReduceMotion } = useReducedMotion();
+	const { container, item } = getAnimationVariants(shouldReduceMotion);
+
+	// Memoize the hover callback
+	const handleHover = useCallback((id: string | null) => {
+		setHoveredId(id);
+	}, []);
 
 	// Merge static data with translations
 	const projects: Project[] = useMemo(() => {
@@ -61,6 +69,19 @@ function ProjectsShowcase() {
 		: projects.slice(0, INITIAL_ITEMS_TO_SHOW);
 	const hasMore = projects.length > INITIAL_ITEMS_TO_SHOW;
 
+	// Reduced motion item animation variants
+	const listItemVariants = shouldReduceMotion
+		? {
+				initial: { opacity: 0 },
+				animate: { opacity: 1 },
+				exit: { opacity: 0 },
+		  }
+		: {
+				initial: { scale: 0.8, opacity: 0, y: 20 },
+				animate: { scale: 1, opacity: 1, y: 0 },
+				exit: { scale: 1, opacity: 0, y: 0 },
+		  };
+
 	return (
 		<section
 			id='projects'
@@ -70,16 +91,16 @@ function ProjectsShowcase() {
 			<div className='max-w-6xl mx-auto w-full'>
 				<motion.div
 					className='flex flex-col gap-8 sm:gap-12'
-					variants={containerVariants}
+					variants={container}
 					initial='hidden'
 					whileInView='visible'
 					viewport={{ once: true, amount: 0.15 }}
 				>
 					<div className='flex flex-col gap-6'>
-						<motion.div className='flex flex-col gap-2' variants={itemVariants}>
+						<motion.div className='flex flex-col gap-2' variants={item}>
 							<motion.div
 								className='flex w-fit items-center gap-2 text-highlight-primary'
-								variants={itemVariants}
+								variants={item}
 							>
 								<Sparkle size={16} />
 								<ShinyText
@@ -91,14 +112,14 @@ function ProjectsShowcase() {
 							<motion.h2
 								id='projects-heading'
 								className='text-3xl sm:text-5xl tracking-tight font-bold text-slate-900 dark:text-gray-100'
-								variants={itemVariants}
+								variants={item}
 							>
 								{t('title')}
 							</motion.h2>
 						</motion.div>
 						<motion.p
 							className='text-base sm:text-lg text-slate-700 dark:text-gray-400 font-medium leading-relaxed max-w-3xl'
-							variants={itemVariants}
+							variants={item}
 						>
 							{t('description')}
 						</motion.p>
@@ -106,11 +127,11 @@ function ProjectsShowcase() {
 
 					<motion.div
 						className='flex w-full flex-col items-center gap-6'
-						variants={itemVariants}
+						variants={item}
 					>
 						<motion.div
 							className='grid grid-cols-1 lg:grid-cols-2 gap-6 w-full'
-							variants={containerVariants}
+							variants={container}
 							initial='hidden'
 							animate='visible'
 						>
@@ -118,22 +139,24 @@ function ProjectsShowcase() {
 								{displayedProjects.map((project, index) => (
 									<motion.div
 										key={project.id}
-										initial={{ scale: 0.8, opacity: 0, y: 20 }}
-										animate={{ scale: 1, opacity: 1, y: 0 }}
-										exit={{ scale: 1, opacity: 0, y: 0 }}
-										transition={{
-											duration: 0.3,
-											delay:
-												index >= INITIAL_ITEMS_TO_SHOW
-													? (index - INITIAL_ITEMS_TO_SHOW) * 0.1
-													: 0,
-											ease: [0.32, 0.72, 0, 1],
-										}}
+										{...listItemVariants}
+										transition={
+											shouldReduceMotion
+												? { duration: 0.01 }
+												: {
+														duration: 0.3,
+														delay:
+															index >= INITIAL_ITEMS_TO_SHOW
+																? (index - INITIAL_ITEMS_TO_SHOW) * 0.1
+																: 0,
+														ease: [0.32, 0.72, 0, 1],
+												  }
+										}
 									>
 										<ProjectCard
 											project={project}
 											isHovered={hoveredId === null || hoveredId === project.id}
-											onHover={setHoveredId}
+											onHover={handleHover}
 										/>
 									</motion.div>
 								))}
@@ -154,6 +177,6 @@ function ProjectsShowcase() {
 			</div>
 		</section>
 	);
-}
+});
 
 export { ProjectsShowcase };

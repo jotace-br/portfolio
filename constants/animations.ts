@@ -22,3 +22,35 @@ export const itemVariants: Variants = {
 		},
 	},
 };
+
+// Reduced motion variants - no movement, only opacity changes
+export const containerVariantsReduced: Variants = {
+	hidden: { opacity: 0 },
+	visible: {
+		opacity: 1,
+		transition: {
+			staggerChildren: 0,
+			delayChildren: 0,
+		},
+	},
+};
+
+export const itemVariantsReduced: Variants = {
+	hidden: { opacity: 0 },
+	visible: {
+		opacity: 1,
+		transition: {
+			duration: 0.01,
+		},
+	},
+};
+
+// Helper function to get variants based on reduced motion preference
+export function getAnimationVariants(shouldReduceMotion: boolean) {
+	return {
+		container: shouldReduceMotion
+			? containerVariantsReduced
+			: containerVariants,
+		item: shouldReduceMotion ? itemVariantsReduced : itemVariants,
+	};
+}

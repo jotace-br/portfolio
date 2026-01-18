@@ -1,9 +1,11 @@
 'use client';
 
+import { useReducedMotion } from '@/hooks/use-reduced-motion';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { memo, useMemo } from 'react';
 import { Project } from '../sections/projects-showcase';
 
 interface ProjectCardProps {
@@ -12,23 +14,36 @@ interface ProjectCardProps {
 	onHover: (id: string | null) => void;
 }
 
-function ProjectCard({ project, isHovered, onHover }: ProjectCardProps) {
+const ProjectCard = memo(function ProjectCard({
+	project,
+	isHovered,
+	onHover,
+}: ProjectCardProps) {
+	const { shouldReduceMotion } = useReducedMotion();
 	const isCurrentHovered = isHovered;
 	const maxStackDisplay = 3;
-	const displayedStack = project.stack.slice(0, maxStackDisplay);
-	const remainingCount = project.stack.length - maxStackDisplay;
+
+	// Memoize derived data
+	const { displayedStack, remainingCount } = useMemo(
+		() => ({
+			displayedStack: project.stack.slice(0, maxStackDisplay),
+			remainingCount: project.stack.length - maxStackDisplay,
+		}),
+		[project.stack]
+	);
 
 	return (
 		<Link href={`/projects/${project.slug}`}>
 			<motion.div
 				onHoverStart={() => onHover(project.id)}
 				onHoverEnd={() => onHover(null)}
-				initial={{ opacity: 0, y: 20 }}
+				initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
 				animate={{ opacity: 1, y: 0 }}
+				transition={shouldReduceMotion ? { duration: 0.01 } : undefined}
 				className={cn(
 					'group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 dark:border-zinc-800',
 					'bg-white dark:bg-zinc-950 backdrop-blur-sm',
-					'transition-all duration-300 ease-out',
+					'transition-all duration-300 ease-out motion-reduce:transition-none',
 					'hover:shadow-2xl hover:shadow-slate-200/50 dark:hover:shadow-zinc-900/50',
 					'hover:border-slate-300 dark:hover:border-zinc-700',
 					'h-full cursor-pointer',
@@ -39,8 +54,8 @@ function ProjectCard({ project, isHovered, onHover }: ProjectCardProps) {
 					{project.mediaType === 'video' ? (
 						<video
 							src={project.media}
-							className='h-full w-full object-cover transition-transform duration-500 group-hover:scale-105'
-							autoPlay
+							className='h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100'
+							autoPlay={!shouldReduceMotion}
 							loop
 							muted
 							playsInline
@@ -50,7 +65,7 @@ function ProjectCard({ project, isHovered, onHover }: ProjectCardProps) {
 							src={project.media}
 							alt={project.name}
 							fill
-							className='object-cover transition-transform duration-500 group-hover:scale-105'
+							className='object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100'
 							sizes='(max-width: 768px) 100vw, 50vw'
 						/>
 					)}
@@ -73,7 +88,7 @@ function ProjectCard({ project, isHovered, onHover }: ProjectCardProps) {
 								className='flex items-center gap-1.5 text-slate-700 dark:text-zinc-300 group/tech'
 								title={tech.name}
 							>
-								<span className='text-lg transition-transform duration-200 group-hover/tech:scale-110'>
+								<span className='text-lg transition-transform duration-200 group-hover/tech:scale-110 motion-reduce:transition-none motion-reduce:group-hover/tech:scale-100'>
 									{tech.icon}
 								</span>
 								<span className='text-xs font-medium'>{tech.name}</span>
@@ -94,6 +109,6 @@ function ProjectCard({ project, isHovered, onHover }: ProjectCardProps) {
 			</motion.div>
 		</Link>
 	);
-}
+});
 
 export { ProjectCard };

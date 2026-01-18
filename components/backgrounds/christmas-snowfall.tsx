@@ -1,13 +1,20 @@
 'use client';
 
+import { useReducedMotion } from '@/hooks/use-reduced-motion';
 import { useTheme } from 'next-themes';
+import { memo } from 'react';
 import Snowfall from 'react-snowfall';
 
-export function ChristmasSnowfall() {
+export const ChristmasSnowfall = memo(function ChristmasSnowfall() {
 	const { resolvedTheme } = useTheme();
+	const { shouldReduceMotion } = useReducedMotion();
 	const effectiveTheme = resolvedTheme || 'dark';
 
-	if (process.env.NEXT_PUBLIC_ENABLE_CHRISTMAS !== 'true') {
+	// Don't render snowfall for reduced motion preference or when disabled
+	if (
+		process.env.NEXT_PUBLIC_ENABLE_CHRISTMAS !== 'true' ||
+		shouldReduceMotion
+	) {
 		return null;
 	}
 
@@ -26,4 +33,4 @@ export function ChristmasSnowfall() {
 			}}
 		/>
 	);
-}
+});

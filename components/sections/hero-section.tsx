@@ -5,6 +5,7 @@ import { ArrowUpRight, Files } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import { memo } from 'react';
 import { BsLinkedin } from 'react-icons/bs';
 import { SiGithub } from 'react-icons/si';
 import { Button } from '../ui/button';
@@ -15,12 +16,12 @@ const CircularText = dynamic(
 	{
 		ssr: false,
 		loading: () => (
-			<div className='size-24 sm:size-28 md:size-32 rounded-full border border-dashed border-slate-400 dark:border-gray-600 animate-spin-slow' />
+			<div className='size-24 sm:size-28 md:size-32 rounded-full border border-dashed border-slate-400 dark:border-gray-600 animate-spin-slow motion-reduce:animate-none' />
 		),
 	}
 );
 
-export function HeroSection() {
+export const HeroSection = memo(function HeroSection() {
 	const t = useTranslations('hero');
 
 	return (
@@ -95,7 +96,7 @@ export function HeroSection() {
 								fill
 								priority
 								fetchPriority='high'
-								quality={90}
+								quality={85}
 								loading='eager'
 								className='rounded-full object-cover border-4 border-gray-200 dark:border-gray-800 shadow-xl'
 								sizes='(max-width: 640px) 192px, (max-width: 1024px) 224px, 256px'
@@ -121,4 +122,4 @@ export function HeroSection() {
 			</div>
 		</section>
 	);
-}
+});

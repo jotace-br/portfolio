@@ -1,13 +1,14 @@
 'use client';
 
-import { containerVariants, itemVariants } from '@/constants/animations';
+import { getAnimationVariants } from '@/constants/animations';
 import { SOCIAL_MEDIA_LINKS } from '@/constants/social-networks';
+import { useReducedMotion } from '@/hooks/use-reduced-motion';
 import emailjs from '@emailjs/browser';
 import { motion } from 'framer-motion';
 import { Dot } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { BsLinkedin } from 'react-icons/bs';
 import { MdEmail } from 'react-icons/md';
@@ -24,9 +25,11 @@ type ContactFormData = {
 	message: string;
 };
 
-function Footer() {
+const Footer = memo(function Footer() {
 	const t = useTranslations('contact');
 	const tFooter = useTranslations('footer');
+	const { shouldReduceMotion } = useReducedMotion();
+	const { container, item } = getAnimationVariants(shouldReduceMotion);
 	const {
 		register,
 		handleSubmit,
@@ -74,6 +77,11 @@ function Footer() {
 			});
 		}
 	};
+
+	// Reduced motion variants for status message
+	const statusAnimation = shouldReduceMotion
+		? { initial: { opacity: 1, y: 0 }, animate: { opacity: 1, y: 0 } }
+		: { initial: { opacity: 0, y: -10 }, animate: { opacity: 1, y: 0 } };
 	return (
 		<section
 			id='footer'
@@ -85,37 +93,37 @@ function Footer() {
 					id='contact'
 					className='w-full py-14 sm:pb-16 rounded-3xl px-4 bg-accent shadow dark:bg-zinc-900 flex flex-col gap-4 items-center justify-center'
 					aria-labelledby='contact-heading'
-					variants={containerVariants}
+					variants={container}
 					initial='hidden'
 					whileInView='visible'
 					viewport={{ once: true, amount: 0.15 }}
 				>
 					<Badge variant='secondary'>
-						<Dot className='text-green-600 dark:text-green-400 animate-pulse' />{' '}
+						<Dot className='text-green-600 dark:text-green-400 motion-reduce:animate-none animate-pulse' />{' '}
 						{t('badge')}
 					</Badge>
 
 					<motion.h2
 						id='contact-heading'
 						className='text-3xl sm:text-5xl tracking-tight font-bold text-slate-900 dark:text-gray-100 text-center'
-						variants={itemVariants}
+						variants={item}
 					>
 						{t('title')}
 					</motion.h2>
 
 					<motion.p
 						className='text-base sm:text-lg text-slate-700 dark:text-gray-400 font-medium leading-relaxed text-center max-w-2xl'
-						variants={itemVariants}
+						variants={item}
 					>
 						{t('description')}
 					</motion.p>
 
 					<motion.div
 						className='grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-5xl mt-8'
-						variants={containerVariants}
+						variants={container}
 					>
-						<motion.div className='flex flex-col gap-3' variants={itemVariants}>
-							<div className='p-6 rounded-2xl bg-linear-to-br from-slate-50 to-slate-100 dark:from-zinc-800 dark:to-zinc-900 border border-slate-200 dark:border-gray-700 transition-all hover:shadow-md'>
+						<motion.div className='flex flex-col gap-3' variants={item}>
+							<div className='p-6 rounded-2xl bg-linear-to-br from-slate-50 to-slate-100 dark:from-zinc-800 dark:to-zinc-900 border border-slate-200 dark:border-gray-700 transition-all motion-reduce:transition-none hover:shadow-md'>
 								<div className='flex items-start gap-4'>
 									<div className='p-3 rounded-xl bg-slate-900 dark:bg-gray-100 shrink-0'>
 										<MdEmail className='size-6 text-white dark:text-slate-900' />
@@ -142,9 +150,9 @@ function Footer() {
 									href='https://linkedin.com/in/juliocesardev'
 									target='_blank'
 									rel='noopener noreferrer'
-									className='p-5 rounded-xl bg-slate-50 dark:bg-zinc-800 border border-slate-200 dark:border-gray-700 hover:border-slate-400 dark:hover:border-gray-500 transition-all hover:shadow-md group flex flex-col justify-between'
+									className='p-5 rounded-xl bg-slate-50 dark:bg-zinc-800 border border-slate-200 dark:border-gray-700 hover:border-slate-400 dark:hover:border-gray-500 transition-all motion-reduce:transition-none hover:shadow-md group flex flex-col justify-between'
 								>
-									<BsLinkedin className='size-6 text-slate-700 dark:text-gray-300 mb-3 group-hover:scale-110 transition-transform' />
+									<BsLinkedin className='size-6 text-slate-700 dark:text-gray-300 mb-3 group-hover:scale-110 motion-reduce:group-hover:scale-100 transition-transform motion-reduce:transition-none' />
 									<div>
 										<p className='text-sm font-semibold text-slate-900 dark:text-gray-100 mb-1'>
 											LinkedIn
@@ -159,9 +167,9 @@ function Footer() {
 									href='https://github.com/jotace-br'
 									target='_blank'
 									rel='noopener noreferrer'
-									className='p-5 rounded-xl bg-slate-50 dark:bg-zinc-800 border border-slate-200 dark:border-gray-700 hover:border-slate-400 dark:hover:border-gray-500 transition-all hover:shadow-md group flex flex-col justify-between'
+									className='p-5 rounded-xl bg-slate-50 dark:bg-zinc-800 border border-slate-200 dark:border-gray-700 hover:border-slate-400 dark:hover:border-gray-500 transition-all motion-reduce:transition-none hover:shadow-md group flex flex-col justify-between'
 								>
-									<SiGithub className='size-6 text-slate-700 dark:text-gray-300 mb-3 group-hover:scale-110 transition-transform' />
+									<SiGithub className='size-6 text-slate-700 dark:text-gray-300 mb-3 group-hover:scale-110 motion-reduce:group-hover:scale-100 transition-transform motion-reduce:transition-none' />
 									<div>
 										<p className='text-sm font-semibold text-slate-900 dark:text-gray-100 mb-1'>
 											GitHub
@@ -176,7 +184,7 @@ function Footer() {
 
 						<motion.form
 							className='flex flex-col gap-4'
-							variants={itemVariants}
+							variants={item}
 							onSubmit={handleSubmit(onSubmit)}
 						>
 							<Field>
@@ -242,8 +250,7 @@ function Footer() {
 											? 'bg-green-200/50 text-green-900 dark:bg-green-900/20 dark:text-green-400'
 											: 'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400'
 									}`}
-									initial={{ opacity: 0, y: -10 }}
-									animate={{ opacity: 1, y: 0 }}
+									{...statusAnimation}
 								>
 									{submitStatus.message}
 								</motion.div>
@@ -257,23 +264,20 @@ function Footer() {
 
 				<motion.div
 					className='flex flex-col sm:flex-row gap-4 justify-between items-center text-center'
-					variants={itemVariants}
+					variants={item}
 				>
 					<motion.p className='text-sm text-slate-600 dark:text-gray-400'>
 						{tFooter('copyright', { year: new Date().getFullYear() })}
 					</motion.p>
 
-					<motion.div
-						className='flex items-center gap-4'
-						variants={itemVariants}
-					>
+					<motion.div className='flex items-center gap-4' variants={item}>
 						{SOCIAL_MEDIA_LINKS.map((social) => (
 							<Link
 								key={social.label}
 								href={social.link}
 								target='_blank'
 								rel='noopener noreferrer'
-								className='text-slate-900 hover:text-highlight-primary dark:text-gray-100 dark:hover:text-highlight-primary'
+								className='text-slate-900 hover:text-highlight-primary dark:text-gray-100 dark:hover:text-highlight-primary transition-colors motion-reduce:transition-none'
 							>
 								<span className='sr-only'>{social.label}</span>
 								{social.icon}
@@ -284,6 +288,6 @@ function Footer() {
 			</div>
 		</section>
 	);
-}
+});
 
 export { Footer };

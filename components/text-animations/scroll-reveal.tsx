@@ -1,7 +1,17 @@
+'use client';
+
+import { useReducedMotion } from '@/hooks/use-reduced-motion';
 import { cn } from '@/lib/utils';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import React, { ReactNode, RefObject, useEffect, useMemo, useRef } from 'react';
+import React, {
+	memo,
+	ReactNode,
+	RefObject,
+	useEffect,
+	useMemo,
+	useRef,
+} from 'react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,7 +28,7 @@ interface ScrollRevealProps {
 	wordAnimationEnd?: string;
 }
 
-const ScrollReveal: React.FC<ScrollRevealProps> = ({
+const ScrollReveal: React.FC<ScrollRevealProps> = memo(function ScrollReveal({
 	children,
 	scrollContainerRef,
 	enableBlur = true,
@@ -29,7 +39,8 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
 	textClassName = '',
 	rotationEnd = 'bottom bottom',
 	wordAnimationEnd = 'bottom bottom',
-}) => {
+}) {
+	const { shouldReduceMotion } = useReducedMotion();
 	const containerRef = useRef<HTMLHeadingElement>(null);
 
 	const splitText = useMemo(() => {
@@ -47,6 +58,13 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
 	useEffect(() => {
 		const el = containerRef.current;
 		if (!el) return;
+
+		if (shouldReduceMotion) {
+			gsap.set(el, { rotate: 0 });
+			const wordElements = el.querySelectorAll<HTMLElement>('.word');
+			gsap.set(wordElements, { opacity: 1, filter: 'blur(0px)' });
+			return;
+		}
 
 		const scroller =
 			scrollContainerRef && scrollContainerRef.current
@@ -118,6 +136,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
 		rotationEnd,
 		wordAnimationEnd,
 		blurStrength,
+		shouldReduceMotion,
 	]);
 
 	return (
@@ -132,6 +151,6 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
 			</p>
 		</h2>
 	);
-};
+});
 
 export default ScrollReveal;

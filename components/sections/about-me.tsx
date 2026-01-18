@@ -1,14 +1,18 @@
 'use client';
 
-import { containerVariants, itemVariants } from '@/constants/animations';
+import { getAnimationVariants } from '@/constants/animations';
+import { useReducedMotion } from '@/hooks/use-reduced-motion';
 import { motion } from 'framer-motion';
 import { Sparkle } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { memo } from 'react';
 import ShinyText from '../animations/shiny-text';
 import ScrollReveal from '../text-animations/scroll-reveal';
 
-function AboutMe() {
+const AboutMe = memo(function AboutMe() {
 	const t = useTranslations('about');
+	const { shouldReduceMotion } = useReducedMotion();
+	const { container, item } = getAnimationVariants(shouldReduceMotion);
 
 	return (
 		<section
@@ -19,14 +23,14 @@ function AboutMe() {
 			<div className='max-w-6xl mx-auto w-full'>
 				<motion.div
 					className='flex flex-col gap-4 items-center text-center'
-					variants={containerVariants}
+					variants={container}
 					initial='hidden'
 					whileInView='visible'
 					viewport={{ once: true, amount: 0.15 }}
 				>
 					<motion.div
 						className='flex w-fit items-center gap-2 text-highlight-primary'
-						variants={itemVariants}
+						variants={item}
 					>
 						<Sparkle size={16} />
 						<ShinyText
@@ -35,7 +39,7 @@ function AboutMe() {
 						/>
 					</motion.div>
 
-					<motion.div variants={itemVariants}>
+					<motion.div variants={item}>
 						<ScrollReveal
 							enableBlur={false}
 							baseRotation={0}
@@ -49,6 +53,6 @@ function AboutMe() {
 			</div>
 		</section>
 	);
-}
+});
 
 export { AboutMe };
